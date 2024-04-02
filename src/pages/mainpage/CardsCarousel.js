@@ -49,7 +49,7 @@ export default function CardsCarousel({ title, count }) {
           variant="caption"
           color="text.secondary"
           onClick={() => {
-            navigate("/chat");
+            navigate("/products");
           }}
         >
           {"전체보기 >"}

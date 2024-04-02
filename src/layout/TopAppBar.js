@@ -8,7 +8,7 @@ export default function TopAppBar() {
     <>
       <AppBar
         position="fixed"
-        sx={{ backgroundColor: "red", boxShadow: "none" }}
+        sx={{ backgroundColor: "blue", boxShadow: "none" }}
       >
         <Toolbar sx={{ display: "flex", justifyContent: "center" }}>
           <img src="/BMKlogo.png" alt="logo" style={{ width: "200px" }} />

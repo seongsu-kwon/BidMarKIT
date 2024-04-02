@@ -1,0 +1,111 @@
+[debug] [2024-04-02T07:26:46.120Z] ----------------------------------------------------------------------
+[debug] [2024-04-02T07:26:46.123Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\KWON\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2024-04-02T07:26:46.123Z] CLI Version:   13.3.0
+[debug] [2024-04-02T07:26:46.124Z] Platform:      win32
+[debug] [2024-04-02T07:26:46.124Z] Node Version:  v18.17.1
+[debug] [2024-04-02T07:26:46.126Z] Time:          Tue Apr 02 2024 16:26:46 GMT+0900 (대한민국 표준시)
+[debug] [2024-04-02T07:26:46.126Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-04-02T07:26:46.220Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-04-02T07:26:46.220Z] > authorizing via signed-in user (mnbv1880@gmail.com)
+[debug] [2024-04-02T07:26:46.221Z] [iam] checking project bidmarkit for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-04-02T07:26:46.224Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/bidmarkit:testIamPermissions [none]
+[debug] [2024-04-02T07:26:46.224Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/bidmarkit:testIamPermissions x-goog-quota-user=projects/bidmarkit
+[debug] [2024-04-02T07:26:46.224Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/bidmarkit:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-04-02T07:26:47.032Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/bidmarkit:testIamPermissions 200
+[debug] [2024-04-02T07:26:47.033Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/bidmarkit:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-04-02T07:26:47.035Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/bidmarkit [none]
+[debug] [2024-04-02T07:26:47.470Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/bidmarkit 200
+[debug] [2024-04-02T07:26:47.470Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/bidmarkit {"projectId":"bidmarkit","projectNumber":"156532169791","displayName":"BidMarKIT","name":"projects/bidmarkit","resources":{"hostingSite":"bidmarkit"},"state":"ACTIVE","etag":"1_dc5b84ba-ede1-4389-8d07-8ba0944d1c49"}
+[info] 
+[info] === Deploying to 'bidmarkit'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2024-04-02T07:26:47.492Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bidmarkit/versions [none]
+[debug] [2024-04-02T07:26:47.493Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bidmarkit/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2024-04-02T07:26:48.504Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bidmarkit/versions 200
+[debug] [2024-04-02T07:26:48.505Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bidmarkit/versions {"name":"projects/156532169791/sites/bidmarkit/versions/9f954c01c4d05bd2","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[info] i  hosting[bidmarkit]: beginning deploy... 
+[info] i  hosting[bidmarkit]: found 19 files in build 
+[debug] [2024-04-02T07:26:48.556Z] [hosting] uploading with 200 concurrency
+[debug] [2024-04-02T07:26:48.559Z] [hosting] hash cache [YnVpbGQ] not populated
+[debug] [2024-04-02T07:26:48.893Z] [hosting] hash cache [YnVpbGQ] stored for 19 files
+[debug] [2024-04-02T07:26:48.894Z] [hosting][hash queue][FINAL] {"max":315,"min":34,"avg":53.68421052631579,"active":0,"complete":19,"success":19,"errored":0,"retried":0,"total":19,"elapsed":333}
+[debug] [2024-04-02T07:26:48.894Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/156532169791/sites/bidmarkit/versions/9f954c01c4d05bd2:populateFiles [none]
+[debug] [2024-04-02T07:26:48.895Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/156532169791/sites/bidmarkit/versions/9f954c01c4d05bd2:populateFiles {"files":{"/asset-manifest.json":"c967d960f5d5f13e22334650d02b781c830bbb0dff4010836905181dd6a8d3a6","/image.png":"867cb051b06e8214125f77d2d2019352815c0b2df2046bfffd9c74ee2a2fdc1a","/favicon.ico":"548f5357150b9cefaaeed33df3a811643499cd6737341817dcc707fd23a286e5","/BMKlogo.png":"ebbc13e5bc28a03603664c82385899896d637dacc903768c78d6b6f92c144cac","/firebase-messaging-sw.js":"9f8142ac98c3232ff7513ee7133a5d7a1289f1f57817fda19f5b533fd554e395","/index.html":"5ef5150051d90c03afa183d6af71733a468e7b34fa8184c5266bf7e9da33a28a","/manifest.json":"a47168c152175e19d78d6836873f589aa885d803c56f6aaf8c93eb996cb61e77","/robots.txt":"bfe106a3fb878dc83461c86818bf74fc1bdc7f28538ba613cd3e775516ce8b49","/static/css/main.7b895e39.css":"a1776096b5679985a0b924857f7e87d742b0541fb1fda1ac53d2143a542a7559","/service-worker.js":"2a7944d8b338f693ad468c843a8c4f7c1ce0a3b2992accca8b85b5325daefd14","/static/css/main.7b895e39.css.map":"793bb9f406fff7c094c550e274f623aeb2a6548ed41c9c428d575b62a04577a0","/static/js/453.a4787315.chunk.js":"d8b2d1c56a50c5cfea95cfbe8929bf4f7a437eece2b63b0da9f4fa4f347733ca","/logo512.png":"ee7e2f3fdb8209c4b6fd7bef6ba50d1b9dba30a25bb5c3126df057e1cb6f5331","/logo192.png":"426f596ca0c2ebc03d39c0c5a1b2b0faad814f3b135f753bff92ac0d6a95adf8","/static/js/main.f2a0b1c4.js.LICENSE.txt":"a5d96ebed3d89d3c2f9f34e3eb9c4684d9972a2a62ba35e403bfa74dd7593fbe","/static/js/453.a4787315.chunk.js.map":"e79664db0f8fd663e09ee0a21e3cbf60f76cf046306ef2304db18cfff42b88f6","/service-worker.js.map":"48c2eb365f8798a978b7bec23f500dbb2a21ac8bcf138a6979f654fe17903872","/static/js/main.f2a0b1c4.js":"587e54fdf5832091f391df7768cb689622226993a95fffa30ea305ad45aea8a6","/static/js/main.f2a0b1c4.js.map":"0ce6af27b5a56d711ee062bb92efec906f4cf872bf4e880db4198864dae5ddbe"}}
+[debug] [2024-04-02T07:26:49.566Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/156532169791/sites/bidmarkit/versions/9f954c01c4d05bd2:populateFiles 200
+[debug] [2024-04-02T07:26:49.566Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/156532169791/sites/bidmarkit/versions/9f954c01c4d05bd2:populateFiles {"uploadRequiredHashes":["c967d960f5d5f13e22334650d02b781c830bbb0dff4010836905181dd6a8d3a6","2a7944d8b338f693ad468c843a8c4f7c1ce0a3b2992accca8b85b5325daefd14","5ef5150051d90c03afa183d6af71733a468e7b34fa8184c5266bf7e9da33a28a","587e54fdf5832091f391df7768cb689622226993a95fffa30ea305ad45aea8a6","48c2eb365f8798a978b7bec23f500dbb2a21ac8bcf138a6979f654fe17903872","0ce6af27b5a56d711ee062bb92efec906f4cf872bf4e880db4198864dae5ddbe"],"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/bidmarkit/versions/9f954c01c4d05bd2/files"}
+[debug] [2024-04-02T07:26:49.576Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/bidmarkit/versions/9f954c01c4d05bd2/files/c967d960f5d5f13e22334650d02b781c830bbb0dff4010836905181dd6a8d3a6 [none]
+[debug] [2024-04-02T07:26:49.576Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/bidmarkit/versions/9f954c01c4d05bd2/files/c967d960f5d5f13e22334650d02b781c830bbb0dff4010836905181dd6a8d3a6 [stream]
+[debug] [2024-04-02T07:26:49.583Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/bidmarkit/versions/9f954c01c4d05bd2/files/2a7944d8b338f693ad468c843a8c4f7c1ce0a3b2992accca8b85b5325daefd14 [none]
+[debug] [2024-04-02T07:26:49.583Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/bidmarkit/versions/9f954c01c4d05bd2/files/2a7944d8b338f693ad468c843a8c4f7c1ce0a3b2992accca8b85b5325daefd14 [stream]
+[debug] [2024-04-02T07:26:49.587Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/bidmarkit/versions/9f954c01c4d05bd2/files/5ef5150051d90c03afa183d6af71733a468e7b34fa8184c5266bf7e9da33a28a [none]
+[debug] [2024-04-02T07:26:49.587Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/bidmarkit/versions/9f954c01c4d05bd2/files/5ef5150051d90c03afa183d6af71733a468e7b34fa8184c5266bf7e9da33a28a [stream]
+[debug] [2024-04-02T07:26:49.590Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/bidmarkit/versions/9f954c01c4d05bd2/files/587e54fdf5832091f391df7768cb689622226993a95fffa30ea305ad45aea8a6 [none]
+[debug] [2024-04-02T07:26:49.590Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/bidmarkit/versions/9f954c01c4d05bd2/files/587e54fdf5832091f391df7768cb689622226993a95fffa30ea305ad45aea8a6 [stream]
+[debug] [2024-04-02T07:26:49.593Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/bidmarkit/versions/9f954c01c4d05bd2/files/48c2eb365f8798a978b7bec23f500dbb2a21ac8bcf138a6979f654fe17903872 [none]
+[debug] [2024-04-02T07:26:49.593Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/bidmarkit/versions/9f954c01c4d05bd2/files/48c2eb365f8798a978b7bec23f500dbb2a21ac8bcf138a6979f654fe17903872 [stream]
+[debug] [2024-04-02T07:26:49.599Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/bidmarkit/versions/9f954c01c4d05bd2/files/0ce6af27b5a56d711ee062bb92efec906f4cf872bf4e880db4198864dae5ddbe [none]
+[debug] [2024-04-02T07:26:49.599Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/bidmarkit/versions/9f954c01c4d05bd2/files/0ce6af27b5a56d711ee062bb92efec906f4cf872bf4e880db4198864dae5ddbe [stream]
+[debug] [2024-04-02T07:26:49.601Z] [hosting][populate queue][FINAL] {"max":685,"min":685,"avg":685,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":711}
+[debug] [2024-04-02T07:26:49.601Z] [hosting] uploads queued: 6
+[debug] [2024-04-02T07:26:50.818Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/bidmarkit/versions/9f954c01c4d05bd2/files/587e54fdf5832091f391df7768cb689622226993a95fffa30ea305ad45aea8a6 200
+[debug] [2024-04-02T07:26:50.819Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/bidmarkit/versions/9f954c01c4d05bd2/files/587e54fdf5832091f391df7768cb689622226993a95fffa30ea305ad45aea8a6 [stream]
+[debug] [2024-04-02T07:26:50.880Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/bidmarkit/versions/9f954c01c4d05bd2/files/5ef5150051d90c03afa183d6af71733a468e7b34fa8184c5266bf7e9da33a28a 200
+[debug] [2024-04-02T07:26:50.880Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/bidmarkit/versions/9f954c01c4d05bd2/files/5ef5150051d90c03afa183d6af71733a468e7b34fa8184c5266bf7e9da33a28a [stream]
+[debug] [2024-04-02T07:26:50.905Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/bidmarkit/versions/9f954c01c4d05bd2/files/48c2eb365f8798a978b7bec23f500dbb2a21ac8bcf138a6979f654fe17903872 200
+[debug] [2024-04-02T07:26:50.905Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/bidmarkit/versions/9f954c01c4d05bd2/files/48c2eb365f8798a978b7bec23f500dbb2a21ac8bcf138a6979f654fe17903872 [stream]
+[debug] [2024-04-02T07:26:50.919Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/bidmarkit/versions/9f954c01c4d05bd2/files/2a7944d8b338f693ad468c843a8c4f7c1ce0a3b2992accca8b85b5325daefd14 200
+[debug] [2024-04-02T07:26:50.920Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/bidmarkit/versions/9f954c01c4d05bd2/files/2a7944d8b338f693ad468c843a8c4f7c1ce0a3b2992accca8b85b5325daefd14 [stream]
+[debug] [2024-04-02T07:26:50.940Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/bidmarkit/versions/9f954c01c4d05bd2/files/c967d960f5d5f13e22334650d02b781c830bbb0dff4010836905181dd6a8d3a6 200
+[debug] [2024-04-02T07:26:50.940Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/bidmarkit/versions/9f954c01c4d05bd2/files/c967d960f5d5f13e22334650d02b781c830bbb0dff4010836905181dd6a8d3a6 [stream]
+[debug] [2024-04-02T07:26:50.991Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/bidmarkit/versions/9f954c01c4d05bd2/files/0ce6af27b5a56d711ee062bb92efec906f4cf872bf4e880db4198864dae5ddbe 200
+[debug] [2024-04-02T07:26:50.992Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/bidmarkit/versions/9f954c01c4d05bd2/files/0ce6af27b5a56d711ee062bb92efec906f4cf872bf4e880db4198864dae5ddbe [stream]
+[debug] [2024-04-02T07:26:50.992Z] [hosting][upload queue][FINAL] {"max":1418,"min":1246,"avg":1338,"active":0,"complete":6,"success":6,"errored":0,"retried":0,"total":6,"elapsed":1425}
+[info] +  hosting[bidmarkit]: file upload complete 
+[debug] [2024-04-02T07:26:50.994Z] [hosting] deploy completed after 2478ms
+[debug] [2024-04-02T07:26:50.995Z] [
+  {
+    "config": {
+      "public": "build",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "site": "bidmarkit"
+    },
+    "version": "projects/156532169791/sites/bidmarkit/versions/9f954c01c4d05bd2"
+  }
+]
+[info] i  hosting[bidmarkit]: finalizing version... 
+[debug] [2024-04-02T07:26:51.001Z] >>> [apiv2][query] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bidmarkit/versions/9f954c01c4d05bd2 updateMask=status%2Cconfig
+[debug] [2024-04-02T07:26:51.001Z] >>> [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bidmarkit/versions/9f954c01c4d05bd2 {"status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]}}
+[debug] [2024-04-02T07:26:51.688Z] <<< [apiv2][status] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bidmarkit/versions/9f954c01c4d05bd2 200
+[debug] [2024-04-02T07:26:51.690Z] <<< [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bidmarkit/versions/9f954c01c4d05bd2 {"name":"projects/156532169791/sites/bidmarkit/versions/9f954c01c4d05bd2","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2024-04-02T07:26:48.056685Z","createUser":{"email":"mnbv1880@gmail.com"},"finalizeTime":"2024-04-02T07:26:51.542224Z","finalizeUser":{"email":"mnbv1880@gmail.com"}}
+[debug] [2024-04-02T07:26:51.690Z] [hosting] finalized version for bidmarkit:[object Object]
+[info] +  hosting[bidmarkit]: version finalized 
+[info] i  hosting[bidmarkit]: releasing new version... 
+[debug] [2024-04-02T07:26:51.695Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bidmarkit/channels/live/releases versionName=projects%2F156532169791%2Fsites%2Fbidmarkit%2Fversions%2F9f954c01c4d05bd2
+[debug] [2024-04-02T07:26:51.695Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bidmarkit/channels/live/releases {}
+[debug] [2024-04-02T07:26:52.569Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bidmarkit/channels/live/releases 200
+[debug] [2024-04-02T07:26:52.569Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bidmarkit/channels/live/releases {"name":"projects/156532169791/sites/bidmarkit/channels/live/releases/1712042811849000","version":{"name":"projects/156532169791/sites/bidmarkit/versions/9f954c01c4d05bd2","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2024-04-02T07:26:48.056685Z","createUser":{"email":"mnbv1880@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJ8oWGJEQ0eQVc2_gd0ZCKvAwFTN3OlwND3XftPj7WZEg"},"finalizeTime":"2024-04-02T07:26:51.542224Z","finalizeUser":{"email":"mnbv1880@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJ8oWGJEQ0eQVc2_gd0ZCKvAwFTN3OlwND3XftPj7WZEg"}},"type":"DEPLOY","releaseTime":"2024-04-02T07:26:51.849Z","releaseUser":{"email":"mnbv1880@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJ8oWGJEQ0eQVc2_gd0ZCKvAwFTN3OlwND3XftPj7WZEg"}}
+[debug] [2024-04-02T07:26:52.569Z] [hosting] release: {"name":"projects/156532169791/sites/bidmarkit/channels/live/releases/1712042811849000","version":{"name":"projects/156532169791/sites/bidmarkit/versions/9f954c01c4d05bd2","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2024-04-02T07:26:48.056685Z","createUser":{"email":"mnbv1880@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJ8oWGJEQ0eQVc2_gd0ZCKvAwFTN3OlwND3XftPj7WZEg"},"finalizeTime":"2024-04-02T07:26:51.542224Z","finalizeUser":{"email":"mnbv1880@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJ8oWGJEQ0eQVc2_gd0ZCKvAwFTN3OlwND3XftPj7WZEg"}},"type":"DEPLOY","releaseTime":"2024-04-02T07:26:51.849Z","releaseUser":{"email":"mnbv1880@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJ8oWGJEQ0eQVc2_gd0ZCKvAwFTN3OlwND3XftPj7WZEg"}}
+[info] +  hosting[bidmarkit]: release complete 
+[info] 
+[info] +  Deploy complete! 
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/bidmarkit/overview
+[info] Hosting URL: https://bidmarkit.web.app
+[debug] [2024-04-02T07:26:57.932Z] Error: Timed out.
+    at Timeout._onTimeout (C:\Users\KWON\AppData\Roaming\npm\node_modules\firebase-tools\lib\utils.js:258:49)
+    at listOnTimeout (node:internal/timers:569:17)
+    at process.processTimers (node:internal/timers:512:7)
+[error] 
+[error] Error: An unexpected error has occurred.

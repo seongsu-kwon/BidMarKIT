@@ -1,12 +1,13 @@
 button {
-  /* background: #141416; */
-  background: #353945;
-  color: #fff;
-  border-radius: 23px;
-  width: 150px;
-  height: 50px;
-  font-size: 1.2rem;
-  /* font-family: "Rubik"; */
-  font-weight: 700;
-  text-align: center;
+    /* background: #141416; */
+    background: #353945;
+    background: black;
+    color: #fff;
+    border-radius: 23px;
+    width: 150px;
+    height: 50px;
+    font-size: 1.2rem;
+    /* font-family: "Rubik"; */
+    font-weight: 700;
+    text-align: center;
 }

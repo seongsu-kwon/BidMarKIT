@@ -17,7 +17,14 @@ export default function ProductListPage() {
       <h1>Product List Page</h1>
       <Grid container spacing={2}>
         {items.map((item, index) => (
-          <Grid item key={index} xs={6} sm={4} md={3}>
+          <Grid
+            item
+            key={index}
+            xs={6}
+            sm={4}
+            md={3}
+            sx={{ display: "flex", justifyContent: "center" }}
+          >
             <ItemCard item={item} />
           </Grid>
         ))}

@@ -10,6 +10,7 @@ import NotiPage from "pages/notipage/NotiPage";
 import MyPage from "pages/mypage/MyPage";
 import MobilePage from "layout/MobilePage";
 import ProductListPage from "pages/productpage/ProductLIstPage";
+import ProductDetailPage from "pages/productpage/ProductDetailPage";
 
 function App() {
   const handleRequestPermission = () => {
@@ -32,6 +33,7 @@ function App() {
         <Route path="chat" element={<ChatPage />} />
         <Route path="noti" element={<NotiPage />} />
         <Route path="my" element={<MyPage />} />
+        <Route path="detail" element={<ProductDetailPage />} />
       </Route>
     </Routes>
   );

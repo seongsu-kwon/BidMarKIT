@@ -1,23 +1,65 @@
-import { Avatar, Box, Grid, PopoverPaper, Typography } from '@mui/material';
-import ItemCard from 'components/ItemCard';
+import React, { useState, useEffect } from 'react';
+import { Avatar, Box, Grid, Typography } from '@mui/material';
 import { Carousel } from 'react-responsive-carousel';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import StarIcon from '@mui/icons-material/Star';
 import Button from 'components/Button';
+import { styled } from '@mui/material/styles';
+import dayjs from 'dayjs';
+import { useNavigate, useParams } from 'react-router-dom';
+
+const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
 export default function ProductDetailPage() {
-    let items = [];
+    const navigate = useNavigate();
+    const { id } = useParams();
 
-    for (let i = 1; i <= 40; i++) {
-        items.push({
-            name: '상품 이름' + i,
-            currentPrice: '10,000',
-            buyNowPrice: '20,000',
-            deadline: '~3/30 18:00',
-        });
-    }
+    const [remain, setRemain] = useState();
+
+    const [like, setLike] = useState(false);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            const startDate = new Date();
+            const endDate = new Date(item.deadline);
+            const day = startDate.getTime() - endDate.getTime();
+            const dDay = Math.floor(Math.abs(day / (1000 * 3600 * 24)));
+            const dHour = Math.floor(Math.abs((day / (1000 * 3600)) % 24));
+            const dMin = Math.floor(Math.abs((day / (1000 * 60)) % 60));
+            const dSec = Math.floor(Math.abs((day / 1000) % 60));
+
+            setRemain(`${dDay}일 ${dHour}시간 ${dMin}분 ${dSec}초`);
+            if (dDay === 0) {
+                setRemain(`${dHour}시간 ${dMin}분 ${dSec}초`);
+                if (dHour === 0) {
+                    setRemain(`${dMin}분 ${dSec}초`);
+                    if (dMin === 0) {
+                        setRemain(`${dSec}초`);
+                        if (dSec === 0) {
+                            setRemain('마감');
+                            clearInterval(interval);
+                        }
+                    }
+                }
+            }
+        }, 1000);
+        return () => {
+            clearInterval(interval);
+        };
+    }, []);
+
+    const item = {
+        name: '상품' + id,
+        content:
+            'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpghttps://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpghttps://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+        initPrice: 10000,
+        currentPrice: 10000,
+        buyNowPrice: 20000,
+        deadline: '2024-04-30T14:41:00',
+        like: like,
+    };
 
     const imageList = [
         'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
@@ -54,7 +96,7 @@ export default function ProductDetailPage() {
                 ))}
             </Carousel>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <h1>상품 이름</h1>
+                <h1>{item.name}</h1>
                 <Box
                     sx={{
                         display: 'flex',
@@ -62,7 +104,17 @@ export default function ProductDetailPage() {
                         alignItems: 'center',
                     }}
                 >
-                    <FavoriteBorderIcon fontSize="large" />
+                    {item.like ? (
+                        <FavoriteIcon
+                            fontSize="large"
+                            onClick={() => setLike(!like)}
+                        />
+                    ) : (
+                        <FavoriteBorderIcon
+                            fontSize="large"
+                            onClick={() => setLike(!like)}
+                        />
+                    )}
                 </Box>
             </Box>
 
@@ -74,11 +126,13 @@ export default function ProductDetailPage() {
                 </Grid>
                 <Grid item md={8} xs={8}>
                     <Typography variant="h5" fontWeight={'bold'}>
-                        10,000원
+                        {item.currentPrice.toLocaleString()}원
                     </Typography>
                 </Grid>
             </Grid>
-            <Typography variant="body2">시작가 : 10,000원</Typography>
+            <Typography variant="body2">
+                시작가 : {item.initPrice.toLocaleString()}원
+            </Typography>
             <Grid container spacing={2} sx={{ alignItems: 'center' }}>
                 <Grid item md={4} xs={4}>
                     <Typography variant="body1" fontWeight={'bold'}>
@@ -87,7 +141,7 @@ export default function ProductDetailPage() {
                 </Grid>
                 <Grid item md={8} xs={8}>
                     <Typography variant="h5" fontWeight={'bold'}>
-                        20,000원
+                        {item.buyNowPrice.toLocaleString()}원
                     </Typography>
                 </Grid>
             </Grid>
@@ -98,13 +152,13 @@ export default function ProductDetailPage() {
                     </Typography>
                 </Grid>
                 <Grid item md={8} xs={8}>
-                    <Typography variant="h5" fontWeight={'bold'}>
-                        7시간 39분 43초
+                    <Typography variant="h6" fontWeight={'bold'}>
+                        {remain}
                     </Typography>
                 </Grid>
             </Grid>
             <Typography variant="body2">
-                마감 기한 : ~ 2024.04.01 18:00
+                마감 기한 : ~ {dayjs(item.deadline).format('YYYY.MM.DD HH:mm')}
             </Typography>
             <hr />
             <Typography variant="h5" fontWeight={'bold'}>
@@ -113,7 +167,7 @@ export default function ProductDetailPage() {
             <Box
                 sx={{
                     display: 'flex',
-                    justifyContent: 'space-around',
+                    justifyContent: 'space-between',
                     alignItems: 'center',
                 }}
             >
@@ -129,7 +183,7 @@ export default function ProductDetailPage() {
                     </Avatar>
                     <Typography variant="h6">판매자 이름</Typography>
                 </Box>
-                <Box
+                {/* <Box
                     sx={{
                         display: 'flex',
                         justifyContent: 'space-around',
@@ -138,7 +192,7 @@ export default function ProductDetailPage() {
                 >
                     <StarIcon fontSize="large" />
                     <Typography variant="h6">4.5</Typography>
-                </Box>
+                </Box> */}
             </Box>
             <hr />
             <Typography variant="h5" fontWeight={'bold'}>
@@ -165,6 +219,7 @@ export default function ProductDetailPage() {
                 내용설명 내용 설명 내용 설명 내용설명 내용 설명 내용 설명
                 내용설명 내용 설명 내용 설명 내용설명 내용 설명 내용 설명 내용
             </Typography>
+            <Offset />
             <Box
                 sx={{
                     display: 'flex',
@@ -174,8 +229,8 @@ export default function ProductDetailPage() {
                     bottom: '70px',
                 }}
             >
-                <Button>입찰하기</Button>
-                <Button>구매하기</Button>
+                <Button onClick={() => navigate('bid')}>입찰하기</Button>
+                <Button onClick={() => navigate('buyNow')}>구매하기</Button>
             </Box>
         </div>
     );

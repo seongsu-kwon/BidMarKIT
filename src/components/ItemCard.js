@@ -8,7 +8,10 @@ export default function ItemCard({ item }) {
     const navigate = useNavigate();
 
     return (
-        <Card sx={{ width: '160px' }} onClick={() => navigate('/detail')}>
+        <Card
+            sx={{ width: '160px' }}
+            onClick={() => navigate(`/detail/${item?.id}`)}
+        >
             <CardMedia
                 sx={{ height: 140, flex: 1 }}
                 image="/image.png"

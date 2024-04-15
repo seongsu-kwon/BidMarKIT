@@ -12,6 +12,7 @@ import MobilePage from 'layout/MobilePage';
 import ProductListPage from 'pages/productpage/ProductLIstPage';
 import ProductDetailPage from 'pages/productpage/ProductDetailPage';
 import BidPage from 'pages/productpage/BidPage';
+import BuyNowPage from 'pages/productpage/BuyNowPage';
 
 function App() {
     const handleRequestPermission = () => {
@@ -33,6 +34,7 @@ function App() {
                 <Route path="detail/:id">
                     <Route path="" element={<ProductDetailPage />} />
                     <Route path="bid" element={<BidPage />} />
+                    <Route path="buyNow" element={<BuyNowPage />} />
                 </Route>
                 <Route path="search" element={<SearchPage />} />
                 <Route path="chat" element={<ChatPage />} />

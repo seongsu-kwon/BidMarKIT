@@ -55,8 +55,8 @@ export default function ProductDetailPage() {
         content:
             'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpghttps://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpghttps://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
         initPrice: 10000,
-        currentPrice: 10000,
-        buyNowPrice: 20000,
+        bidPrice: 10000,
+        price: 20000,
         deadline: '2024-04-30T14:41:00',
         like: like,
     };
@@ -141,7 +141,7 @@ export default function ProductDetailPage() {
                 </Grid>
                 <Grid item md={8} xs={8}>
                     <Typography variant="h5" fontWeight={'bold'}>
-                        {item.buyNowPrice.toLocaleString()}원
+                        {item.price.toLocaleString()}원
                     </Typography>
                 </Grid>
             </Grid>
@@ -230,7 +230,7 @@ export default function ProductDetailPage() {
                 }}
             >
                 <Button onClick={() => navigate('bid')}>입찰하기</Button>
-                <Button onClick={() => navigate('buyNow')}>구매하기</Button>
+                <Button onClick={() => navigate('purchase')}>구매하기</Button>
             </Box>
         </div>
     );

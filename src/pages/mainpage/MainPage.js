@@ -9,8 +9,8 @@ function MainPage() {
     for (let i = 1; i <= 8; i++) {
         items.push({
             name: '상품 이름' + i,
-            currentPrice: '10,000',
-            buyNowPrice: '20,000',
+            bidPrice: '10,000',
+            price: '20,000',
             deadline: '~3/30 18:00',
         });
     }

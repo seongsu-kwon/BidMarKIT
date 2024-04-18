@@ -12,7 +12,7 @@ import { useParams } from 'react-router-dom';
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
-export default function BuyNowPage() {
+export default function PurchasePage() {
     const { id } = useParams();
 
     const [remain, setRemain] = useState();
@@ -54,8 +54,8 @@ export default function BuyNowPage() {
         content:
             'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpghttps://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpghttps://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
         initPrice: 10000,
-        currentPrice: 10000,
-        buyNowPrice: 20000,
+        bidPrice: 10000,
+        price: 20000,
         deadline: '2024-04-30T14:41:00',
         like: like,
     };

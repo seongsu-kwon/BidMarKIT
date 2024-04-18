@@ -3,7 +3,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function ItemCard({ item }) {
-    const { name, currentPrice, buyNowPrice, deadline } = item;
+    const { name, bidPrice, price, deadline } = item;
 
     const navigate = useNavigate();
 
@@ -31,7 +31,7 @@ export default function ItemCard({ item }) {
                     </Typography>
 
                     <Typography variant="caption" sx={{ fontWeight: 'bold' }}>
-                        {currentPrice}원
+                        {bidPrice}원
                     </Typography>
                 </Box>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -40,7 +40,7 @@ export default function ItemCard({ item }) {
                     </Typography>
 
                     <Typography variant="caption" sx={{ fontWeight: 'bold' }}>
-                        {buyNowPrice}원
+                        {price}원
                     </Typography>
                 </Box>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>

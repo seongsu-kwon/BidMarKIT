@@ -54,8 +54,8 @@ export default function BidPage() {
         content:
             'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpghttps://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpghttps://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
         initPrice: 10000,
-        currentPrice: 10000,
-        buyNowPrice: 20000,
+        bidPrice: 10000,
+        price: 20000,
         deadline: '2024-04-30T14:41:00',
         like: like,
     };
@@ -71,27 +71,27 @@ export default function BidPage() {
         'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
     ];
 
-    const [initPrice, setInitPrice] = useState(0);
+    const [bidAmount, setBidAmount] = useState(0);
 
-    const handleInitPrice = (e) => {
+    const handleBidAmount = (e) => {
         let price = e.target.value;
         price = Number(price.replaceAll(/[^0-9]/g, ''));
         if (isNaN(price)) {
-            setInitPrice(0);
+            setBidAmount(0);
         } else {
-            setInitPrice(price.toLocaleString('ko-KR'));
+            setBidAmount(price.toLocaleString('ko-KR'));
         }
     };
 
-    const [autoPrice, setAutoPrice] = useState(0);
+    const [ceilingPrice, setCeilingPrice] = useState(0);
 
-    const handleAutoPrice = (e) => {
+    const handleCeilingPrice = (e) => {
         let price = e.target.value;
         price = Number(price.replaceAll(/[^0-9]/g, ''));
         if (isNaN(price)) {
-            setAutoPrice(0);
+            setCeilingPrice(0);
         } else {
-            setAutoPrice(price.toLocaleString('ko-KR'));
+            setCeilingPrice(price.toLocaleString('ko-KR'));
         }
     };
 
@@ -107,7 +107,7 @@ export default function BidPage() {
                 </Grid>
                 <Grid item md={8} xs={8}>
                     <Typography variant="h5" fontWeight={'bold'}>
-                        {item.currentPrice.toLocaleString()}원
+                        {item.bidPrice.toLocaleString()}원
                     </Typography>
                 </Grid>
             </Grid>
@@ -142,8 +142,8 @@ export default function BidPage() {
                         <TextField
                             variant="outlined"
                             fontWeight={'bold'}
-                            value={autoPrice}
-                            onChange={handleAutoPrice}
+                            value={bidAmount}
+                            onChange={handleBidAmount}
                             inputProps={{
                                 style: { textAlign: 'right' },
                             }}
@@ -181,8 +181,8 @@ export default function BidPage() {
                         <TextField
                             variant="outlined"
                             fontWeight={'bold'}
-                            value={initPrice}
-                            onChange={handleInitPrice}
+                            value={ceilingPrice}
+                            onChange={handleCeilingPrice}
                             inputProps={{
                                 style: { textAlign: 'right' },
                             }}

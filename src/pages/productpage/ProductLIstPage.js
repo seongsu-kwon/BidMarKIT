@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Grid } from '@mui/material';
 import ItemCard from 'components/ItemCard';
 import Types from 'constants/Types';
+import { useGetProducts } from 'react-query/product';
 
 export default function ProductListPage() {
     const { type } = useParams();
@@ -20,11 +21,16 @@ export default function ProductListPage() {
             deadline: '~3/30 18:00',
         });
     }
+
+    const { products } = useGetProducts();
+
+    console.log('상품들', products);
+
     return (
         <div>
             <h1>{title}</h1>
             <Grid container spacing={2}>
-                {items.map((item, index) => (
+                {items?.map((item, index) => (
                     <Grid
                         item
                         key={index}

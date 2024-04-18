@@ -29,7 +29,7 @@ function App() {
         <Routes>
             <Route path="/" element={<MobilePage />}>
                 <Route path="" element={<Navigate to="main" />} />
-                <Route path="main" element={<MainPage />} />
+                <Route path="main" element={<Navigate to="/list/all" />} />
                 <Route path="list/:type" element={<ProductListPage />} />
                 <Route path="detail/:id">
                     <Route path="" element={<ProductDetailPage />} />

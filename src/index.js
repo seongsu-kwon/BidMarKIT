@@ -6,12 +6,16 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import ScrollToTop from './ScrollToTop';
+import { QueryClient, QueryClientProvider } from 'react-query';
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const queryClient = new QueryClient();
 root.render(
     <React.StrictMode>
         <BrowserRouter>
-            <ScrollToTop />
-            <App />
+            <QueryClientProvider client={queryClient}>
+                <ScrollToTop />
+                <App />
+            </QueryClientProvider>
         </BrowserRouter>
     </React.StrictMode>
 );

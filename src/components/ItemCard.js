@@ -3,18 +3,15 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function ItemCard({ item }) {
-    const { name, bidPrice, price, deadline } = item;
+    const { id, thumbnail, name, bidPrice, price, deadline } = item;
 
     const navigate = useNavigate();
 
     return (
-        <Card
-            sx={{ width: '160px' }}
-            onClick={() => navigate(`/detail/${item?.id}`)}
-        >
+        <Card sx={{ width: '160px' }} onClick={() => navigate(`/detail/${id}`)}>
             <CardMedia
                 sx={{ height: 140, flex: 1 }}
-                image="/image.png"
+                image={thumbnail}
                 title="image"
             />
             <CardContent sx={{ flex: 1 }}>
@@ -49,7 +46,7 @@ export default function ItemCard({ item }) {
                     </Typography>
 
                     <Typography variant="caption" sx={{ fontWeight: 'bold' }}>
-                        {deadline}
+                        ~ {deadline}
                     </Typography>
                 </Box>
             </CardContent>

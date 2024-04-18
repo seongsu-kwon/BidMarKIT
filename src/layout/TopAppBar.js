@@ -30,7 +30,7 @@ export default function TopAppBar() {
             <AppBar
                 position="fixed"
                 sx={{
-                    backgroundColor: 'blue',
+                    backgroundColor: 'green',
                     boxShadow: 'none',
                 }}
             >

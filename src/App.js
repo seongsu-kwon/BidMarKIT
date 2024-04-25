@@ -13,6 +13,7 @@ import ProductListPage from 'pages/productpage/ProductLIstPage';
 import ProductDetailPage from 'pages/productpage/ProductDetailPage';
 import BidPage from 'pages/productpage/BidPage';
 import PurchasePage from 'pages/productpage/PurchasePage';
+import LoginPage from 'pages/authpage/LoginPage';
 
 function App() {
     const handleRequestPermission = () => {
@@ -40,6 +41,7 @@ function App() {
                 <Route path="chat" element={<ChatPage />} />
                 <Route path="noti" element={<NotiPage />} />
                 <Route path="mypage" element={<MyPage />} />
+                <Route path="login" element={<LoginPage />} />
             </Route>
         </Routes>
     );

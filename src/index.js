@@ -7,14 +7,47 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import ScrollToTop from './ScrollToTop';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: '#ff7042',
+        },
+        secondary: {
+            main: '#ffc84b',
+        },
+        accent: {
+            main: '#65cf55',
+        },
+        gray: {
+            main: '#f5f5f5',
+        },
+        success: {
+            main: '#65cf55',
+        },
+        action: {
+            main: '#ff7042',
+        },
+        warning: {
+            main: '#ffc84b',
+        },
+        error: {
+            main: '#d7260d',
+        },
+    },
+});
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const queryClient = new QueryClient();
 root.render(
     <React.StrictMode>
         <BrowserRouter>
             <QueryClientProvider client={queryClient}>
-                <ScrollToTop />
-                <App />
+                <ThemeProvider theme={theme}>
+                    <ScrollToTop />
+                    <App />
+                </ThemeProvider>
             </QueryClientProvider>
         </BrowserRouter>
     </React.StrictMode>

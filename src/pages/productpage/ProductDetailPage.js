@@ -1,29 +1,135 @@
 import React, { useState, useEffect } from 'react';
-import { Avatar, Box, Grid, Typography } from '@mui/material';
+import {
+    Avatar,
+    Box,
+    Button,
+    Dialog,
+    DialogContent,
+    DialogTitle,
+    Grid,
+    Modal,
+    Typography,
+} from '@mui/material';
 import { Carousel } from 'react-responsive-carousel';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import StarIcon from '@mui/icons-material/Star';
-import Button from 'components/Button';
+// import Button from 'components/Button';
 import { styled } from '@mui/material/styles';
 import dayjs from 'dayjs';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { useGetBids, useGetProduct } from 'react-query/product';
+import BidDialog from 'components/BidDialog';
+import PurchaseDialog from 'components/PurchaseDialog';
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: '80vw',
+    height: '40vh',
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+};
+
 export default function ProductDetailPage() {
-    const navigate = useNavigate();
     const { id } = useParams();
 
     const [remain, setRemain] = useState();
 
     const [like, setLike] = useState(false);
 
+    // const { product } = useGetProduct(id);
+    const product = {
+        id: '1',
+        thumbnail: 'http://placehold.it/200x200',
+        productName: 'Product 1',
+        initPrice: 1000,
+        bidPrice: 2000,
+        price: 5000,
+        deadline: '2024-05-30T12:12:12',
+        content: 'This is product 1',
+        sellerName: '판매자',
+    };
+
+    // const { bids } = useGetBids(id);
+    const bids = [
+        {
+            id: '82cc',
+            memberId: '123',
+            productId: 1,
+            price: 1010000,
+            createdAt: '2024-04-19T14:00:54',
+        },
+        {
+            id: '3026',
+            memberId: '123',
+            productId: 1,
+            price: 10100000,
+            createdAt: '2024-04-19T14:00:55',
+        },
+        {
+            id: '1ff5',
+            memberId: '123',
+            productId: 1,
+            price: 100100000,
+            createdAt: '2024-04-19T14:00:56',
+        },
+        {
+            id: '39f3',
+            memberId: '123',
+            productId: 1,
+            price: 1001000000,
+            createdAt: '2024-04-19T14:00:57',
+        },
+        {
+            id: 'd423',
+            memberId: '1234',
+            productId: 4,
+            price: 1230,
+            createdAt: '2024-04-19T14:42:26',
+        },
+    ];
+
+    const [open, setOpen] = useState(false);
+
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
     useEffect(() => {
+        const startDate = new Date();
+        const endDate = new Date(product?.deadline);
+        const day = startDate.getTime() - endDate.getTime();
+        const dDay = Math.floor(Math.abs(day / (1000 * 3600 * 24)));
+        const dHour = Math.floor(Math.abs((day / (1000 * 3600)) % 24));
+        const dMin = Math.floor(Math.abs((day / (1000 * 60)) % 60));
+        const dSec = Math.floor(Math.abs((day / 1000) % 60));
+
+        setRemain(`${dDay}일 ${dHour}시간 ${dMin}분 ${dSec}초`);
+        if (dDay === 0) {
+            setRemain(`${dHour}시간 ${dMin}분 ${dSec}초`);
+            if (dHour === 0) {
+                setRemain(`${dMin}분 ${dSec}초`);
+                if (dMin === 0) {
+                    setRemain(`${dSec}초`);
+                    if (dSec === 0) {
+                        setRemain('마감');
+                    }
+                }
+            }
+        }
         const interval = setInterval(() => {
             const startDate = new Date();
-            const endDate = new Date(item.deadline);
+            const endDate = new Date(product?.deadline);
             const day = startDate.getTime() - endDate.getTime();
             const dDay = Math.floor(Math.abs(day / (1000 * 3600 * 24)));
             const dHour = Math.floor(Math.abs((day / (1000 * 3600)) % 24));
@@ -48,7 +154,7 @@ export default function ProductDetailPage() {
         return () => {
             clearInterval(interval);
         };
-    }, []);
+    }, [product]);
 
     const item = {
         name: '상품' + id,
@@ -71,9 +177,9 @@ export default function ProductDetailPage() {
         'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
         'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
     ];
+
     return (
         <div>
-            <h1>Product Detail Page</h1>
             <Carousel
                 // slidable={true}
                 // emulateTouch={true}
@@ -96,7 +202,7 @@ export default function ProductDetailPage() {
                 ))}
             </Carousel>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <h1>{item.name}</h1>
+                <h1>{product?.productName}</h1>
                 <Box
                     sx={{
                         display: 'flex',
@@ -126,12 +232,12 @@ export default function ProductDetailPage() {
                 </Grid>
                 <Grid item md={8} xs={8}>
                     <Typography variant="h5" fontWeight={'bold'}>
-                        {item.currentPrice.toLocaleString()}원
+                        {product?.bidPrice.toLocaleString()}원
                     </Typography>
                 </Grid>
             </Grid>
             <Typography variant="body2">
-                시작가 : {item.initPrice.toLocaleString()}원
+                시작가 : {product?.initPrice.toLocaleString()}원
             </Typography>
             <Grid container spacing={2} sx={{ alignItems: 'center' }}>
                 <Grid item md={4} xs={4}>
@@ -141,7 +247,7 @@ export default function ProductDetailPage() {
                 </Grid>
                 <Grid item md={8} xs={8}>
                     <Typography variant="h5" fontWeight={'bold'}>
-                        {item.price.toLocaleString()}원
+                        {product?.price.toLocaleString()}원
                     </Typography>
                 </Grid>
             </Grid>
@@ -157,9 +263,17 @@ export default function ProductDetailPage() {
                     </Typography>
                 </Grid>
             </Grid>
+
             <Typography variant="body2">
-                마감 기한 : ~ {dayjs(item.deadline).format('YYYY.MM.DD HH:mm')}
+                마감 기한 : ~{' '}
+                {dayjs(product?.deadline).format('YYYY.MM.DD HH:mm')}
             </Typography>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <Button variant="outlined" onClick={handleOpen}>
+                    입찰 기록
+                </Button>
+            </Box>
+
             <hr />
             <Typography variant="h5" fontWeight={'bold'}>
                 판매자 정보
@@ -181,7 +295,7 @@ export default function ProductDetailPage() {
                     <Avatar sx={{ width: 50, height: 50 }}>
                         <AccountCircleIcon sx={{ width: 50, height: 50 }} />
                     </Avatar>
-                    <Typography variant="h6">판매자 이름</Typography>
+                    <Typography variant="h6">{product?.sellerName}</Typography>
                 </Box>
                 {/* <Box
                     sx={{
@@ -207,18 +321,9 @@ export default function ProductDetailPage() {
                     width: '100%',
                 }}
             >
-                설명 내용 설명 내용 설명 내용설명 내용 설명 내용 설명 내용설명
-                내용 설명 내용 설명 내용설명 내용 설명 내용 설명 내용설명 내용
-                설명 내용 설명 내용설명 내용 설명 내용 설명 내용설명 내용 설명
-                내용 설명 내용설명 내용 설명 내용 설명 내용설명 내용 설명 내용
-                설명 내용설명 내용 설명 내용 설명 내용설명 내용 설명 내용 설명
-                내용설명 내용 설명 내용 설명 내용설명 내용 설명 내용 설명
-                내용설명 내용 설명 내용 설명 내용설명 내용 설명 내용 설명
-                내용설명 내용 설명 내용 설명 내용설명 내용 설명 내용 설명
-                내용설명 내용 설명 내용 설명 내용설명 내용 설명 내용 설명
-                내용설명 내용 설명 내용 설명 내용설명 내용 설명 내용 설명
-                내용설명 내용 설명 내용 설명 내용설명 내용 설명 내용 설명 내용
+                {product?.content}
             </Typography>
+
             <Offset />
             <Box
                 sx={{
@@ -229,9 +334,80 @@ export default function ProductDetailPage() {
                     bottom: '70px',
                 }}
             >
-                <Button onClick={() => navigate('bid')}>입찰하기</Button>
-                <Button onClick={() => navigate('purchase')}>구매하기</Button>
+                <BidDialog product={product} remain={remain} />
+                <PurchaseDialog product={product} remain={remain} />
             </Box>
+
+            {/* <Box open={open} onClose={handleClose}>
+                <Box sx={style}>
+                    <Box sx={{ overflow: 'auto' }}>
+                        {bids?.map((bid, index) => (
+                            <Box key={index}>
+                                <Box
+                                    sx={{
+                                        display: 'flex',
+                                        justifyContent: 'space-between',
+                                        alignItems: 'center',
+                                    }}
+                                >
+                                    <Typography variant="h6">
+                                        {bid?.memberId}
+                                    </Typography>
+                                    <Typography variant="body1">
+                                        {bid?.price.toLocaleString()}원
+                                    </Typography>
+                                </Box>
+
+                                <Typography variant="body2" align="right">
+                                    {dayjs(bid?.createdAt).format(
+                                        'YYYY.MM.DD HH:mm:ss'
+                                    )}
+                                </Typography>
+                                <hr />
+                            </Box>
+                        ))}
+                    </Box>
+                </Box>
+            </Box> */}
+
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+                fullWidth
+            >
+                <DialogTitle>입찰 기록</DialogTitle>
+                <DialogContent>
+                    <Box sx={{ overflow: 'auto', height: '40vh' }}>
+                        {bids?.map((bid, index) => (
+                            <Box key={index}>
+                                <Box
+                                    sx={{
+                                        display: 'flex',
+                                        justifyContent: 'space-between',
+                                        alignItems: 'center',
+                                    }}
+                                >
+                                    <Typography variant="h6">
+                                        {bid?.memberId}
+                                    </Typography>
+                                    <Typography variant="body1">
+                                        {bid?.price.toLocaleString()}원
+                                    </Typography>
+                                </Box>
+
+                                <Typography variant="body2" align="right">
+                                    {dayjs(bid?.createdAt).format(
+                                        'YYYY.MM.DD HH:mm:ss'
+                                    )}
+                                </Typography>
+                                <hr />
+                            </Box>
+                        ))}
+                    </Box>
+                </DialogContent>
+            </Dialog>
         </div>
     );
 }

@@ -1,6 +1,5 @@
 import { AppBar, Box, IconButton, Toolbar, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import Button from 'components/Button';
 import { useLocation, useNavigate } from 'react-router-dom';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
@@ -25,12 +24,18 @@ export default function TopAppBar() {
             return false;
         }
     };
+
+    const logout = () => {
+        localStorage.removeItem('id');
+        navigate('/login');
+    };
     return (
         <>
             <AppBar
                 position="fixed"
+                color="primary"
                 sx={{
-                    backgroundColor: 'green',
+                    // backgroundColor: 'green',
                     boxShadow: 'none',
                 }}
             >
@@ -56,7 +61,18 @@ export default function TopAppBar() {
                         alt="logo"
                         style={{ width: '200px' }}
                     />
-                    <Typography variant="h6">로그인</Typography>
+                    {localStorage.getItem('id') ? (
+                        <Typography variant="h6" onClick={() => logout()}>
+                            로그아웃
+                        </Typography>
+                    ) : (
+                        <Typography
+                            variant="h6"
+                            onClick={() => navigate('/login')}
+                        >
+                            로그인
+                        </Typography>
+                    )}
                 </Toolbar>
             </AppBar>
 

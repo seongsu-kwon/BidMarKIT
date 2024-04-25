@@ -3,9 +3,20 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function ItemCard({ item }) {
-    const { id, thumbnail, name, bidPrice, price, deadline } = item;
+    const { id, thumbnail, productName, bidPrice, price, deadline } = item;
 
     const navigate = useNavigate();
+
+    const formatDate = (date) => {
+        const d = new Date(date);
+        const year = d.getFullYear();
+        const month = d.getMonth() + 1;
+        const day = d.getDate();
+        const hour = d.getHours();
+        const minute = d.getMinutes();
+        const second = d.getSeconds();
+        return `${month}/${day} ${hour}:${minute}`;
+    };
 
     return (
         <Card sx={{ width: '160px' }} onClick={() => navigate(`/detail/${id}`)}>
@@ -20,7 +31,7 @@ export default function ItemCard({ item }) {
                     variant="h6"
                     sx={{ fontWeight: 'bold' }}
                 >
-                    {name}
+                    {productName}
                 </Typography>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Typography variant="caption" color="text.secondary">
@@ -46,7 +57,7 @@ export default function ItemCard({ item }) {
                     </Typography>
 
                     <Typography variant="caption" sx={{ fontWeight: 'bold' }}>
-                        ~ {deadline}
+                        {formatDate(deadline)}
                     </Typography>
                 </Box>
             </CardContent>

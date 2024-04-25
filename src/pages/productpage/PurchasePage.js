@@ -9,6 +9,8 @@ import Button from 'components/Button';
 import { styled } from '@mui/material/styles';
 import dayjs from 'dayjs';
 import { useParams } from 'react-router-dom';
+import { useQueryClient } from 'react-query';
+import { usePurchaseProduct } from 'react-query/product';
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
@@ -19,10 +21,36 @@ export default function PurchasePage() {
 
     const [like, setLike] = useState(false);
 
+    const client = useQueryClient();
+    const { data: product } = client.getQueryData(['product', id]);
+
+    const { mutate: purchaseMutate } = usePurchaseProduct(id);
+
     useEffect(() => {
+        const startDate = new Date();
+        const endDate = new Date(product?.deadline);
+        const day = startDate.getTime() - endDate.getTime();
+        const dDay = Math.floor(Math.abs(day / (1000 * 3600 * 24)));
+        const dHour = Math.floor(Math.abs((day / (1000 * 3600)) % 24));
+        const dMin = Math.floor(Math.abs((day / (1000 * 60)) % 60));
+        const dSec = Math.floor(Math.abs((day / 1000) % 60));
+
+        setRemain(`${dDay}일 ${dHour}시간 ${dMin}분 ${dSec}초`);
+        if (dDay === 0) {
+            setRemain(`${dHour}시간 ${dMin}분 ${dSec}초`);
+            if (dHour === 0) {
+                setRemain(`${dMin}분 ${dSec}초`);
+                if (dMin === 0) {
+                    setRemain(`${dSec}초`);
+                    if (dSec === 0) {
+                        setRemain('마감');
+                    }
+                }
+            }
+        }
         const interval = setInterval(() => {
             const startDate = new Date();
-            const endDate = new Date(item.deadline);
+            const endDate = new Date(product?.deadline);
             const day = startDate.getTime() - endDate.getTime();
             const dDay = Math.floor(Math.abs(day / (1000 * 3600 * 24)));
             const dHour = Math.floor(Math.abs((day / (1000 * 3600)) % 24));
@@ -97,7 +125,7 @@ export default function PurchasePage() {
 
     return (
         <div>
-            <h1>{item.name}</h1>
+            <h1>{product?.productName}</h1>
 
             <Grid container spacing={2} sx={{ alignItems: 'center' }}>
                 <Grid item md={4} xs={4}>
@@ -107,7 +135,7 @@ export default function PurchasePage() {
                 </Grid>
                 <Grid item md={8} xs={8}>
                     <Typography variant="h5" fontWeight={'bold'}>
-                        {item.currentPrice.toLocaleString()}원
+                        {product?.price.toLocaleString()}원
                     </Typography>
                 </Grid>
             </Grid>
@@ -133,7 +161,17 @@ export default function PurchasePage() {
                     xs={12}
                     sx={{ display: 'flex', justifyContent: 'center' }}
                 >
-                    <Button>구매하기</Button>
+                    <Button
+                        onClick={() => {
+                            purchaseMutate({
+                                memberId: '123',
+                                productId: Number(id),
+                                price: product?.price,
+                            });
+                        }}
+                    >
+                        구매하기
+                    </Button>
                 </Grid>
             </Grid>
         </div>

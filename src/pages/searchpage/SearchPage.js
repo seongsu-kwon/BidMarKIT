@@ -13,14 +13,13 @@ export default function SearchPage() {
                 placeholder="검색어를 입력하세요"
                 enterKeyHint="search"
             />
-            <Typography variant="h6" enterKeyHint="search">
-                TextField
-            </Typography>
-            <TextField label="검색어를 입력하세요" />
-            <Typography variant="h6" enterKeyHint="search">
-                InputBase
-            </Typography>
-            <InputBase placeholder="검색어를 입력하세요" />
+            <Typography variant="h6">TextField</Typography>
+            <TextField label="검색어를 입력하세요" enterKeyHint="search" />
+            <Typography variant="h6">InputBase</Typography>
+            <InputBase
+                placeholder="검색어를 입력하세요"
+                enterKeyHint="search"
+            />
         </div>
     );
 }

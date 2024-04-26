@@ -14,11 +14,14 @@ export default function SearchPage() {
                 enterKeyHint="search"
             />
             <Typography variant="h6">TextField</Typography>
-            <TextField label="검색어를 입력하세요" enterKeyHint="search" />
+            <TextField
+                label="검색어를 입력하세요"
+                inputProps={{ inputMode: 'search' }}
+            />
             <Typography variant="h6">InputBase</Typography>
             <InputBase
                 placeholder="검색어를 입력하세요"
-                enterKeyHint="search"
+                inputProps={{ inputMode: 'search', enterKeyHint: 'search' }}
             />
         </div>
     );

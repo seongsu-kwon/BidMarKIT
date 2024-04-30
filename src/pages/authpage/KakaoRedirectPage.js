@@ -10,14 +10,6 @@ export default function KakaoRedirectPage() {
 
     useEffect(() => {
         console.log(code);
-        axios
-            .get('https://novemberrain.duckdns.org/hello-string?name=star')
-            .then((res) => {
-                console.log(res);
-            })
-            .catch((err) => {
-                console.error(err);
-            });
 
         if (code) {
             axios

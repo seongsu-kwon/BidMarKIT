@@ -162,6 +162,7 @@ export default function BidDialog(props) {
                                 inputProps={{
                                     style: { textAlign: 'right' },
                                     inputMode: 'numeric',
+                                    enterkeyhint: 'done',
                                 }}
                             />
                             <Typography variant="h6" fontWeight={'bold'}>

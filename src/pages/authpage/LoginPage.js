@@ -35,6 +35,9 @@ export default function LoginPage() {
                 label="비밀번호"
                 value={password}
                 onChange={handlePassword}
+                inputProps={{
+                    type: 'password',
+                }}
                 sx={{ marginTop: '10px' }}
             />
             <Button

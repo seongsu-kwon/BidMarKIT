@@ -14,6 +14,8 @@ import ProductDetailPage from 'pages/productpage/ProductDetailPage';
 import BidPage from 'pages/productpage/BidPage';
 import PurchasePage from 'pages/productpage/PurchasePage';
 import LoginPage from 'pages/authpage/LoginPage';
+import OAuthLoginPage from 'pages/authpage/OAuthLoginPage';
+import KakaoRedirectPage from 'pages/authpage/KakaoRedirectPage';
 
 function App() {
     const handleRequestPermission = () => {
@@ -41,7 +43,11 @@ function App() {
                 <Route path="chat" element={<ChatPage />} />
                 <Route path="noti" element={<NotiPage />} />
                 <Route path="mypage" element={<MyPage />} />
-                <Route path="login" element={<LoginPage />} />
+                <Route path="login" element={<OAuthLoginPage />} />
+                <Route
+                    path="oauth/redirected/kakao"
+                    element={<KakaoRedirectPage />}
+                />
             </Route>
         </Routes>
     );

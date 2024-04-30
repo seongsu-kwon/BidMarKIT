@@ -27,6 +27,9 @@ export default function TopAppBar() {
 
     const logout = () => {
         localStorage.removeItem('id');
+        localStorage.removeItem('token');
+        localStorage.removeItem('access');
+        localStorage.removeItem('refresh');
         navigate('/login');
     };
     return (
@@ -61,7 +64,7 @@ export default function TopAppBar() {
                         alt="logo"
                         style={{ width: '200px' }}
                     />
-                    {localStorage.getItem('id') ? (
+                    {localStorage.getItem('access') ? (
                         <Typography variant="h6" onClick={() => logout()}>
                             로그아웃
                         </Typography>

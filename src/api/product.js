@@ -83,7 +83,7 @@ export const getProducts = async () => {
 
 export const getProduct = async (id) => {
     const response = await instance
-        .get(`/productsㄴ/${id}`)
+        .get(`/products/${id}`)
         .then((res) => res)
         .catch((err) => {
             return {

@@ -164,7 +164,7 @@ export default function BidDialog(props) {
                                     type: 'text',
                                     style: { textAlign: 'right' },
                                     inputMode: 'numeric',
-                                    enterKeyHint: 'done',
+                                    // enterKeyHint: 'done',
                                 }}
                                 onKeyDown={(e) => {
                                     if (e.key === 'Enter') {

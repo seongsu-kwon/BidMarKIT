@@ -85,13 +85,6 @@ export default function BidDialog(props) {
         setOpen(false);
     };
 
-    // document.querySelector('input').addEventListener('keypress', function (e) {
-    //     if (e.key === 'Enter') {
-    //         e.preventDefault();
-    //         document.querySelector('input').blur();
-    //     }
-    // });
-
     return (
         <>
             <Button
@@ -162,6 +155,7 @@ export default function BidDialog(props) {
                             }}
                         >
                             <TextField
+                                id="bidinput"
                                 variant="outlined"
                                 fontWeight={'bold'}
                                 value={bidAmount}
@@ -171,6 +165,14 @@ export default function BidDialog(props) {
                                     style: { textAlign: 'right' },
                                     inputMode: 'numeric',
                                     enterKeyHint: 'done',
+                                }}
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter') {
+                                        e.preventDefault();
+                                        document
+                                            .getElementById('bidinput')
+                                            .blur();
+                                    }
                                 }}
                             />
                             <Typography variant="h6" fontWeight={'bold'}>

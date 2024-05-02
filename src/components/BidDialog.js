@@ -167,6 +167,7 @@ export default function BidDialog(props) {
                                 value={bidAmount}
                                 onChange={handleBidAmount}
                                 inputProps={{
+                                    type: 'text',
                                     style: { textAlign: 'right' },
                                     inputMode: 'numeric',
                                     enterKeyHint: 'done',

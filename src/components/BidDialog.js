@@ -85,12 +85,12 @@ export default function BidDialog(props) {
         setOpen(false);
     };
 
-    document.querySelector('input').addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            document.querySelector('input').blur();
-        }
-    });
+    // document.querySelector('input').addEventListener('keypress', function (e) {
+    //     if (e.key === 'Enter') {
+    //         e.preventDefault();
+    //         document.querySelector('input').blur();
+    //     }
+    // });
 
     return (
         <>

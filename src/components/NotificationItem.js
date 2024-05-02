@@ -20,13 +20,21 @@ export default function NotificationItem(props) {
                     color="primary"
                     fontSize="large"
                 />
-                <Typography variant="body1">
+                <Typography
+                    variant="body1"
+                    sx={{
+                        width: '60%',
+                    }}
+                >
                     "상품"이 낙찰되었습니다.
                 </Typography>
+                <Typography
+                    variant="caption"
+                    sx={{ p: '10px', width: '30%', whiteSpace: 'nowrap' }}
+                >
+                    2024.04.01 18:10
+                </Typography>
             </Box>
-            <Typography variant="caption" sx={{ p: '10px' }}>
-                2024.04.01 18:10
-            </Typography>
         </Paper>
     );
 }

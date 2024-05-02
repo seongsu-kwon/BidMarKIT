@@ -12,28 +12,37 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const theme = createTheme({
     palette: {
         primary: {
-            main: '#ff7042',
+            // main: '#ff7042',
+            main: '#03AED2',
         },
         secondary: {
-            main: '#ffc84b',
+            // main: '#ffc84b',
+            main: '#68D2E8',
         },
         accent: {
-            main: '#65cf55',
+            // main: '#65cf55',
+            main: '#FDDE55',
         },
         gray: {
             main: '#f5f5f5',
         },
         success: {
-            main: '#65cf55',
+            // main: '#65cf55',
+            main: '#FDDE55',
         },
         action: {
-            main: '#ff7042',
+            // main: '#ff7042',
+            main: '#03AED2',
         },
         warning: {
-            main: '#ffc84b',
+            // main: '#ffc84b',
+            main: '#68D2E8',
         },
         error: {
             main: '#d7260d',
+        },
+        background: {
+            default: '#f5f5f5',
         },
     },
 });

@@ -1,6 +1,7 @@
 import {
     autoBidProduct,
     bidProduct,
+    getBids,
     getProduct,
     getProducts,
     getTestBids,
@@ -12,6 +13,9 @@ export const useGetProducts = () => {
     const { data, isLoading, isError } = useQuery('products', () =>
         getProducts()
     );
+
+    console.log('data', data?.data);
+
     return { products: data?.data, isLoading, isError };
 };
 
@@ -72,7 +76,7 @@ export const usePurchaseProduct = (id) => {
 
 export const useGetBids = (id) => {
     const { data, isLoading, isError } = useQuery(['bids', id], () =>
-        getTestBids()
+        getBids(id)
     );
     return { bids: data?.data, isLoading, isError };
 };

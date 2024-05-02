@@ -1,3 +1,4 @@
+import instance from 'api/instance';
 import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -12,8 +13,8 @@ export default function KakaoRedirectPage() {
         console.log(code);
 
         if (code) {
-            axios
-                .post('https:/novemberrain.duckdns.org/oauth/kakao', {
+            instance
+                .post('/oauth/kakao', {
                     code,
                 })
                 .then((res) => {
@@ -24,6 +25,8 @@ export default function KakaoRedirectPage() {
                     navigate('/main');
                 })
                 .catch((err) => {
+                    navigate('/main');
+
                     console.error(err);
                 });
         }

@@ -35,21 +35,61 @@ export default function ChatroomItem(props) {
                         alignItems: 'center',
                     }}
                 >
-                    <Typography variant="h6" fontWeight={'bold'}>
+                    <Typography
+                        variant="h6"
+                        fontWeight={'bold'}
+                        sx={{
+                            textOverflow: 'ellipsis',
+                            width: '55%',
+                            whiteSpace: 'nowrap',
+                            overflow: 'hidden',
+                        }}
+                    >
                         {name}
                     </Typography>
-                    <Typography variant="body1">{user}</Typography>
+                    <Typography
+                        variant="body1"
+                        sx={{
+                            textOverflow: 'ellipsis',
+                            width: '40%',
+                            whiteSpace: 'nowrap',
+                            overflow: 'hidden',
+                        }}
+                    >
+                        {user}
+                    </Typography>
                 </Box>
                 <Box
                     fullWidth
                     sx={{
                         display: 'flex',
-                        justifyContent: 'space-between',
+                        justifyContent: 'flex-start ',
                         alignItems: 'center',
                     }}
                 >
-                    <Typography variant="body1">{lastMessage}</Typography>
-                    <Typography variant="caption">{date}</Typography>
+                    <Typography
+                        variant="caption"
+                        sx={{
+                            textOverflow: 'ellipsis',
+                            width: '80%',
+                            whiteSpace: 'nowrap',
+                            overflow: 'hidden',
+                        }}
+                    >
+                        {lastMessage}
+                    </Typography>
+                </Box>
+                <Box
+                    fullWidth
+                    sx={{
+                        display: 'flex',
+                        justifyContent: 'flex-end',
+                        alignItems: 'center',
+                    }}
+                >
+                    <Typography variant="caption" fontWeight="bold">
+                        {date}
+                    </Typography>
                 </Box>
             </Box>
         </Card>

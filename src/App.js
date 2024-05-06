@@ -16,6 +16,7 @@ import PurchasePage from 'pages/productpage/PurchasePage';
 import LoginPage from 'pages/authpage/LoginPage';
 import OAuthLoginPage from 'pages/authpage/OAuthLoginPage';
 import KakaoRedirectPage from 'pages/authpage/KakaoRedirectPage';
+import ProductInfListPage from 'pages/productpage/ProductInfListPage';
 
 function App() {
     const handleRequestPermission = () => {
@@ -34,6 +35,7 @@ function App() {
                 <Route path="" element={<Navigate to="main" />} />
                 <Route path="main" element={<Navigate to="/list/all" />} />
                 <Route path="list/:type" element={<ProductListPage />} />
+                <Route path="infinite/:type" element={<ProductInfListPage />} />
                 <Route path="detail/:id">
                     <Route path="" element={<ProductDetailPage />} />
                     <Route path="bid" element={<BidPage />} />

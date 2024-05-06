@@ -4,7 +4,7 @@ import instance from './instance';
 export const getProducts = async (data) => {
     const { pageNum, size } = data;
     const response = await axiosInstance
-        .get(`/products?pageNum=${pageNum}&size=${size}`)
+        .get(`/products/${pageNum}/${size}`)
         .then((res) => res)
         .catch((err) => {
             console.error(err);

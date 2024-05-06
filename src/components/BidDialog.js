@@ -67,17 +67,17 @@ export default function BidDialog(props) {
 
     const onClickBid = () => {
         bidMutate({
-            memberId: localStorage.getItem('id') || '123',
+            // memberId: localStorage.getItem('id') || '123',
             productId: Number(product?.id),
             price: Number(bidAmount.replaceAll(/[^0-9]/g, '')),
-            createdAt: dayjs().format('YYYY-MM-DDTHH:mm:ss'),
+            // createdAt: dayjs().format('YYYY-MM-DDTHH:mm:ss'),
         });
         setOpen(false);
     };
 
     const onClickAutoBid = () => {
         autoBidMutate({
-            memberId: localStorage.getItem('id') || '123',
+            // memberId: localStorage.getItem('id') || '123',
             productId: Number(product?.id),
             ceilingPrice: Number(bidAmount.replaceAll(/[^0-9]/g, '')),
         });

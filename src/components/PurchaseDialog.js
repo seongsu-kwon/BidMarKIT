@@ -23,9 +23,9 @@ export default function PurchaseDialog(props) {
     const { mutate: purchaseMutate } = usePurchaseProduct(product?.id);
     const onClickPurchase = () => {
         purchaseMutate({
-            memberId: localStorage.getItem('id') || '123',
+            // memberId: localStorage.getItem('id') || '123',
             productId: Number(product?.id),
-            price: product?.price,
+            // price: product?.price,
         });
         setOpen(false);
     };

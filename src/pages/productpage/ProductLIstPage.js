@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Grid } from '@mui/material';
+import { Box, Grid, Pagination } from '@mui/material';
 import ItemCard from 'components/ItemCard';
 import Types from 'constants/Types';
 import { useGetProducts } from 'react-query/product';
@@ -22,7 +22,17 @@ export default function ProductListPage() {
         });
     }
 
-    const { products } = useGetProducts();
+    const [pageNum, setPageNum] = useState(0);
+    const [size, setSize] = useState(10);
+
+    const handleChangePage = (event, value) => {
+        setPageNum(value - 1);
+    };
+
+    const { products } = useGetProducts({
+        pageNum,
+        size,
+    });
     // const products = [
     //     {
     //         id: '1',
@@ -153,6 +163,16 @@ export default function ProductListPage() {
                     </Grid>
                 ))}
             </Grid>
+            <Box
+                sx={{ display: 'flex', justifyContent: 'center', marginTop: 2 }}
+            >
+                <Pagination
+                    count={products?.totalPages || 1}
+                    color="primary"
+                    page={pageNum + 1}
+                    onChange={handleChangePage}
+                />
+            </Box>
         </div>
     );
 }

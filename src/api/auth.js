@@ -1,6 +1,11 @@
-import instance from './instance';
+import axiosInstance from './axiosInstance';
 
 export const login = async (data) => {
-    const response = await instance.post('/login', data);
+    const response = await axiosInstance.post('/login', data);
+    return response;
+};
+
+export const register = async (data) => {
+    const response = await axiosInstance.post('/member', data);
     return response;
 };

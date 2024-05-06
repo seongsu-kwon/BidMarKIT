@@ -8,6 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 import ScrollToTop from './ScrollToTop';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 const theme = createTheme({
     palette: {
@@ -53,8 +54,10 @@ root.render(
     <React.StrictMode>
         <BrowserRouter>
             <QueryClientProvider client={queryClient}>
+                <ReactQueryDevtools initialIsOpen={true} />
                 <ThemeProvider theme={theme}>
                     <ScrollToTop />
+
                     <App />
                 </ThemeProvider>
             </QueryClientProvider>

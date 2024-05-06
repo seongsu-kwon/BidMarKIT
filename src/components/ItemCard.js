@@ -3,7 +3,8 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function ItemCard({ item }) {
-    const { id, thumbnail, productName, bidPrice, price, deadline } = item;
+    const { productId, thumbnail, productName, bidPrice, price, deadline } =
+        item;
 
     const navigate = useNavigate();
 
@@ -19,7 +20,10 @@ export default function ItemCard({ item }) {
     };
 
     return (
-        <Card sx={{ width: '160px' }} onClick={() => navigate(`/detail/${id}`)}>
+        <Card
+            sx={{ width: '160px' }}
+            onClick={() => navigate(`/detail/${productId}`)}
+        >
             <CardMedia
                 sx={{ height: 140, flex: 1 }}
                 image={thumbnail}

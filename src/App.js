@@ -43,7 +43,8 @@ function App() {
                 <Route path="chat" element={<ChatPage />} />
                 <Route path="noti" element={<NotiPage />} />
                 <Route path="mypage" element={<MyPage />} />
-                <Route path="login" element={<OAuthLoginPage />} />
+                {/* <Route path="login" element={<OAuthLoginPage />} /> */}
+                <Route path="login" element={<LoginPage />} />
                 <Route
                     path="oauth/redirected/kakao"
                     element={<KakaoRedirectPage />}

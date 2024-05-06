@@ -9,9 +9,12 @@ import {
 } from 'api/product';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 
-export const useGetProducts = () => {
-    const { data, isLoading, isError } = useQuery('products', () =>
-        getProducts()
+export const useGetProducts = ({ pageNum, size }) => {
+    const { data, isLoading, isError } = useQuery(['products', pageNum], () =>
+        getProducts({
+            pageNum,
+            size,
+        })
     );
 
     console.log('data', data?.data);

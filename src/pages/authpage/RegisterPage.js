@@ -1,12 +1,12 @@
 import { Box, Button, TextField } from '@mui/material';
 import React, { useState } from 'react';
-import { useLogin } from 'react-query/auth';
-import { useNavigate } from 'react-router-dom';
+import { useRegister } from 'react-query/auth';
 
-export default function LoginPage() {
-    const navigate = useNavigate();
+export default function RegisterPage() {
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
+    const [nickname, setNickname] = useState('');
 
     const handleId = (e) => {
         setId(e.target.value);
@@ -16,14 +16,23 @@ export default function LoginPage() {
         setPassword(e.target.value);
     };
 
+    const handleName = (e) => {
+        setName(e.target.value);
+    };
+
+    const handleNickname = (e) => {
+        setNickname(e.target.value);
+    };
+
     const formData = new FormData();
 
-    const { mutate: login } = useLogin();
+    const { mutate: register } = useRegister();
 
-    const onClickLogin = () => {
-        formData.append('username', id);
-        formData.append('password', password);
-        login(formData);
+    const onClickRegister = () => {
+        // formData.append('id', id);
+        // formData.append('password', password);
+        // login(formData);
+        register({ id, password, name, nickname });
     };
 
     return (
@@ -34,7 +43,7 @@ export default function LoginPage() {
                 alignItems: 'center',
             }}
         >
-            <h1>로그인</h1>
+            <h1>회원가입</h1>
             <TextField
                 label="아이디"
                 value={id}
@@ -50,23 +59,26 @@ export default function LoginPage() {
                 }}
                 sx={{ marginTop: '10px' }}
             />
+            <TextField
+                label="이름"
+                value={name}
+                onChange={handleName}
+                sx={{ marginTop: '10px' }}
+            />
+            <TextField
+                label="닉네임"
+                value={nickname}
+                onChange={handleNickname}
+                sx={{ marginTop: '10px' }}
+            />
             <Button
                 variant="contained"
                 sx={{ marginTop: '10px' }}
-                onClick={onClickLogin}
+                onClick={onClickRegister}
                 size="large"
-                disabled={!id || !password}
+                disabled={!id || !password || !name || !nickname}
             >
                 로그인
-            </Button>
-            <Button
-                variant="contained"
-                sx={{ marginTop: '10px' }}
-                onClick={() => {
-                    navigate('/register');
-                }}
-            >
-                회원가입
             </Button>
         </Box>
     );

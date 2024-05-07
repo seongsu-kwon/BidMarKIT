@@ -294,7 +294,7 @@ export default function ProductDetailPage() {
                 swipeScrollTolerance={50}
                 infiniteLoop={true}
             >
-                {imageList.map((image, index) => (
+                {product?.images?.map((image, index) => (
                     <Box key={index}>
                         <img
                             src={image}

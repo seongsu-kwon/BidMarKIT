@@ -10,8 +10,8 @@ export const useLogin = () => {
             // localStorage.setItem('token', data.data.token);
             // localStorage.setItem('id', data.data.id);
             localStorage.setItem('nickname', data.data.nickname);
-            localStorage.setItem('access', data.data.accessToken);
-            localStorage.setItem('refresh', data.data.refreshToken);
+            localStorage.setItem('accessToken', data.data.accessToken);
+            localStorage.setItem('refreshToken', data.data.refreshToken);
             navigate('/main');
         },
         onError: (error) => {

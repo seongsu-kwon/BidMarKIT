@@ -25,9 +25,9 @@ export default function ProductInfListPage() {
                     console.log('라스트페이지.data.pageNum', lastPage);
                     console.log('페이지ㅣ[0].data.totalPages', pages);
 
-                    return lastPage?.data?.pageNum !==
+                    return lastPage?.data?.pageable?.pageNumber !==
                         pages[0]?.data?.totalPages
-                        ? lastPage?.data?.pageNum + 1
+                        ? lastPage?.data?.pageable?.pageNumber + 1
                         : undefined;
                 },
             }

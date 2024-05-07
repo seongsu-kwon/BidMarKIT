@@ -2,7 +2,7 @@ import { Box, Card, CardContent, CardMedia, Typography } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function ItemCard({ item }) {
+export default function ItemCardWithState({ item }) {
     const {
         productId,
         thumbnail,
@@ -25,6 +25,10 @@ export default function ItemCard({ item }) {
         const second = d.getSeconds();
         return `${month}/${day} ${hour}:${minute}`;
     };
+
+    console.log('ITEM', productName);
+    console.log('STATE', state);
+    console.log('진실', state === 0 ? '경매중' : '경매종료');
 
     return (
         <Card
@@ -54,31 +58,11 @@ export default function ItemCard({ item }) {
                         alignItems: 'center',
                     }}
                 >
-                    {state === 1 ? (
-                        <Typography
-                            variant="h6"
-                            color="text.secondary"
-                            fontWeight={'bold'}
-                        >
+                    {state === 0 ? null : (
+                        <Typography variant="h6" color="text.secondary">
                             거래 중
                         </Typography>
-                    ) : state === 2 ? (
-                        <Typography
-                            variant="h6"
-                            color="text.secondary"
-                            fontWeight={'bold'}
-                        >
-                            유찰
-                        </Typography>
-                    ) : state === 3 ? (
-                        <Typography
-                            variant="h6"
-                            color="text.secondary"
-                            fontWeight={'bold'}
-                        >
-                            판매 완료
-                        </Typography>
-                    ) : null}
+                    )}
                 </Box>
             </Box>
 

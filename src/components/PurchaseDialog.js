@@ -11,7 +11,7 @@ import React, { useState } from 'react';
 import { usePurchaseProduct } from 'react-query/product';
 
 export default function PurchaseDialog(props) {
-    const { product, remain } = props;
+    const { product, productId, remain } = props;
     const [open, setOpen] = useState(false);
     const handleClickOpen = () => {
         setOpen(true);
@@ -20,7 +20,7 @@ export default function PurchaseDialog(props) {
         setOpen(false);
     };
 
-    const { mutate: purchaseMutate } = usePurchaseProduct(product?.id);
+    const { mutate: purchaseMutate } = usePurchaseProduct(productId);
     const onClickPurchase = () => {
         purchaseMutate();
         setOpen(false);
@@ -32,6 +32,7 @@ export default function PurchaseDialog(props) {
                 color="secondary"
                 onClick={handleClickOpen}
                 size="large"
+                disabled={product?.state !== 0}
             >
                 구매하기
             </Button>

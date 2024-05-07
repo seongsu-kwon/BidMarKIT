@@ -32,10 +32,12 @@ export const useGetProduct = (id) => {
 export const useBidProduct = (id) => {
     const client = useQueryClient();
 
+    console.log('useBidProduct id', id);
+
     return useMutation(
         (price) =>
             bidProduct({
-                productId: id,
+                productId: Number(id),
                 price,
             }),
         {
@@ -58,7 +60,7 @@ export const useAutoBidProduct = (id) => {
     return useMutation(
         (price) =>
             autoBidProduct({
-                productId: id,
+                productId: Number(id),
                 ceilingPrice: price,
             }),
         {
@@ -81,7 +83,7 @@ export const usePurchaseProduct = (id) => {
     return useMutation(
         () =>
             purchaseProduct({
-                productId: id,
+                productId: Number(id),
             }),
         {
             onSuccess: () => {

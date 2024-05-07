@@ -7,6 +7,7 @@ import { useGetProducts } from 'react-query/product';
 import { useInfiniteQuery } from 'react-query';
 import { getProducts } from 'api/product';
 import InfiniteScroll from 'react-infinite-scroller';
+import ItemCardWithState from 'components/ItemCardWithState';
 
 export default function ProductInfListPage() {
     const { type } = useParams();
@@ -22,15 +23,6 @@ export default function ProductInfListPage() {
             ({ pageParam = 0 }) => getProducts({ pageNum: pageParam, size }),
             {
                 getNextPageParam: (lastPage, pages) => {
-                    console.log(
-                        '라스트페이지.data.pageNum',
-                        lastPage?.data?.pageable?.pageNumber
-                    );
-                    console.log(
-                        '페이지ㅣ[0].data.totalPages',
-                        pages[0]?.data?.totalPages
-                    );
-
                     return lastPage?.data?.pageable?.pageNumber !==
                         pages[0]?.data?.totalPages
                         ? lastPage?.data?.pageable?.pageNumber + 1
@@ -60,7 +52,7 @@ export default function ProductInfListPage() {
                                     justifyContent: 'center',
                                 }}
                             >
-                                <ItemCard item={item} />
+                                <ItemCardWithState item={item} />
                             </Grid>
                         ));
                     })}

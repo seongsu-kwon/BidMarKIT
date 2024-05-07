@@ -4,7 +4,7 @@ import instance from './instance';
 export const getProducts = async (data) => {
     const { pageNum, size } = data;
     const response = await axiosInstance
-        .get(`/products/${pageNum}/${size}`)
+        .get(`/products?pageNum=${pageNum}&size=${size}`)
         .then((res) => res)
         .catch((err) => {
             console.error(err);
@@ -24,6 +24,7 @@ export const getProduct = async (id) => {
 };
 
 export const bidProduct = async (data) => {
+    console.log('넘어온 api 데이터', data);
     const response = await instance.post('bid', data);
     return response;
 };

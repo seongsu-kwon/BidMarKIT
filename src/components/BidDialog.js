@@ -14,7 +14,7 @@ import { useBidProduct, useAutoBidProduct } from 'react-query/product';
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 
 export default function BidDialog(props) {
-    const { product, remain } = props;
+    const { product, productId, remain } = props;
 
     //입찰단위가 계산
     const [bidUnit, setBidUnit] = useState(0);
@@ -61,14 +61,14 @@ export default function BidDialog(props) {
         setOpen(false);
     };
 
-    const { mutate: bidMutate } = useBidProduct(product?.id);
+    const { mutate: bidMutate } = useBidProduct(productId);
 
-    const { mutate: autoBidMutate } = useAutoBidProduct(product?.id);
+    const { mutate: autoBidMutate } = useAutoBidProduct(productId);
 
     const onClickBid = () => {
         // bidMutate({
         //     // memberId: localStorage.getItem('id') || '123',
-        //     productId: Number(product?.id),
+        //     productId: Number(productId),
         //     price: Number(bidAmount.replaceAll(/[^0-9]/g, '')),
         //     // createdAt: dayjs().format('YYYY-MM-DDTHH:mm:ss'),
         // });
@@ -94,6 +94,7 @@ export default function BidDialog(props) {
                 color="primary"
                 onClick={() => handleClickOpen()}
                 size="large"
+                disabled={product?.state !== 0}
             >
                 입찰하기
             </Button>

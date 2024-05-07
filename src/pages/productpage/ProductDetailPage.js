@@ -50,158 +50,7 @@ export default function ProductDetailPage() {
 
     const { product } = useGetProduct(id);
 
-    // const products = [
-    //     {
-    //         id: '1',
-    //         thumbnail: 'http://placehold.it/200x200',
-    //         productName: 'Product 1',
-    //         initPrice: 1000,
-    //         bidPrice: 2000,
-    //         price: 5000,
-    //         deadline: '2024-05-30T12:12:12',
-    //         content: 'This is product 1',
-    //         sellerName: '판매자',
-    //     },
-    //     {
-    //         id: '2',
-    //         thumbnail: 'http://placehold.it/200x200',
-    //         productName: 'Product 2',
-    //         initPrice: 2000,
-    //         bidPrice: 3000,
-    //         price: 6000,
-    //         deadline: '2024-05-30T12:12:12',
-    //         content: 'This is product 2',
-    //         sellerName: '판매자',
-    //     },
-    //     {
-    //         id: '3',
-    //         thumbnail: 'http://placehold.it/200x200',
-    //         productName: 'Product 3',
-    //         initPrice: 3000,
-    //         bidPrice: 4000,
-    //         price: 7000,
-    //         deadline: '2024-05-30T12:12:12',
-    //         content: 'This is product 3',
-    //         sellerName: '판매자',
-    //     },
-    //     {
-    //         id: '4',
-    //         thumbnail: 'http://placehold.it/200x200',
-    //         productName: 'Product 4',
-    //         initPrice: 4000,
-    //         bidPrice: 5500,
-    //         price: 8000,
-    //         deadline: '2024-05-30T12:12:12',
-    //         content: 'This is product 4',
-    //         sellerName: '판매자',
-    //     },
-    //     {
-    //         id: '5',
-    //         thumbnail: 'http://placehold.it/200x200',
-    //         productName: 'Product 5',
-    //         initPrice: 5000,
-    //         bidPrice: 6000,
-    //         price: 9000,
-    //         deadline: '2024-05-30T12:12:12',
-    //         content: 'This is product 5',
-    //         sellerName: '판매자',
-    //     },
-    //     {
-    //         id: '6',
-    //         thumbnail: 'http://placehold.it/200x200',
-    //         productName: 'Product 6',
-    //         initPrice: 6000,
-    //         bidPrice: 7000,
-    //         price: 10000,
-    //         deadline: '2024-05-30T12:12:12',
-    //         content: 'This is product 6',
-    //         sellerName: '판매자',
-    //     },
-    //     {
-    //         id: '7',
-    //         thumbnail: 'http://placehold.it/200x200',
-    //         productName: 'Product 7',
-    //         initPrice: 7000,
-    //         bidPrice: 8000,
-    //         price: 11000,
-    //         deadline: '2024-05-30T12:12:12',
-    //         content: 'This is product 7',
-    //         sellerName: '판매자',
-    //     },
-    //     {
-    //         id: '8',
-    //         thumbnail: 'http://placehold.it/200x200',
-    //         productName: 'Product 8',
-    //         initPrice: 8000,
-    //         bidPrice: 9000,
-    //         price: 12000,
-    //         deadline: '2024-05-30T12:12:12',
-    //         content: 'This is product 8',
-    //         sellerName: '판매자',
-    //     },
-    //     {
-    //         id: '9',
-    //         thumbnail: 'http://placehold.it/200x200',
-    //         productName: 'Product 9',
-    //         initPrice: 9000,
-    //         bidPrice: 10000,
-    //         price: 13000,
-    //         deadline: '2024-05-30T12:12:12',
-    //         content: 'This is product 9',
-    //         sellerName: '판매자',
-    //     },
-    //     {
-    //         id: '10',
-    //         thumbnail: 'http://placehold.it/200x200',
-    //         productName: 'Product 10',
-    //         initPrice: 10000,
-    //         bidPrice: 11000,
-    //         price: 14000,
-    //         deadline: '2024-05-30T12:12:12',
-    //         content: 'This is product 10',
-    //         sellerName: '판매자',
-    //     },
-    // ];
-    // const product = products[parseInt(id) - 1];
-
     const { bids } = useGetBids(id);
-    // const bids = [
-    //     {
-    //         id: '82cc',
-    //         memberId: '123',
-    //         productId: 1,
-    //         price: 1010000,
-    //         createdAt: '2024-04-19T14:00:54',
-    //     },
-    //     {
-    //         id: '3026',
-    //         memberId: '123',
-    //         productId: 1,
-    //         price: 10100000,
-    //         createdAt: '2024-04-19T14:00:55',
-    //     },
-    //     {
-    //         id: '1ff5',
-    //         memberId: '123',
-    //         productId: 1,
-    //         price: 100100000,
-    //         createdAt: '2024-04-19T14:00:56',
-    //     },
-    //     {
-    //         id: '39f3',
-    //         memberId: '123',
-    //         productId: 1,
-    //         price: 1001000000,
-    //         createdAt: '2024-04-19T14:00:57',
-    //     },
-    //     {
-    //         id: 'd423',
-    //         memberId: '1234',
-    //         productId: 4,
-    //         price: 1230,
-    //         createdAt: '2024-04-19T14:42:26',
-    //     },
-    // ];
 
     const [open, setOpen] = useState(false);
 
@@ -270,17 +119,6 @@ export default function ProductDetailPage() {
         like: like,
     };
 
-    const imageList = [
-        'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
-        'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
-        'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
-        'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
-        'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
-        'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
-        'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
-        'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
-    ];
-
     return (
         <div>
             <Carousel
@@ -295,12 +133,56 @@ export default function ProductDetailPage() {
                 infiniteLoop={true}
             >
                 {product?.images?.map((image, index) => (
-                    <Box key={index}>
+                    <Box
+                        key={index}
+                        sx={{ width: '100%', position: 'relative' }}
+                    >
                         <img
                             src={image}
                             alt="상품 이미지"
-                            style={{ width: '400px', height: '300px' }}
+                            // style={{ width: '400px', height: '300px' }}
+                            style={{
+                                width: '100%',
+                                height: 'auto',
+                                verticalAlign: 'middle',
+                            }}
                         />
+                        <Box
+                            sx={{
+                                position: 'absolute',
+                                width: '100%',
+                                top: '40%',
+                                left: '50%',
+                                transform: 'translate(-50%, -50%)',
+                                textAlign: 'center',
+                            }}
+                        >
+                            {product?.state === 1 ? (
+                                <Typography
+                                    variant="h6"
+                                    color="text.secondary"
+                                    fontWeight={'bold'}
+                                >
+                                    거래 중
+                                </Typography>
+                            ) : product?.state === 2 ? (
+                                <Typography
+                                    variant="h6"
+                                    color="text.secondary"
+                                    fontWeight={'bold'}
+                                >
+                                    유찰
+                                </Typography>
+                            ) : product?.state === 3 ? (
+                                <Typography
+                                    variant="h6"
+                                    color="text.secondary"
+                                    fontWeight={'bold'}
+                                >
+                                    판매 완료
+                                </Typography>
+                            ) : null}
+                        </Box>
                     </Box>
                 ))}
             </Carousel>
@@ -422,6 +304,7 @@ export default function ProductDetailPage() {
                     overflow: 'auto',
                     wordBreak: 'keep-all',
                     width: '100%',
+                    whiteSpace: 'pre-wrap',
                 }}
             >
                 {product?.content}
@@ -437,41 +320,13 @@ export default function ProductDetailPage() {
                     bottom: '70px',
                 }}
             >
-                <BidDialog product={product} remain={remain} />
-                <PurchaseDialog product={product} remain={remain} />
+                <BidDialog product={product} productId={id} remain={remain} />
+                <PurchaseDialog
+                    product={product}
+                    productId={id}
+                    remain={remain}
+                />
             </Box>
-
-            {/* <Box open={open} onClose={handleClose}>
-                <Box sx={style}>
-                    <Box sx={{ overflow: 'auto' }}>
-                        {bids?.map((bid, index) => (
-                            <Box key={index}>
-                                <Box
-                                    sx={{
-                                        display: 'flex',
-                                        justifyContent: 'space-between',
-                                        alignItems: 'center',
-                                    }}
-                                >
-                                    <Typography variant="h6">
-                                        {bid?.memberId}
-                                    </Typography>
-                                    <Typography variant="body1">
-                                        {bid?.price.toLocaleString()}원
-                                    </Typography>
-                                </Box>
-
-                                <Typography variant="body2" align="right">
-                                    {dayjs(bid?.createdAt).format(
-                                        'YYYY.MM.DD HH:mm:ss'
-                                    )}
-                                </Typography>
-                                <hr />
-                            </Box>
-                        ))}
-                    </Box>
-                </Box>
-            </Box> */}
 
             <Dialog
                 open={open}

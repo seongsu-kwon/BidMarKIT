@@ -23,7 +23,7 @@ export default function ProductListPage() {
     }
 
     const [pageNum, setPageNum] = useState(0);
-    const [size, setSize] = useState(10);
+    const [size, setSize] = useState(12);
 
     const handleChangePage = (event, value) => {
         setPageNum(value - 1);

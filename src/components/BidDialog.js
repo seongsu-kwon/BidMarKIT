@@ -66,21 +66,23 @@ export default function BidDialog(props) {
     const { mutate: autoBidMutate } = useAutoBidProduct(product?.id);
 
     const onClickBid = () => {
-        bidMutate({
-            // memberId: localStorage.getItem('id') || '123',
-            productId: Number(product?.id),
-            price: Number(bidAmount.replaceAll(/[^0-9]/g, '')),
-            // createdAt: dayjs().format('YYYY-MM-DDTHH:mm:ss'),
-        });
+        // bidMutate({
+        //     // memberId: localStorage.getItem('id') || '123',
+        //     productId: Number(product?.id),
+        //     price: Number(bidAmount.replaceAll(/[^0-9]/g, '')),
+        //     // createdAt: dayjs().format('YYYY-MM-DDTHH:mm:ss'),
+        // });
+        bidMutate(Number(bidAmount.replaceAll(/[^0-9]/g, '')));
         setOpen(false);
     };
 
     const onClickAutoBid = () => {
-        autoBidMutate({
-            // memberId: localStorage.getItem('id') || '123',
-            productId: Number(product?.id),
-            ceilingPrice: Number(bidAmount.replaceAll(/[^0-9]/g, '')),
-        });
+        // autoBidMutate({
+        //     // memberId: localStorage.getItem('id') || '123',
+        //     productId: Number(product?.id),
+        //     ceilingPrice: Number(bidAmount.replaceAll(/[^0-9]/g, '')),
+        // });
+        autoBidMutate(Number(bidAmount.replaceAll(/[^0-9]/g, '')));
 
         setOpen(false);
     };

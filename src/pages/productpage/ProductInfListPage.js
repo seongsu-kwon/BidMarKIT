@@ -22,7 +22,8 @@ export default function ProductInfListPage() {
             ({ pageParam = 0 }) => getProducts({ pageNum: pageParam, size }),
             {
                 getNextPageParam: (lastPage, pages) => {
-                    return lastPage?.data?.pageNum !== pages[0]?.data?.totalPage
+                    return lastPage?.data?.pageNum !==
+                        pages[0]?.data?.totalPages
                         ? lastPage?.data?.pageNum + 1
                         : undefined;
                 },
@@ -38,7 +39,6 @@ export default function ProductInfListPage() {
             >
                 <Grid container spacing={2}>
                     {data?.pages?.map((page) => {
-                        console.log('아직 난 ', page.data.content);
                         return page?.data?.content.map((item, index) => (
                             <Grid
                                 item

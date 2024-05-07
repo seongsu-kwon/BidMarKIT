@@ -64,8 +64,7 @@ export default function BottomNav() {
                     <BottomNavigationAction
                         label="검색"
                         icon={<SearchIcon />}
-                        // onClick={() => navigate('/search')}
-                        onClick={() => navigate('/infinite/all')}
+                        onClick={() => navigate('/search')}
                     />
                     <BottomNavigationAction
                         label="알림"

@@ -77,6 +77,11 @@ export default function TopAppBar() {
                         </Typography>
                     )}
                 </Toolbar>
+                <Box>
+                    <Typography variant="h6" align="center">
+                        {localStorage.getItem('nickname')}
+                    </Typography>
+                </Box>
             </AppBar>
 
             <Offset />

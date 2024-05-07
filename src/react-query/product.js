@@ -32,49 +32,69 @@ export const useGetProduct = (id) => {
 export const useBidProduct = (id) => {
     const client = useQueryClient();
 
-    return useMutation((data) => bidProduct(data), {
-        onSuccess: () => {
-            client.invalidateQueries(['product', id]);
-            client.invalidateQueries('bids');
-            console.log('성공');
-        },
-        onError: (error) => {
-            console.log('실패');
-            console.log(error);
-        },
-    });
+    return useMutation(
+        (price) =>
+            bidProduct({
+                productId: id,
+                price,
+            }),
+        {
+            onSuccess: () => {
+                client.invalidateQueries(['product', id]);
+                client.invalidateQueries('bids');
+                console.log('성공');
+            },
+            onError: (error) => {
+                console.log('실패');
+                console.log(error);
+            },
+        }
+    );
 };
 
 export const useAutoBidProduct = (id) => {
     const client = useQueryClient();
 
-    return useMutation((data) => autoBidProduct(data), {
-        onSuccess: () => {
-            client.invalidateQueries(['product', id]);
-            client.invalidateQueries('bids');
-            console.log('성공');
-        },
-        onError: (error) => {
-            console.log('실패');
-            console.log(error);
-        },
-    });
+    return useMutation(
+        (price) =>
+            autoBidProduct({
+                productId: id,
+                ceilingPrice: price,
+            }),
+        {
+            onSuccess: () => {
+                client.invalidateQueries(['product', id]);
+                client.invalidateQueries('bids');
+                console.log('성공');
+            },
+            onError: (error) => {
+                console.log('실패');
+                console.log(error);
+            },
+        }
+    );
 };
 
 export const usePurchaseProduct = (id) => {
     const client = useQueryClient();
 
-    return useMutation((data) => purchaseProduct(data), {
-        onSuccess: () => {
-            client.invalidateQueries(['product', id]);
-            client.invalidateQueries('bids');
-            console.log('성공');
-        },
-        onError: (error) => {
-            console.log('실패');
-            console.log(error);
-        },
-    });
+    return useMutation(
+        () =>
+            purchaseProduct({
+                productId: id,
+            }),
+        {
+            onSuccess: () => {
+                client.invalidateQueries(['product', id]);
+                client.invalidateQueries('bids');
+                console.log('성공');
+            },
+            onError: (error) => {
+                console.log('실패');
+                console.log(error);
+            },
+        }
+    );
 };
 
 export const useGetBids = (id) => {

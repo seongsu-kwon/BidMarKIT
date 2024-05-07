@@ -11,10 +11,11 @@ instance.interceptors.request.use(
     (config) => {
         if (config.url === '/login' || config.url === REFRESH_API)
             return config;
-        const accessToken = localStorage.getItem('access');
+        const accessToken = localStorage.getItem('accessToken');
 
         if (accessToken) {
-            config.headers.Authorization = `Bearer ${accessToken}`;
+            // config.headers.Authorization = `Bearer ${accessToken}`;
+            config.headers.Authorization = `${accessToken}`;
 
             console.log('config', config);
             return config;
@@ -36,16 +37,16 @@ instance.interceptors.response.use(
             console.log('ERRORSTATUS', error.response.status);
 
             if (error.response.status === 401) {
-                localStorage.removeItem('access');
-                const refreshToken = localStorage.getItem('refresh');
+                localStorage.removeItem('accessToken');
+                const refreshToken = localStorage.getItem('refreshToken');
                 axiosInstance
                     .post(REFRESH_API, {
                         refreshToken,
                     })
                     .then((res) => {
                         const { accessToken } = res.data.data;
-                        localStorage.setItem('access', accessToken);
-                        //   localStorage.setItem("refresh", refreshToken);
+                        localStorage.setItem('accessToken', accessToken);
+                        // localStorage.setItem('refreshToken', refreshToken);
                     })
                     .catch((err) => {
                         console.log('에러', err);

@@ -22,8 +22,14 @@ export default function ProductInfListPage() {
             ({ pageParam = 0 }) => getProducts({ pageNum: pageParam, size }),
             {
                 getNextPageParam: (lastPage, pages) => {
-                    console.log('라스트페이지.data.pageNum', lastPage);
-                    console.log('페이지ㅣ[0].data.totalPages', pages);
+                    console.log(
+                        '라스트페이지.data.pageNum',
+                        lastPage?.data?.pageable?.pageNumber
+                    );
+                    console.log(
+                        '페이지ㅣ[0].data.totalPages',
+                        pages[0]?.data?.totalPages
+                    );
 
                     return lastPage?.data?.pageable?.pageNumber !==
                         pages[0]?.data?.totalPages

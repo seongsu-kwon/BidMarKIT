@@ -132,13 +132,10 @@ export default function ProductDetailPage() {
                 swipeScrollTolerance={50}
                 infiniteLoop={true}
             >
-                {product?.images?.map((image, index) => (
-                    <Box
-                        key={index}
-                        sx={{ width: '100%', position: 'relative' }}
-                    >
+                {!product ? (
+                    <Box sx={{ width: '100%', position: 'relative' }}>
                         <img
-                            src={image}
+                            src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
                             alt="상품 이미지"
                             // style={{ width: '400px', height: '300px' }}
                             style={{
@@ -184,7 +181,62 @@ export default function ProductDetailPage() {
                             ) : null}
                         </Box>
                     </Box>
-                ))}
+                ) : (
+                    product?.images?.map((image, index) => (
+                        <Box
+                            key={index}
+                            sx={{ width: '100%', position: 'relative' }}
+                        >
+                            <img
+                                src={image}
+                                alt="상품 이미지"
+                                // style={{ width: '400px', height: '300px' }}
+                                style={{
+                                    width: '100%',
+                                    height: 'auto',
+                                    verticalAlign: 'middle',
+                                    opacity: product?.state === 0 ? 1 : 0.5,
+                                }}
+                            />
+                            <Box
+                                sx={{
+                                    position: 'absolute',
+                                    width: '100%',
+                                    top: '40%',
+                                    left: '50%',
+                                    transform: 'translate(-50%, -50%)',
+                                    textAlign: 'center',
+                                }}
+                            >
+                                {product?.state === 1 ? (
+                                    <Typography
+                                        variant="h6"
+                                        color="text.secondary"
+                                        fontWeight={'bold'}
+                                    >
+                                        거래 중
+                                    </Typography>
+                                ) : product?.state === 2 ? (
+                                    <Typography
+                                        variant="h6"
+                                        color="text.secondary"
+                                        fontWeight={'bold'}
+                                    >
+                                        유찰
+                                    </Typography>
+                                ) : product?.state === 3 ? (
+                                    <Typography
+                                        variant="h6"
+                                        color="text.secondary"
+                                        fontWeight={'bold'}
+                                    >
+                                        판매 완료
+                                    </Typography>
+                                ) : null}
+                            </Box>
+                        </Box>
+                    ))
+                )}
             </Carousel>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                 <h1>{product?.productName}</h1>

@@ -2,10 +2,14 @@ import { AppBar, Box, IconButton, Toolbar, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { useLocation, useNavigate } from 'react-router-dom';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import { useRecoilValue } from 'recoil';
+import { authState } from 'recoil/auth';
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
 export default function TopAppBar() {
+    const auth = useRecoilValue(authState);
+
     const navigate = useNavigate();
 
     const location = useLocation().pathname;
@@ -28,8 +32,9 @@ export default function TopAppBar() {
     const logout = () => {
         localStorage.removeItem('id');
         localStorage.removeItem('token');
-        localStorage.removeItem('access');
-        localStorage.removeItem('refresh');
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        localStorage.removeItem('nickname');
         navigate('/login');
     };
     return (
@@ -64,7 +69,7 @@ export default function TopAppBar() {
                         alt="logo"
                         style={{ width: '200px' }}
                     />
-                    {localStorage.getItem('access') ? (
+                    {localStorage.getItem('accessToken') ? (
                         <Typography variant="h6" onClick={() => logout()}>
                             로그아웃
                         </Typography>
@@ -79,7 +84,7 @@ export default function TopAppBar() {
                 </Toolbar>
                 <Box>
                     <Typography variant="h6" align="center">
-                        {localStorage.getItem('nickname')}
+                        {auth.nickname}
                     </Typography>
                 </Box>
             </AppBar>

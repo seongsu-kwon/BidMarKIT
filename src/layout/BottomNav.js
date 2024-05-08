@@ -79,7 +79,11 @@ export default function BottomNav() {
                     <BottomNavigationAction
                         label="MY"
                         icon={<PersonIcon />}
-                        onClick={() => navigate('/mypage')}
+                        onClick={
+                            localStorage.getItem('accessToken')
+                                ? () => navigate('/mypage')
+                                : () => navigate('/login')
+                        }
                     />
                 </BottomNavigation>
             </Box>

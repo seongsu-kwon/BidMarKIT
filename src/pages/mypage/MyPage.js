@@ -40,7 +40,7 @@ function stringAvatar(name) {
     };
 }
 export default function MyPage() {
-    const username = 'USER1';
+    const username = localStorage.getItem('nickname') || 'Guest';
     return (
         <>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>

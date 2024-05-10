@@ -11,6 +11,7 @@ import React from 'react';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import ReceiptIcon from '@mui/icons-material/Receipt';
+import { useNavigate } from 'react-router-dom';
 
 function stringToColor(string) {
     let hash = 0;
@@ -40,6 +41,7 @@ function stringAvatar(name) {
     };
 }
 export default function MyPage() {
+    const navigate = useNavigate();
     const username = localStorage.getItem('nickname') || 'Guest';
     return (
         <>
@@ -56,19 +58,31 @@ export default function MyPage() {
                 }}
             >
                 <List>
-                    <ListItemButton>
+                    <ListItemButton
+                        onClick={() => {
+                            navigate('likes');
+                        }}
+                    >
                         <ListItemIcon>
                             <FavoriteIcon />
                         </ListItemIcon>
                         <ListItemText primary="관심 목록" />
                     </ListItemButton>
-                    <ListItemButton>
+                    <ListItemButton
+                        onClick={() => {
+                            navigate('history/purchase');
+                        }}
+                    >
                         <ListItemIcon>
                             <ShoppingBasketIcon />
                         </ListItemIcon>
                         <ListItemText primary="구매 내역" />
                     </ListItemButton>
-                    <ListItemButton>
+                    <ListItemButton
+                        onClick={() => {
+                            navigate('history/sale');
+                        }}
+                    >
                         <ListItemIcon>
                             <ReceiptIcon />
                         </ListItemIcon>

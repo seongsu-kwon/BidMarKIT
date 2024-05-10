@@ -27,15 +27,18 @@ export default function PurchaseDialog(props) {
     };
     return (
         <>
-            <Button
-                variant="contained"
-                color="secondary"
-                onClick={handleClickOpen}
-                size="large"
-                disabled={product?.state !== 0}
-            >
-                구매하기
-            </Button>
+            {product?.state == 0 && (
+                <Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={handleClickOpen}
+                    size="large"
+                    disabled={product?.state !== 0}
+                >
+                    구매하기
+                </Button>
+            )}
+
             <Dialog
                 open={open}
                 onClose={handleClose}

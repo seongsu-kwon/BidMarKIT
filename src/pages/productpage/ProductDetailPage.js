@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
     Avatar,
     Box,
@@ -120,7 +120,13 @@ export default function ProductDetailPage() {
     };
 
     return (
-        <div>
+        <div
+            style={{
+                '& .MuiBox-root ..slide': {
+                    border: '4px solid red',
+                },
+            }}
+        >
             <Carousel
                 // slidable={true}
                 // emulateTouch={true}
@@ -131,27 +137,41 @@ export default function ProductDetailPage() {
                 preventMovementUntilSwipeScrollTolerance={true}
                 swipeScrollTolerance={50}
                 infiniteLoop={true}
+                autoPlay={true}
+                interval={3000}
             >
                 {!product ? (
-                    <Box sx={{ width: '100%', position: 'relative' }}>
+                    <Box
+                        sx={{
+                            width: '100%',
+                            maxHeight: '40vh',
+                            position: 'relative',
+                            objectFit: 'contain',
+                            overflow: 'auto',
+                            alignSelf: 'center',
+                        }}
+                    >
                         <img
-                            src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
+                            src="https://via.placeholder.com/150"
                             alt="상품 이미지"
                             // style={{ width: '400px', height: '300px' }}
                             style={{
                                 width: '100%',
-                                height: 'auto',
+                                height: '40vh',
                                 verticalAlign: 'middle',
+                                opacity: product?.state === 0 ? 1 : 0.5,
+                                objectFit: 'contain',
                             }}
                         />
                         <Box
                             sx={{
                                 position: 'absolute',
                                 width: '100%',
-                                top: '40%',
-                                left: '50%',
-                                transform: 'translate(-50%, -50%)',
-                                textAlign: 'center',
+                                height: '100%',
+                                top: 0,
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
                             }}
                         >
                             {product?.state === 1 ? (
@@ -185,7 +205,14 @@ export default function ProductDetailPage() {
                     product?.images?.map((image, index) => (
                         <Box
                             key={index}
-                            sx={{ width: '100%', position: 'relative' }}
+                            sx={{
+                                width: '100%',
+                                maxHeight: '40vh',
+                                position: 'relative',
+                                objectFit: 'contain',
+                                overflow: 'auto',
+                                alignSelf: 'center',
+                            }}
                         >
                             <img
                                 src={image}
@@ -193,19 +220,21 @@ export default function ProductDetailPage() {
                                 // style={{ width: '400px', height: '300px' }}
                                 style={{
                                     width: '100%',
-                                    height: 'auto',
+                                    height: '40vh',
                                     verticalAlign: 'middle',
                                     opacity: product?.state === 0 ? 1 : 0.5,
+                                    objectFit: 'contain',
                                 }}
                             />
                             <Box
                                 sx={{
                                     position: 'absolute',
                                     width: '100%',
-                                    top: '40%',
-                                    left: '50%',
-                                    transform: 'translate(-50%, -50%)',
-                                    textAlign: 'center',
+                                    height: '100%',
+                                    top: 0,
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
                                 }}
                             >
                                 {product?.state === 1 ? (
@@ -239,7 +268,7 @@ export default function ProductDetailPage() {
                 )}
             </Carousel>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <h1>{product?.productName}</h1>
+                <h3>{product?.productName}</h3>
                 <Box
                     sx={{
                         display: 'flex',
@@ -251,6 +280,7 @@ export default function ProductDetailPage() {
                         <FavoriteIcon
                             fontSize="large"
                             onClick={() => setLike(!like)}
+                            color="error"
                         />
                     ) : (
                         <FavoriteBorderIcon

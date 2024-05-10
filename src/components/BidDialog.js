@@ -89,15 +89,18 @@ export default function BidDialog(props) {
 
     return (
         <>
-            <Button
-                variant="contained"
-                color="primary"
-                onClick={() => handleClickOpen()}
-                size="large"
-                disabled={product?.state !== 0}
-            >
-                입찰하기
-            </Button>
+            {product?.state == 0 && (
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => handleClickOpen()}
+                    size="large"
+                    disabled={product?.state !== 0}
+                >
+                    입찰하기
+                </Button>
+            )}
+
             <Dialog
                 open={open}
                 onClose={handleClose}

@@ -10,7 +10,7 @@ import InfiniteScroll from 'react-infinite-scroller';
 import ItemCardWithState from 'components/ItemCardWithState';
 import LikeCard from 'components/LikeCard';
 
-export default function ProductInfListPage() {
+export default function LikesListPage() {
     const { type } = useParams();
 
     const title = Types[type];

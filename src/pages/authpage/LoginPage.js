@@ -49,6 +49,11 @@ export default function LoginPage() {
                     type: 'password',
                 }}
                 sx={{ marginTop: '10px' }}
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                        onClickLogin();
+                    }
+                }}
             />
             <Button
                 variant="contained"

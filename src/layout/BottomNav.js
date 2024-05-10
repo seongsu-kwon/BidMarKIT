@@ -33,6 +33,9 @@ export default function BottomNav() {
             case '/mypage':
                 setValue(4);
                 break;
+            case '/login':
+                setValue(5);
+                break;
             default:
                 setValue(0);
                 break;
@@ -69,12 +72,20 @@ export default function BottomNav() {
                     <BottomNavigationAction
                         label="알림"
                         icon={<NotificationsIcon />}
-                        onClick={() => navigate('/noti')}
+                        onClick={
+                            localStorage.getItem('accessToken')
+                                ? () => navigate('/noti')
+                                : () => navigate('/login')
+                        }
                     />
                     <BottomNavigationAction
                         label="톡"
                         icon={<ChatIcon />}
-                        onClick={() => navigate('/chat')}
+                        onClick={
+                            localStorage.getItem('accessToken')
+                                ? () => navigate('/chat')
+                                : () => navigate('/login')
+                        }
                     />
                     <BottomNavigationAction
                         label="MY"

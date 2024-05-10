@@ -1,4 +1,4 @@
-import { Box, IconButton, Typography } from '@mui/material';
+import { Box, Grid, IconButton, Typography } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Carousel } from 'react-responsive-carousel';
@@ -55,6 +55,7 @@ export default function CardsCarousel({ type, count }) {
                     onClick={() => {
                         navigate(`/list/${type}`);
                     }}
+                    SX={{ cursor: 'pointer' }}
                 >
                     {'전체보기 >'}
                 </Typography>
@@ -103,17 +104,34 @@ export default function CardsCarousel({ type, count }) {
                 preventMovementUntilSwipeScrollTolerance={true}
                 swipeScrollTolerance={50}
             >
-                {chunk(items, count).map((item) => (
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            justifyContent: 'space-around',
-                        }}
-                    >
-                        {item.map((i) => (
-                            <ItemCard item={i} />
+                {chunk(items, count)?.map((item) => (
+                    // <Box
+                    //     sx={{
+                    //         display: 'flex',
+                    //         justifyContent: 'space-around',
+                    //     }}
+                    // >
+                    //     {item.map((i) => (
+                    //         <ItemCard item={i} />
+                    //     ))}
+                    // </Box>
+                    <Grid container spacing={2}>
+                        {item?.map((i) => (
+                            <Grid
+                                item
+                                key={i.id}
+                                xs={6}
+                                sm={4}
+                                md={3}
+                                sx={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                }}
+                            >
+                                <ItemCard item={i} />
+                            </Grid>
                         ))}
-                    </Box>
+                    </Grid>
                 ))}
             </Carousel>
         </Box>

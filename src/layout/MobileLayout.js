@@ -22,7 +22,7 @@ export default function MobileLayout({ children }) {
             <TopAppBar />
 
             <Container maxWidth="md" sx={{ mt: 1 }}>
-                {auth.nickname ? <Offset /> : null}
+                {/* {auth.nickname ? <Offset /> : null} */}
                 {children}
             </Container>
             {/* <BottomAppBar /> */}

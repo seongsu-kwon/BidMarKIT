@@ -14,23 +14,28 @@ export default function NotificationItem(props) {
             }}
             fullWidth
         >
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <NotificationsIcon
-                    sx={{ p: '10px' }}
-                    color="primary"
-                    fontSize="large"
-                />
-                <Typography
-                    variant="body1"
-                    sx={{
-                        width: '60%',
-                    }}
-                >
-                    "상품"이 낙찰되었습니다.
-                </Typography>
+            <Box
+                sx={{
+                    width: '100%',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                }}
+            >
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <NotificationsIcon
+                        sx={{ p: '10px' }}
+                        color="primary"
+                        fontSize="large"
+                    />
+                    <Typography variant="body1">
+                        "상품"이 낙찰되었습니다.
+                    </Typography>
+                </Box>
+
                 <Typography
                     variant="caption"
-                    sx={{ p: '10px', width: '30%', whiteSpace: 'nowrap' }}
+                    sx={{ p: '10px', whiteSpace: 'nowrap' }}
                 >
                     2024.04.01 18:10
                 </Typography>

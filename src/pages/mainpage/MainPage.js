@@ -15,9 +15,14 @@ function MainPage() {
         });
     }
 
-    const [count, setCount] = useState(2);
+    const [count, setCount] = useState(1);
 
     useEffect(() => {
+        if (window.innerWidth < 900) {
+            setCount(2);
+        } else {
+            setCount(4);
+        }
         const handleResize = () => {
             if (window.innerWidth < 900) {
                 setCount(2);

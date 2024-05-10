@@ -1,9 +1,11 @@
 import { Box, Card, CardContent, CardMedia, Typography } from '@mui/material';
 import dayjs from 'dayjs';
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
-export default function ItemCard({ item }) {
+export default function LikeCard({ item }) {
     const {
         productId,
         thumbnail,
@@ -26,6 +28,8 @@ export default function ItemCard({ item }) {
         const second = d.getSeconds();
         return `${month}/${day} ${hour}:${minute}`;
     };
+
+    const [like, setLike] = useState(false);
 
     return (
         <Card
@@ -80,6 +84,33 @@ export default function ItemCard({ item }) {
                             판매 완료
                         </Typography>
                     ) : null}
+                </Box>
+                <Box
+                    sx={{
+                        position: 'absolute',
+                        top: 0,
+                        right: 0,
+                        padding: 1,
+                    }}
+                >
+                    {like ? (
+                        <FavoriteIcon
+                            fontSize="large"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setLike(!like);
+                            }}
+                            color="error"
+                        />
+                    ) : (
+                        <FavoriteBorderIcon
+                            fontSize="large"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setLike(!like);
+                            }}
+                        />
+                    )}
                 </Box>
             </Box>
 

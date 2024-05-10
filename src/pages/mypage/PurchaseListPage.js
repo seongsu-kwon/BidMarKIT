@@ -8,9 +8,9 @@ import { useInfiniteQuery } from 'react-query';
 import { getProducts } from 'api/product';
 import InfiniteScroll from 'react-infinite-scroller';
 import ItemCardWithState from 'components/ItemCardWithState';
-import LikeCard from 'components/LikeCard';
+import PurchaseCard from 'components/PurchaseCard';
 
-export default function ProductInfListPage() {
+export default function PurchaseListPage() {
     const { type } = useParams();
 
     const title = Types[type];
@@ -53,8 +53,7 @@ export default function ProductInfListPage() {
                                     justifyContent: 'center',
                                 }}
                             >
-                                {/* <ItemCard item={item} /> */}
-                                <LikeCard item={item} />
+                                <PurchaseCard item={item} />
                             </Grid>
                         ));
                     })}

@@ -54,6 +54,7 @@ export default function ChatroomItem(props) {
                             width: '40%',
                             whiteSpace: 'nowrap',
                             overflow: 'hidden',
+                            textAlign: 'right',
                         }}
                     >
                         {user}

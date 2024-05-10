@@ -17,6 +17,9 @@ import LoginPage from 'pages/authpage/LoginPage';
 import OAuthLoginPage from 'pages/authpage/OAuthLoginPage';
 import KakaoRedirectPage from 'pages/authpage/KakaoRedirectPage';
 import ProductInfListPage from 'pages/productpage/ProductInfListPage';
+import PurchaseListPage from 'pages/mypage/PurchaseListPage';
+import SaleListPage from 'pages/mypage/SaleListPage';
+import LikesListPage from 'pages/mypage/LikesListPage';
 
 function App() {
     const handleRequestPermission = () => {
@@ -33,8 +36,9 @@ function App() {
         <Routes>
             <Route path="/" element={<MobilePage />}>
                 <Route path="" element={<Navigate to="main" />} />
-                <Route path="main" element={<Navigate to="/list/all" />} />
-                <Route path="list/:type" element={<ProductListPage />} />
+                <Route path="main" element={<MainPage />} />
+                {/* <Route path="main" element={<Navigate to="/list/all" />} /> */}
+                <Route path="list/:type" element={<ProductInfListPage />} />
                 <Route path="infinite/:type" element={<ProductInfListPage />} />
                 <Route path="detail/:id">
                     <Route path="" element={<ProductDetailPage />} />
@@ -44,7 +48,14 @@ function App() {
                 <Route path="search" element={<SearchPage />} />
                 <Route path="chat" element={<ChatPage />} />
                 <Route path="noti" element={<NotiPage />} />
-                <Route path="mypage" element={<MyPage />} />
+                <Route path="mypage">
+                    <Route path="" element={<MyPage />} />
+                    <Route path="likes" element={<LikesListPage />} />
+                    <Route path="history">
+                        <Route path="purchase" element={<PurchaseListPage />} />
+                        <Route path="sale" element={<SaleListPage />} />
+                    </Route>
+                </Route>
                 {/* <Route path="login" element={<OAuthLoginPage />} /> */}
                 <Route path="login" element={<LoginPage />} />
                 <Route

@@ -1,9 +1,16 @@
-import { Box, Card, CardContent, CardMedia, Typography } from '@mui/material';
+import {
+    Box,
+    Button,
+    Card,
+    CardContent,
+    CardMedia,
+    Typography,
+} from '@mui/material';
 import dayjs from 'dayjs';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function ItemCard({ item }) {
+export default function PurchaseCard({ item }) {
     const {
         productId,
         thumbnail,
@@ -15,17 +22,6 @@ export default function ItemCard({ item }) {
     } = item;
 
     const navigate = useNavigate();
-
-    const formatDate = (date) => {
-        const d = new Date(date);
-        const year = d.getFullYear();
-        const month = d.getMonth() + 1;
-        const day = d.getDate();
-        const hour = d.getHours();
-        const minute = d.getMinutes();
-        const second = d.getSeconds();
-        return `${month}/${day} ${hour}:${minute}`;
-    };
 
     return (
         <Card
@@ -77,7 +73,7 @@ export default function ItemCard({ item }) {
                             color="text.secondary"
                             fontWeight={'bold'}
                         >
-                            판매 완료
+                            구매 완료
                         </Typography>
                     ) : null}
                 </Box>
@@ -102,30 +98,11 @@ export default function ItemCard({ item }) {
 
                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Typography variant="caption" color="text.secondary">
-                        현재가
+                        구매가
                     </Typography>
 
                     <Typography variant="caption" sx={{ fontWeight: 'bold' }}>
                         {bidPrice?.toLocaleString()}원
-                    </Typography>
-                </Box>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <Typography variant="caption" color="text.secondary">
-                        즉구가
-                    </Typography>
-
-                    <Typography variant="caption" sx={{ fontWeight: 'bold' }}>
-                        {price?.toLocaleString()}원
-                    </Typography>
-                </Box>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <Typography variant="caption" color="text.secondary">
-                        마감 기한
-                    </Typography>
-
-                    <Typography variant="caption" sx={{ fontWeight: 'bold' }}>
-                        {/* {formatDate(deadline)}  */}
-                        {dayjs(deadline).format('MM/DD HH:mm')}
                     </Typography>
                 </Box>
             </CardContent>

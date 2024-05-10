@@ -3,10 +3,13 @@ import RecentSearchItem from 'components/RecentSearchItem';
 import React, { useState } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import SuggestionItem from 'components/SuggestionItem';
+import Category from 'components/Category';
+import { searchState } from 'recoil/search';
+import { useRecoilState } from 'recoil';
 
 export default function SearchPage() {
     const keywords = ['키워드1', '키워드2', '키워드3', '키워드4', '키워드5'];
-    const [search, setSearch] = useState('');
+    const [search, setSearch] = useRecoilState(searchState);
     const suggestions = ['키워드1', '키워드2', '키워드3', '키워드4', '키워드5'];
     return (
         <div>
@@ -35,15 +38,20 @@ export default function SearchPage() {
 
             {search.length > 0 ? (
                 suggestions.map((suggestion) => (
-                    <SuggestionItem keyword={search} />
+                    <SuggestionItem key={suggestion} keyword={search} />
                 ))
             ) : (
                 <>
+                    {' '}
+                    <Typography variant="h5" sx={{ mt: '1rem' }}>
+                        카테고리
+                    </Typography>
+                    <Category />
                     <Typography variant="h5" sx={{ mt: '1rem' }}>
                         최근 검색어
                     </Typography>
                     {keywords.map((keyword) => (
-                        <RecentSearchItem keyword={keyword} />
+                        <RecentSearchItem key={keyword} keyword={keyword} />
                     ))}
                 </>
             )}

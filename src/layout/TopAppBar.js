@@ -70,23 +70,23 @@ export default function TopAppBar() {
                         style={{ width: '200px' }}
                     />
                     {localStorage.getItem('accessToken') ? (
-                        <Typography variant="h6" onClick={() => logout()}>
+                        <Typography variant="body1" onClick={() => logout()}>
                             로그아웃
                         </Typography>
                     ) : (
                         <Typography
-                            variant="h6"
+                            variant="body1"
                             onClick={() => navigate('/login')}
                         >
                             로그인
                         </Typography>
                     )}
                 </Toolbar>
-                <Box>
+                {/* <Box>
                     <Typography variant="h6" align="center">
                         {auth.nickname}
                     </Typography>
-                </Box>
+                </Box> */}
             </AppBar>
 
             <Offset />

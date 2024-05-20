@@ -53,3 +53,27 @@ export const getTestBids = async () => {
     const response = await instance.get('/bid');
     return response;
 };
+
+export const getSaleHistories = async (data) => {
+    const { status, pageNum, size } = data;
+    const response = await instance
+        .get(`/sale?state=${status}&pageNum=${pageNum}&size=${size}`)
+        .then((res) => res)
+        .catch((err) => {
+            console.error(err);
+        });
+
+    return response;
+};
+
+export const getPurchaseHistories = async (data) => {
+    const { pageNum, size } = data;
+    const response = await instance
+        .get(`/purchase?pageNum=${pageNum}&size=${size}`)
+        .then((res) => res)
+        .catch((err) => {
+            console.error(err);
+        });
+
+    return response;
+};

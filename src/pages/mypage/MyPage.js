@@ -8,7 +8,7 @@ import {
     ListItemText,
 } from '@mui/material';
 import React from 'react';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import { useNavigate } from 'react-router-dom';
@@ -64,9 +64,9 @@ export default function MyPage() {
                         }}
                     >
                         <ListItemIcon>
-                            <FavoriteIcon />
+                            <NotificationsIcon />
                         </ListItemIcon>
-                        <ListItemText primary="관심 목록" />
+                        <ListItemText primary="알림 목록" />
                     </ListItemButton>
                     <ListItemButton
                         onClick={() => {

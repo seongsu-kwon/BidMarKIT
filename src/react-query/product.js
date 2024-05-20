@@ -6,6 +6,8 @@ import {
     getProducts,
     getTestBids,
     purchaseProduct,
+    getSaleHistories,
+    getPurchaseHistories,
 } from 'api/product';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 
@@ -104,4 +106,33 @@ export const useGetBids = (id) => {
         getBids(id)
     );
     return { bids: data?.data, isLoading, isError };
+};
+
+export const useGetSaleHistories = ({ status, pageNum, size }) => {
+    const { data, isLoading, isError } = useQuery(
+        ['products', status, pageNum],
+        () =>
+            getSaleHistories({
+                status,
+                pageNum,
+                size,
+            })
+    );
+
+    console.log('data', data?.data);
+
+    return { products: data?.data, isLoading, isError };
+};
+
+export const useGetPurchaseHistories = ({ pageNum, size }) => {
+    const { data, isLoading, isError } = useQuery(['products', pageNum], () =>
+        getPurchaseHistories({
+            pageNum,
+            size,
+        })
+    );
+
+    console.log('data', data?.data);
+
+    return { products: data?.data, isLoading, isError };
 };

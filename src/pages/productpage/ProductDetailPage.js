@@ -269,26 +269,6 @@ export default function ProductDetailPage() {
             </Carousel>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                 <h3>{product?.productName}</h3>
-                <Box
-                    sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                    }}
-                >
-                    {item.like ? (
-                        <FavoriteIcon
-                            fontSize="large"
-                            onClick={() => setLike(!like)}
-                            color="error"
-                        />
-                    ) : (
-                        <FavoriteBorderIcon
-                            fontSize="large"
-                            onClick={() => setLike(!like)}
-                        />
-                    )}
-                </Box>
             </Box>
 
             <Grid container spacing={2} sx={{ alignItems: 'center' }}>

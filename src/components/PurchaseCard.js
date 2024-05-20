@@ -73,7 +73,7 @@ export default function PurchaseCard({ item }) {
                             color="text.secondary"
                             fontWeight={'bold'}
                         >
-                            구매 완료
+                            거래 완료
                         </Typography>
                     ) : null}
                 </Box>
@@ -98,11 +98,11 @@ export default function PurchaseCard({ item }) {
 
                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Typography variant="caption" color="text.secondary">
-                        구매가
+                        거래가
                     </Typography>
 
                     <Typography variant="caption" sx={{ fontWeight: 'bold' }}>
-                        {bidPrice?.toLocaleString()}원
+                        {price?.toLocaleString()}원
                     </Typography>
                 </Box>
             </CardContent>

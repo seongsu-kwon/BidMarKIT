@@ -53,8 +53,8 @@ export default function ProductInfListPage() {
                                     justifyContent: 'center',
                                 }}
                             >
-                                {/* <ItemCard item={item} /> */}
-                                <LikeCard item={item} />
+                                <ItemCard item={item} />
+                                {/* <LikeCard item={item} /> */}
                             </Grid>
                         ));
                     })}

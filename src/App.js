@@ -20,6 +20,7 @@ import ProductInfListPage from 'pages/productpage/ProductInfListPage';
 import PurchaseListPage from 'pages/mypage/PurchaseListPage';
 import SaleListPage from 'pages/mypage/SaleListPage';
 import LikesListPage from 'pages/mypage/LikesListPage';
+import ProductUploadPage from 'pages/productpage/ProductUploadPage';
 
 function App() {
     const handleRequestPermission = () => {
@@ -45,6 +46,7 @@ function App() {
                     <Route path="bid" element={<BidPage />} />
                     <Route path="purchase" element={<PurchasePage />} />
                 </Route>
+                <Route path="upload" element={<ProductUploadPage />} />
                 <Route path="search" element={<SearchPage />} />
                 <Route path="chat" element={<ChatPage />} />
                 <Route path="noti" element={<NotiPage />} />

@@ -10,6 +10,8 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { RecoilRoot } from 'recoil';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 const theme = createTheme({
     palette: {
@@ -58,8 +60,10 @@ root.render(
                 <QueryClientProvider client={queryClient}>
                     <ReactQueryDevtools initialIsOpen={true} />
                     <ThemeProvider theme={theme}>
-                        <ScrollToTop />
-                        <App />
+                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                            <ScrollToTop />
+                            <App />
+                        </LocalizationProvider>
                     </ThemeProvider>
                 </QueryClientProvider>
             </RecoilRoot>

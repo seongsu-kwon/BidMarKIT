@@ -4,17 +4,6 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a lo
 import CardsCarousel from 'pages/mainpage/CardsCarousel';
 
 function MainPage() {
-    let items = [];
-
-    for (let i = 1; i <= 8; i++) {
-        items.push({
-            name: '상품 이름' + i,
-            bidPrice: '10,000',
-            price: '20,000',
-            deadline: '~3/30 18:00',
-        });
-    }
-
     const [count, setCount] = useState(1);
 
     useEffect(() => {
@@ -35,8 +24,6 @@ function MainPage() {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
-
-    console.log('아이템', items);
 
     return (
         <Stack spacing={5}>

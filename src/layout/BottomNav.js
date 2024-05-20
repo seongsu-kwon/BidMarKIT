@@ -2,6 +2,7 @@ import { BottomNavigation, BottomNavigationAction, Box } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import HomeIcon from '@mui/icons-material/Home';
 import SearchIcon from '@mui/icons-material/Search';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import ChatIcon from '@mui/icons-material/Chat';
 import PersonIcon from '@mui/icons-material/Person';
@@ -24,7 +25,8 @@ export default function BottomNav() {
             case '/search':
                 setValue(1);
                 break;
-            case '/noti':
+            // case '/noti':
+            case '/upload':
                 setValue(2);
                 break;
             case '/chat':
@@ -71,10 +73,11 @@ export default function BottomNav() {
                     />
                     <BottomNavigationAction
                         label="알림"
-                        icon={<NotificationsIcon />}
+                        // icon={<NotificationsIcon />}
+                        icon={<AddCircleOutlineIcon />}
                         onClick={
                             localStorage.getItem('accessToken')
-                                ? () => navigate('/noti')
+                                ? () => navigate('/upload')
                                 : () => navigate('/login')
                         }
                     />

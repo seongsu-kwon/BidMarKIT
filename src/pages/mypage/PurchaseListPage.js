@@ -3,9 +3,9 @@ import { useParams } from 'react-router-dom';
 import { Box, Grid, Pagination } from '@mui/material';
 import ItemCard from 'components/ItemCard';
 import Types from 'constants/Types';
-import { useGetProducts } from 'react-query/product';
+import { useGetPurchaseHistories } from 'react-query/product';
 import { useInfiniteQuery } from 'react-query';
-import { getProducts } from 'api/product';
+import { getProducts, getPurchaseHistories } from 'api/product';
 import InfiniteScroll from 'react-infinite-scroller';
 import ItemCardWithState from 'components/ItemCardWithState';
 import PurchaseCard from 'components/PurchaseCard';
@@ -21,7 +21,8 @@ export default function PurchaseListPage() {
     const { data, fetchNextPage, hasNextPage, isLoading, isError } =
         useInfiniteQuery(
             ['page'],
-            ({ pageParam = 0 }) => getProducts({ pageNum: pageParam, size }),
+            ({ pageParam = 0 }) =>
+                getPurchaseHistories({ pageNum: pageParam, size }),
             {
                 getNextPageParam: (lastPage, pages) => {
                     return lastPage?.data?.pageable?.pageNumber !==

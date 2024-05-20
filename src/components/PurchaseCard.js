@@ -102,7 +102,11 @@ export default function PurchaseCard({ item }) {
                     </Typography>
 
                     <Typography variant="caption" sx={{ fontWeight: 'bold' }}>
-                        {price?.toLocaleString()}원
+                        {/* {price?.toLocaleString()}원 */}
+                        {bidPrice
+                            ? bidPrice.toLocaleString()
+                            : price.toLocaleString()}
+                        원
                     </Typography>
                 </Box>
             </CardContent>

@@ -1,6 +1,7 @@
 import { Image } from '@mui/icons-material';
 import {
     Box,
+    Button,
     Card,
     CardContent,
     CardMedia,
@@ -9,10 +10,10 @@ import {
 } from '@mui/material';
 import React from 'react';
 
-export default function ChatroomItem(props) {
-    const { thumbnail, name, lastMessage, date, user, onClick } = props;
+export default function ChatTitle(props) {
+    const { thumbnail, name, price, onClick } = props;
     return (
-        <Card sx={{ display: 'flex', m: 1 }} onClick={onClick}>
+        <Box sx={{ display: 'flex', m: 1 }} onClick={onClick}>
             <CardMedia
                 component="img"
                 sx={{ width: 100, height: 100 }}
@@ -40,24 +41,12 @@ export default function ChatroomItem(props) {
                         fontWeight={'bold'}
                         sx={{
                             textOverflow: 'ellipsis',
-                            width: '55%',
+                            width: '85%',
                             whiteSpace: 'nowrap',
                             overflow: 'hidden',
                         }}
                     >
                         {name}
-                    </Typography>
-                    <Typography
-                        variant="body1"
-                        sx={{
-                            textOverflow: 'ellipsis',
-                            width: '40%',
-                            whiteSpace: 'nowrap',
-                            overflow: 'hidden',
-                            textAlign: 'right',
-                        }}
-                    >
-                        {user}
                     </Typography>
                 </Box>
                 <Box
@@ -69,7 +58,7 @@ export default function ChatroomItem(props) {
                     }}
                 >
                     <Typography
-                        variant="caption"
+                        variant="body1"
                         sx={{
                             textOverflow: 'ellipsis',
                             width: '80%',
@@ -77,7 +66,7 @@ export default function ChatroomItem(props) {
                             overflow: 'hidden',
                         }}
                     >
-                        {lastMessage}
+                        최종거래가 : {price.toLocaleString()}원
                     </Typography>
                 </Box>
                 <Box
@@ -88,11 +77,11 @@ export default function ChatroomItem(props) {
                         alignItems: 'center',
                     }}
                 >
-                    <Typography variant="caption" fontWeight="bold">
-                        {date}
-                    </Typography>
+                    <Button variant="contained" color="primary">
+                        거래 확정
+                    </Button>
                 </Box>
             </Box>
-        </Card>
+        </Box>
     );
 }

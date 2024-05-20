@@ -168,11 +168,11 @@ export default function SaleListPage() {
                                     justifyContent: 'center',
                                 }}
                             >
-                                {/* {item.state === 0 ? (
+                                {item.state === 0 ? (
                                     <ItemCard item={item} />
-                                ) : ( */}
-                                <PurchaseCard item={item} />
-                                {/* )} */}
+                                ) : (
+                                    <PurchaseCard item={item} />
+                                )}
                             </Grid>
                         ));
                     })}

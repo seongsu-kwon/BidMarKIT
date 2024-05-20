@@ -21,6 +21,7 @@ import PurchaseListPage from 'pages/mypage/PurchaseListPage';
 import SaleListPage from 'pages/mypage/SaleListPage';
 import LikesListPage from 'pages/mypage/LikesListPage';
 import ProductUploadPage from 'pages/productpage/ProductUploadPage';
+import ChatroomListPage from 'pages/chatpage/ChatroomListPage';
 
 function App() {
     const handleRequestPermission = () => {
@@ -48,7 +49,7 @@ function App() {
                 </Route>
                 <Route path="upload" element={<ProductUploadPage />} />
                 <Route path="search" element={<SearchPage />} />
-                <Route path="chat" element={<ChatPage />} />
+                <Route path="chat" element={<ChatroomListPage />} />
                 <Route path="noti" element={<NotiPage />} />
                 <Route path="mypage">
                     <Route path="" element={<MyPage />} />
@@ -65,6 +66,7 @@ function App() {
                     element={<KakaoRedirectPage />}
                 />
             </Route>
+            <Route path="/chat/:id" element={<ChatPage />} />
         </Routes>
     );
 }

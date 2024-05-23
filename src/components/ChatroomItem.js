@@ -10,7 +10,7 @@ import {
 import React from 'react';
 
 export default function ChatroomItem(props) {
-    const { thumbnail, name, lastMessage, date, user, onClick } = props;
+    const { roomId, thumbnail, name, lastMessage, date, user, onClick } = props;
     return (
         <Card sx={{ display: 'flex', m: 1 }} onClick={onClick}>
             <CardMedia

@@ -22,6 +22,7 @@ import SaleListPage from 'pages/mypage/SaleListPage';
 import LikesListPage from 'pages/mypage/LikesListPage';
 import ProductUploadPage from 'pages/productpage/ProductUploadPage';
 import ChatroomListPage from 'pages/chatpage/ChatroomListPage';
+import ChatTest from 'pages/chatpage/ChatTest';
 
 function App() {
     const handleRequestPermission = () => {
@@ -67,6 +68,7 @@ function App() {
                 />
             </Route>
             <Route path="/chat/:id" element={<ChatPage />} />
+            <Route path="/chattest" element={<ChatTest />} />
         </Routes>
     );
 }

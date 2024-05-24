@@ -23,6 +23,7 @@ export const useLogin = () => {
             navigate('/main');
         },
         onError: (error) => {
+            alert(`로그인에 실패했습니다. ${error?.code}`);
             console.log(error);
         },
     });

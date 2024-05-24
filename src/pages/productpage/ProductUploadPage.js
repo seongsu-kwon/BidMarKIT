@@ -24,6 +24,7 @@ import { DatePicker } from '@mui/x-date-pickers';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import instance from 'api/instance';
 import { useNavigate } from 'react-router-dom';
+import CategoryList from 'constants/Category';
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
@@ -298,9 +299,8 @@ export default function ProductUploadPage() {
             <h3>카테고리</h3>
             <FormControl fullWidth>
                 <NativeSelect
-                    defaultValue={'침구'}
                     inputProps={{
-                        name: 'age',
+                        name: 'category',
                         id: 'uncontrolled-native',
                     }}
                     sx={{
@@ -313,8 +313,9 @@ export default function ProductUploadPage() {
                         setCategory(e.target.value);
                     }}
                 >
-                    <option value={'침구'}>침구</option>
-                    <option value={'거실가구'}>거실가구</option>
+                    {CategoryList.map((category) => (
+                        <option value={category.name}>{category.name}</option>
+                    ))}
                 </NativeSelect>
             </FormControl>
             <h3>입찰 시작가</h3>

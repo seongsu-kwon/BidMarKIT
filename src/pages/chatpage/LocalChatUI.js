@@ -139,7 +139,7 @@ const getMessageGroupComponent = (data) => {
   });
 };
 
-const ChatUI = () => {
+const LocalChatUI = () => {
   const { id } = useParams();
 
   const { chatRoom } = useGetChatRoom(id);
@@ -148,34 +148,34 @@ const ChatUI = () => {
 
   const sender = localStorage.getItem("memberId");
 
-  // const connect = () => {
-  //   const socket = new SockJS("http://localhost:8080/ws-stomp");
-  //   client.current = Stompjs.Stomp.over(socket);
-  //   client.current.connect(
-  //     {
-  //       Authorization: localStorage.getItem("accessToken"),
-  //       "Content-Type": "application/json",
-  //     },
-  //     () => {
-  //       console.log("connected");
-  //       client?.current.subscribe(`/sub/chat/room/${id}`, (message) => {
-  //         console.log(message);
-  //         recvMessage(JSON.parse(message.body));
-  //       });
-  //       // client.current.send(
-  //       //     `/pub/chat/message`,
-  //       //     {},
-  //       //     JSON.stringify({
-  //       //         type: 'ENTER',
-  //       //         roomId: id,
-  //       //         sender: sender,
-  //       //     })
-  //       // );
-  //     }
-  //   );
-  // };
-  const [address, setAddress] = useState("wss://bidmarkit.shop/ws-stomp");
-  // const address = "ws://localhost:8088/ws-stomp";
+  const connect = () => {
+    const socket = new SockJS("http://localhost:8080/ws-stomp");
+    client.current = Stompjs.Stomp.over(socket);
+    client.current.connect(
+      {
+        Authorization: localStorage.getItem("accessToken"),
+        "Content-Type": "application/json",
+      },
+      () => {
+        console.log("connected");
+        client?.current.subscribe(`/sub/chat/room/${id}`, (message) => {
+          console.log(message);
+          recvMessage(JSON.parse(message.body));
+        });
+        // client.current.send(
+        //     `/pub/chat/message`,
+        //     {},
+        //     JSON.stringify({
+        //         type: 'ENTER',
+        //         roomId: id,
+        //         sender: sender,
+        //     })
+        // );
+      }
+    );
+  };
+  // const [address, setAddress] = useState("wss://bidmarkit.shop/ws-stomp");
+  const address = "ws://localhost:8088/ws-stomp";
 
   const subUrl = "/sub/chatRooms/" + id;
   const pubUrl = "/pub/chat/message";
@@ -192,7 +192,7 @@ const ChatUI = () => {
 
   let isConnected = false;
 
-  const connect = () => {
+  const testOne = () => {
     if (!isConnected) {
       console.log(
         "localStorage.getItem('accessToken')",
@@ -321,7 +321,10 @@ const ChatUI = () => {
   const [initiated, setInitiated] = useState(false);
 
   useEffect(() => {
-    if (chatRoom && !initiated) {
+    // connect();
+    testOne();
+
+    if (!initiated) {
       let logs = [];
 
       chatRoom?.log.reverse().forEach((message) => {
@@ -334,14 +337,14 @@ const ChatUI = () => {
               model: {
                 message: message.content,
                 direction: "outgoing",
-                sentTime: dayjs(`${message.created_at}Z`).format("HH:mm"),
+                sentTime: dayjs(message.created_at).format("HH:mm"),
               },
             })
           : (newMessage = {
               model: {
                 message: message.content,
                 direction: "incoming",
-                sentTime: dayjs(`${message.created_at}Z`).format("HH:mm"),
+                sentTime: dayjs(message.created_at).format("HH:mm"),
               },
               avatar: {
                 src: AVATAR_IMAGE,
@@ -353,19 +356,15 @@ const ChatUI = () => {
       });
 
       setMessages(logs);
-
-      setInitiated(true);
     }
-  }, [chatRoom]);
-
-  useEffect(() => {
-    connect();
 
     return () => {
       console.log("disconnect");
       client.current.deactivate();
     };
-  }, [initiated]);
+  }, [chatRoom, initiated]);
+
+  // testOne();
 
   const [messages, setMessages] = useState([]);
 
@@ -429,4 +428,4 @@ const ChatUI = () => {
   );
 };
 
-export default ChatUI;
+export default LocalChatUI;

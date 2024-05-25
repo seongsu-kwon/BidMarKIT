@@ -23,37 +23,7 @@ import { useGetChatRoom } from "react-query/chat";
 
 const AVATAR_IMAGE =
   "https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg";
-const defaultMessage = [
-  {
-    model: {
-      message: "How are you?",
-      direction: "incoming",
-      sentTime: "just now",
-    },
-    avatar: {
-      src: AVATAR_IMAGE,
-      name: "bloodstrawberry",
-    },
-  },
-  {
-    model: {
-      message: "I'm fine, thank you, and you?",
-      direction: "outgoing",
-      sentTime: "just now",
-    },
-  },
-  {
-    model: {
-      message: "I'm fine, too. thank you, and you?",
-      direction: "incoming",
-      sentTime: "just now",
-    },
-    avatar: {
-      src: AVATAR_IMAGE,
-      name: "bloodstrawberry",
-    },
-  },
-];
+
 function stringToColor(string) {
   let hash = 0;
   let i;
@@ -139,7 +109,7 @@ const getMessageGroupComponent = (data) => {
   });
 };
 
-const ChatUI = () => {
+const TestingLocalChatUI = () => {
   const { id } = useParams();
 
   const { chatRoom } = useGetChatRoom(id);
@@ -148,47 +118,11 @@ const ChatUI = () => {
 
   const sender = localStorage.getItem("memberId");
 
-  // const connect = () => {
-  //   const socket = new SockJS("http://localhost:8080/ws-stomp");
-  //   client.current = Stompjs.Stomp.over(socket);
-  //   client.current.connect(
-  //     {
-  //       Authorization: localStorage.getItem("accessToken"),
-  //       "Content-Type": "application/json",
-  //     },
-  //     () => {
-  //       console.log("connected");
-  //       client?.current.subscribe(`/sub/chat/room/${id}`, (message) => {
-  //         console.log(message);
-  //         recvMessage(JSON.parse(message.body));
-  //       });
-  //       // client.current.send(
-  //       //     `/pub/chat/message`,
-  //       //     {},
-  //       //     JSON.stringify({
-  //       //         type: 'ENTER',
-  //       //         roomId: id,
-  //       //         sender: sender,
-  //       //     })
-  //       // );
-  //     }
-  //   );
-  // };
-  const [address, setAddress] = useState("wss://bidmarkit.shop/ws-stomp");
-  // const address = "ws://localhost:8088/ws-stomp";
+  // const [address, setAddress] = useState("wss://bidmarkit.shop/ws-stomp");
+  const address = "ws://localhost:8088/ws-stomp";
 
   const subUrl = "/sub/chatRooms/" + id;
   const pubUrl = "/pub/chat/message";
-
-  // const subscribe = () => {
-  //   client.current.subscribe("/sub/chatRooms/" + id, (body) => {
-  //     // const json_body = JSON.parse(body.body);/
-  //     // console.log("WPDLTMS", json_body);
-  //     console.log("SUBSUB");
-  //     console.log("body", body);
-  //     recvMessage(JSON.parse(body.body));
-  //   });
-  // };
 
   let isConnected = false;
 
@@ -203,24 +137,10 @@ const ChatUI = () => {
         onConnect: () => {
           console.log("connected to ", address);
           client.current.subscribe(subUrl, (body) => {
-            // const json_body = JSON.parse(body.body);/
-            // console.log("WPDLTMS", json_body);
             console.log("SUBSUB");
             console.log("body", body);
             recvMessage(JSON.parse(body.body));
           });
-
-          // client.current.publish({
-          //   destination: "/pub/chat/message",
-
-          //   body: JSON.stringify({
-          //     chatRoomId: id,
-          //     senderId: "test",
-          //     content: "this is test메시지",
-          //   }),
-          // });
-
-          // recvMessage({ message: "this is test메시지", sender: "test" });
         },
         connectHeaders: {
           Authorization: `${localStorage.getItem("accessToken")}`,
@@ -234,20 +154,6 @@ const ChatUI = () => {
   };
 
   const sendMessage = (input) => {
-    // client.current.send(
-    //   `/pub/chat/message`,
-    //   {},
-    //   JSON.stringify({
-    //     type: "TALK",
-    //     roomId: id,
-    //     sender: sender,
-    //     message: input,
-
-    //     sentTime: dayjs().format("HH:mm"),
-    //   })
-
-    // );
-
     client.current.publish({
       destination: pubUrl,
 
@@ -260,14 +166,6 @@ const ChatUI = () => {
   };
 
   const recvMessage = (message) => {
-    // setMessages((prev) => [
-    //     ...prev,
-    //     {
-    //         type: message.type,
-    //         sender: message.type === 'ENTER' ? 'system' : message.sender,
-    //         message: message.message,
-    //     },
-    // ]);
     let newMessage;
 
     console.log("message", message);
@@ -291,27 +189,6 @@ const ChatUI = () => {
             name: message.senderId,
           },
         });
-
-    // message.sender === sender
-    //   ? (newMessage = {
-    //       model: {
-    //         message: message.message,
-    //         direction: "outgoing",
-    //         //   sentTime: 'just now',
-    //         sentTime: message.sentTime,
-    //       },
-    //     })
-    //   : (newMessage = {
-    //       model: {
-    //         message: message.message,
-    //         direction: "incoming",
-    //         sentTime: message.sentTime,
-    //       },
-    //       avatar: {
-    //         src: AVATAR_IMAGE,
-    //         name: message.sender,
-    //       },
-    //     });
 
     setMessages((prev) => [...prev, newMessage]);
 
@@ -369,28 +246,6 @@ const ChatUI = () => {
 
   const [messages, setMessages] = useState([]);
 
-  // const handleSend = (input) => {
-  //     let newMessage = {
-  //         model: {
-  //             message: input,
-  //             direction: 'outgoing',
-  //         },
-  //     };
-
-  //     let newIncomingMessage = {
-  //         model: {
-  //             message: `You said: ${input}`,
-  //             direction: 'incoming',
-  //         },
-  //         avatar: {
-  //             src: AVATAR_IMAGE,
-  //             name: 'bloodstrawberry',
-  //         },
-  //     };
-
-  //     setMessages([...messages, newMessage, newIncomingMessage]);
-  // };
-
   return (
     <Container
       sx={{
@@ -399,15 +254,6 @@ const ChatUI = () => {
         height: "100vh",
       }}
     >
-      {/* <Box
-                sx={{
-                    backgroundColor: 'grey',
-                }}
-            >
-                <Typography variant="h4" sx={{ textAlign: 'center' }}>
-                    Chat {id}
-                </Typography>
-            </Box> */}
       <ChatTitle
         thumbnail={chatRoom?.thumbnail}
         name={chatRoom?.productName}
@@ -429,4 +275,4 @@ const ChatUI = () => {
   );
 };
 
-export default ChatUI;
+export default TestingLocalChatUI;

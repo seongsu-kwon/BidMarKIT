@@ -28,7 +28,7 @@ instance.interceptors.request.use(
 );
 instance.interceptors.response.use(
     (response) => {
-        console.log('response', response);
+        console.log('IntanceResponse', response);
         return response;
     },
     (error) => {
@@ -36,7 +36,10 @@ instance.interceptors.response.use(
         if (error.response) {
             console.log('ERRORSTATUS', error.response.status);
 
-            if (error.response.status === 401) {
+            console.log('인스턴스 토큰 응답 에러', error.response);
+
+            if (error.response.status === 403) {
+                console.log('토큰 만료 403 Forbidden');
                 localStorage.removeItem('accessToken');
                 const refreshToken = localStorage.getItem('refreshToken');
                 axiosInstance
@@ -44,12 +47,13 @@ instance.interceptors.response.use(
                         refreshToken,
                     })
                     .then((res) => {
-                        const { accessToken } = res.data.data;
+                        console.log('리프레쉬 성공', res);
+                        const { accessToken } = res.data;
                         localStorage.setItem('accessToken', accessToken);
                         // localStorage.setItem('refreshToken', refreshToken);
                     })
                     .catch((err) => {
-                        console.log('에러', err);
+                        console.log('리프레쉬 에러', err);
                     });
             }
         } else if (axios.isCancel(error)) {

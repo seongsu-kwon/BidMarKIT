@@ -15,12 +15,12 @@ export default function CategoryItem({ item }) {
             <img
                 src={item.thumbnail || 'https://via.placeholder.com/150'}
                 alt={item.name}
-                style={{ width: '50px', height: '50px' }}
+                style={{ width: '60px', height: '60px' }}
             />
             <Box
                 sx={{
-                    width: '50px',
-                    height: '50px',
+                    width: '60px',
+                    height: '60px',
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',

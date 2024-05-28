@@ -11,6 +11,11 @@ export default function SearchPage() {
     const keywords = ['키워드1', '키워드2', '키워드3', '키워드4', '키워드5'];
     const [search, setSearch] = useRecoilState(searchState);
     const suggestions = ['키워드1', '키워드2', '키워드3', '키워드4', '키워드5'];
+
+    const onSearch = () => {
+        console.log('검색어:', search);
+    };
+
     return (
         <div>
             <Paper
@@ -25,6 +30,11 @@ export default function SearchPage() {
                     placeholder="검색어를 입력하세요"
                     inputProps={{ enterKeyHint: 'search' }}
                     value={search}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                            onSearch();
+                        }
+                    }}
                     onChange={(e) => setSearch(e.target.value)}
                 />
                 <IconButton

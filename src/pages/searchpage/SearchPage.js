@@ -1,70 +1,69 @@
-import { IconButton, InputBase, Paper, Typography } from '@mui/material';
+import { Box, IconButton, InputBase, Paper, Typography } from '@mui/material';
 import RecentSearchItem from 'components/RecentSearchItem';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import SuggestionItem from 'components/SuggestionItem';
 import Category from 'components/Category';
 import { searchState } from 'recoil/search';
 import { useRecoilState } from 'recoil';
+import { useSuggestSearch } from 'react-query/search';
+import { json, useLocation, useNavigate } from 'react-router-dom';
+import SearchBar from 'components/SearchBar';
+import SearchResultPage from './SearchResultPage';
+import { styled } from '@mui/material/styles';
+
+const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
 export default function SearchPage() {
+    const navigate = useNavigate();
     const keywords = ['키워드1', '키워드2', '키워드3', '키워드4', '키워드5'];
-    const [search, setSearch] = useRecoilState(searchState);
-    const suggestions = ['키워드1', '키워드2', '키워드3', '키워드4', '키워드5'];
+    const suggestions = [
+        '키워드1',
+        '키워드2키워드2키워드2키워드2키워드2키워드2키워드2키워드2',
+        '키워드3키워드2키워드2키워드2키워드2',
+        '키워드4키워드2키워드2',
+        '키워드5',
+    ];
 
-    const onSearch = () => {
-        console.log('검색어:', search);
-    };
+    const keyword = useLocation().search.split('=')[1];
+
+    console.log('keyword', keyword);
+
+    const [searchKeyword, setSearchKeyword] = useState();
+
+    useEffect(() => {
+        console.log('검색어 변경됨: ', searchKeyword);
+    }, [searchKeyword]);
 
     return (
-        <div>
-            <Paper
+        <Box sx={{ position: 'relative' }}>
+            <Box
                 sx={{
-                    display: 'flex',
-                    alignItems: 'center',
+                    position: 'absolute',
                     width: '100%',
+                    zIndex: '100',
+                    display: 'flex',
+                    justifyContent: 'center',
                 }}
             >
-                <InputBase
-                    sx={{ ml: 1, flex: 1 }}
-                    placeholder="검색어를 입력하세요"
-                    inputProps={{ enterKeyHint: 'search' }}
-                    value={search}
-                    onKeyDown={(e) => {
-                        if (e.key === 'Enter') {
-                            onSearch();
-                        }
+                <SearchBar
+                    setSearchKeyword={(e) => {
+                        setSearchKeyword(e);
                     }}
-                    onChange={(e) => setSearch(e.target.value)}
                 />
-                <IconButton
-                    type="button"
-                    sx={{ p: '10px' }}
-                    aria-label="search"
-                >
-                    <SearchIcon color="primary" />
-                </IconButton>
-            </Paper>
+            </Box>
 
-            {search.length > 0 ? (
-                suggestions.map((suggestion) => (
-                    <SuggestionItem key={suggestion} keyword={search} />
-                ))
+            {searchKeyword ? (
+                <>
+                    <Offset />
+                    <SearchResultPage keyword={searchKeyword} />
+                </>
             ) : (
                 <>
-                    {' '}
-                    <Typography variant="h5" sx={{ mt: '1rem' }}>
-                        카테고리
-                    </Typography>
+                    <Offset />
                     <Category />
-                    <Typography variant="h5" sx={{ mt: '1rem' }}>
-                        최근 검색어
-                    </Typography>
-                    {keywords.map((keyword) => (
-                        <RecentSearchItem key={keyword} keyword={keyword} />
-                    ))}
                 </>
             )}
-        </div>
+        </Box>
     );
 }

@@ -11,6 +11,12 @@ instance.interceptors.request.use(
     (config) => {
         if (config.url === '/login' || config.url === REFRESH_API)
             return config;
+        if (
+            config.url === '/products/*' &&
+            localStorage.getItem('accessToken') === null
+        )
+            return config;
+
         const accessToken = localStorage.getItem('accessToken');
 
         if (accessToken) {

@@ -24,6 +24,7 @@ import ProductUploadPage from 'pages/productpage/ProductUploadPage';
 import ChatroomListPage from 'pages/chatpage/ChatroomListPage';
 import ChatTest from 'pages/chatpage/ChatTest';
 import LocalChatUI from 'pages/chatpage/LocalChatUI';
+import SearchResultPage from 'pages/searchpage/SearchResultPage';
 
 function App() {
     const handleRequestPermission = () => {
@@ -51,6 +52,7 @@ function App() {
                 </Route>
                 <Route path="upload" element={<ProductUploadPage />} />
                 <Route path="search" element={<SearchPage />} />
+
                 <Route path="chat" element={<ChatroomListPage />} />
                 <Route path="noti" element={<NotiPage />} />
                 <Route path="mypage">

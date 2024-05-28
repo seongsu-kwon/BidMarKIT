@@ -8,6 +8,7 @@ import {
     purchaseProduct,
     getSaleHistories,
     getPurchaseHistories,
+    getSuggestProducts,
 } from 'api/product';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 
@@ -17,6 +18,30 @@ export const useGetProducts = ({ pageNum, size }) => {
             pageNum,
             size,
         })
+    );
+
+    console.log('data', data?.data);
+
+    return { products: data?.data, isLoading, isError };
+};
+
+//페이징 추천 상품
+// export const useGetSuggestProducts = ({ pageNum, size }) => {
+//     const { data, isLoading, isError } = useQuery(['suggests', pageNum], () =>
+//         getSuggestProducts({
+//             pageNum,
+//             size,
+//         })
+//     );
+
+//     console.log('data', data?.data);
+
+//     return { products: data?.data, isLoading, isError };
+// };
+
+export const useGetSuggestProducts = () => {
+    const { data, isLoading, isError } = useQuery(['suggests'], () =>
+        getSuggestProducts()
     );
 
     console.log('data', data?.data);

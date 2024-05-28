@@ -27,7 +27,10 @@ function MainPage() {
 
     return (
         <Stack spacing={5}>
-            <CardsCarousel type={'recommend'} count={count} />
+            {localStorage.getItem('accessToken') && (
+                <CardsCarousel type={'suggest'} count={count} />
+            )}
+
             <CardsCarousel type={'imminent'} count={count} />
             <CardsCarousel type={'all'} count={count} />
         </Stack>

@@ -314,7 +314,7 @@ export default function ProductUploadPage() {
                     }}
                 >
                     {CategoryList.map((category) => (
-                        <option value={category.name}>{category.name}</option>
+                        <option value={category.code}>{category.name}</option>
                     ))}
                 </NativeSelect>
             </FormControl>

@@ -13,8 +13,32 @@ export const getProducts = async (data) => {
     return response;
 };
 
+//페이징 추천 상품
+// export const getSuggestProducts = async (data) => {
+//     const { pageNum, size } = data;
+//     const response = await axiosInstance
+//         .get(`/suggest/products?pageNum=${pageNum}&size=${size}`)
+//         .then((res) => res)
+//         .catch((err) => {
+//             console.error(err);
+//         });
+
+//     return response;
+// };
+
+export const getSuggestProducts = async () => {
+    const response = await instance
+        .get(`/suggest/products`)
+        .then((res) => res)
+        .catch((err) => {
+            console.error(err);
+        });
+
+    return response;
+};
+
 export const getProduct = async (id) => {
-    const response = await axiosInstance
+    const response = await instance
         .get(`/products/${id}`)
         .then((res) => res)
         .catch((err) => {

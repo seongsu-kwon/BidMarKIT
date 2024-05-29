@@ -20,7 +20,8 @@ export const useLogin = () => {
         refreshToken: data.data.refreshToken,
         nickname: data.data.nickname,
       });
-      navigate("/main");
+      // navigate("/main");
+      window.location.href = "/main";
     },
     onError: (error) => {
       alert(`로그인에 실패했습니다. ${error?.code}`);

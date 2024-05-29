@@ -1,32 +1,35 @@
-import axiosInstance from './axiosInstance';
+import axiosInstance from "./axiosInstance";
 
 export const getSuggestSearch = async (data) => {
-    const { keyword } = data;
+  const { keyword } = data;
 
-    const response = await axiosInstance
-        .get(`/suggest/keywords?keyword=${keyword}`)
-        .then((res) => res)
-        .catch((err) => {
-            console.error(err);
-        });
+  const response = await axiosInstance
+    .get(`/suggest/keywords?keyword=${keyword}`)
+    .then((res) => res)
+    .catch((err) => {
+      console.error(err);
+    });
 
-    return response;
+  return response;
 };
 
 export const getSearchProducts = async (data) => {
-    const { keyword, category, sort, state, pageNum, size } = data;
+  const { keyword, category, sort, state, pageNum, size } = data;
 
-    console.log('searchapi검색어', keyword);
-    console.log('searchapi카테고리', category);
+  console.log("searchapi검색어", keyword);
+  console.log("searchapi카테고리", category);
 
-    const response = await axiosInstance
-        .get(
-            `/search/products?keyword=${keyword}&category=${category}&sort=${sort}&state=${state}&pageNum=${pageNum}&size=${size}`
-        )
-        .then((res) => res)
-        .catch((err) => {
-            console.error(err);
-        });
+  let req =
+    keyword !== ""
+      ? `/search/products?keyword=${keyword}&category=${category}&sort=${sort}&state=${state}&pageNum=${pageNum}&size=${size}`
+      : `/search/products?category=${category}&sort=${sort}&state=${state}&pageNum=${pageNum}&size=${size}`;
 
-    return response;
+  const response = await axiosInstance
+    .get(req)
+    .then((res) => res)
+    .catch((err) => {
+      console.error(err);
+    });
+
+  return response;
 };

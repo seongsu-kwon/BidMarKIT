@@ -25,6 +25,8 @@ import ChatroomListPage from 'pages/chatpage/ChatroomListPage';
 import ChatTest from 'pages/chatpage/ChatTest';
 import LocalChatUI from 'pages/chatpage/LocalChatUI';
 import SearchResultPage from 'pages/searchpage/SearchResultPage';
+import ListPage from 'pages/productpage/ListPage';
+import SuggestProductInfListPage from 'pages/productpage/SuggestProductInfListPage';
 
 function App() {
     const handleRequestPermission = () => {
@@ -43,7 +45,13 @@ function App() {
                 <Route path="" element={<Navigate to="main" />} />
                 <Route path="main" element={<MainPage />} />
                 {/* <Route path="main" element={<Navigate to="/list/all" />} /> */}
-                <Route path="list/:type" element={<ProductInfListPage />} />
+                {/* <Route path="list/:type" element={<ProductInfListPage />} /> */}
+                <Route
+                    path="list/suggest"
+                    element={<SuggestProductInfListPage />}
+                />
+                <Route path="list/:type" element={<ListPage />} />
+
                 <Route path="infinite/:type" element={<ProductInfListPage />} />
                 <Route path="detail/:id">
                     <Route path="" element={<ProductDetailPage />} />

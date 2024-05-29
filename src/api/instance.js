@@ -12,8 +12,9 @@ instance.interceptors.request.use(
         if (config.url === '/login' || config.url === REFRESH_API)
             return config;
         if (
-            config.url === '/products/*' &&
-            localStorage.getItem('accessToken') === null
+            config.url.startsWith('/products/') &&
+            !isNaN(config.url.split('/').pop()) &
+                (localStorage.getItem('accessToken') === null)
         )
             return config;
 

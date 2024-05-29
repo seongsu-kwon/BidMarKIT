@@ -1,4 +1,11 @@
-import { Box, IconButton, InputBase, Paper, Typography } from '@mui/material';
+import {
+    Box,
+    Grid,
+    IconButton,
+    InputBase,
+    Paper,
+    Typography,
+} from '@mui/material';
 import RecentSearchItem from 'components/RecentSearchItem';
 import React, { useEffect, useState } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
@@ -11,29 +18,29 @@ import { json, useLocation, useNavigate } from 'react-router-dom';
 import SearchBar from 'components/SearchBar';
 import SearchResultPage from './SearchResultPage';
 import { styled } from '@mui/material/styles';
+import CategorySelect from 'components/CategorySelect';
+import SortSelect from 'components/SortSelect';
+import StateSelect from 'components/StateSelect';
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
 export default function SearchPage() {
-    const navigate = useNavigate();
-    const keywords = ['키워드1', '키워드2', '키워드3', '키워드4', '키워드5'];
-    const suggestions = [
-        '키워드1',
-        '키워드2키워드2키워드2키워드2키워드2키워드2키워드2키워드2',
-        '키워드3키워드2키워드2키워드2키워드2',
-        '키워드4키워드2키워드2',
-        '키워드5',
-    ];
-
-    const keyword = useLocation().search.split('=')[1];
-
-    console.log('keyword', keyword);
-
-    const [searchKeyword, setSearchKeyword] = useState();
+    const [searchKeyword, setSearchKeyword] = useState('');
+    const [searchCategory, setSearchCategory] = useState('');
+    const [searchState, setSearchState] = useState(0);
+    const [searchSort, setSearchSort] = useState(0);
 
     useEffect(() => {
         console.log('검색어 변경됨: ', searchKeyword);
     }, [searchKeyword]);
+
+    useEffect(() => {
+        console.log('카테고리 변경됨: ', searchCategory);
+    }, [searchCategory]);
+
+    useEffect(() => {
+        console.log('정렬 변경됨: ', searchSort);
+    }, [searchSort]);
 
     return (
         <Box sx={{ position: 'relative' }}>
@@ -53,15 +60,34 @@ export default function SearchPage() {
                 />
             </Box>
 
-            {searchKeyword ? (
+            {searchKeyword !== '' || searchCategory !== '' ? (
                 <>
                     <Offset />
-                    <SearchResultPage keyword={searchKeyword} />
+                    <CategorySelect setSearchCategory={setSearchCategory} />
+                    <Grid container spacing={2}>
+                        <Grid item xs={6}>
+                            <SortSelect setSearchSort={setSearchSort} />
+                        </Grid>
+                        <Grid item xs={6}>
+                            <StateSelect setSearchState={setSearchState} />
+                        </Grid>
+                    </Grid>
+
+                    <SearchResultPage
+                        keyword={searchKeyword}
+                        category={searchCategory}
+                        sort={searchSort}
+                        state={searchState}
+                    />
                 </>
             ) : (
                 <>
                     <Offset />
-                    <Category />
+                    <Category
+                        setSearchCategory={(e) => {
+                            setSearchCategory(e);
+                        }}
+                    />
                 </>
             )}
         </Box>

@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import React from 'react';
 
-export default function CategoryItem({ item }) {
+export default function CategoryItem({ item, setSearchCategory }) {
     return (
         <Box
             sx={{
@@ -10,6 +10,9 @@ export default function CategoryItem({ item }) {
                 flexDirection: 'column',
                 justifyContent: 'center',
                 alignItems: 'center',
+            }}
+            onClick={() => {
+                setSearchCategory(item.code);
             }}
         >
             <img

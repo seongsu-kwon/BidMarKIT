@@ -21,16 +21,24 @@ import ItemCard from 'components/ItemCard';
 import { useInfiniteQuery } from 'react-query';
 import { getSearchProducts } from 'api/search';
 
-export default function SearchResultPage({ keyword }) {
+export default function SearchResultPage(props) {
+    const { keyword, category, sort, state } = props;
     const [size, setSize] = useState(12);
 
     console.log('목록 검색어: ', keyword);
 
     const { data, fetchNextPage, hasNextPage, isLoading, isError } =
         useInfiniteQuery(
-            ['products', 'page', keyword],
+            ['searchproducts', 'page', keyword, category, sort, state],
             ({ pageParam = 0 }) =>
-                getSearchProducts({ keyword, pageNum: pageParam, size }),
+                getSearchProducts({
+                    keyword,
+                    category,
+                    sort,
+                    state,
+                    pageNum: pageParam,
+                    size,
+                }),
             {
                 getNextPageParam: (lastPage, pages) => {
                     return lastPage?.data?.pageable?.pageNumber !==

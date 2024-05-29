@@ -14,13 +14,14 @@ export const getSuggestSearch = async (data) => {
 };
 
 export const getSearchProducts = async (data) => {
-    const { keyword, pageNum, size } = data;
+    const { keyword, category, sort, state, pageNum, size } = data;
 
     console.log('searchapi검색어', keyword);
+    console.log('searchapi카테고리', category);
 
     const response = await axiosInstance
         .get(
-            `/search/products?keyword=${keyword}&pageNum=${pageNum}&size=${size}`
+            `/search/products?keyword=${keyword}&category=${category}&sort=${sort}&state=${state}&pageNum=${pageNum}&size=${size}`
         )
         .then((res) => res)
         .catch((err) => {

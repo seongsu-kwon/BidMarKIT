@@ -50,6 +50,7 @@ export const useGetSuggestProducts = () => {
 };
 
 export const useGetProduct = (id) => {
+    console.log('useGetProduct id', id);
     const { data, isLoading, isError } = useQuery(['product', id], () =>
         getProduct(id)
     );

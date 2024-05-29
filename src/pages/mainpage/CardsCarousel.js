@@ -1,29 +1,53 @@
 import { Box, Grid, IconButton, Typography } from '@mui/material';
-import React from 'react';
+import React, { Suspense, useEffect, useLayoutEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Carousel } from 'react-responsive-carousel';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ItemCard from 'components/ItemCard';
 import Types from 'constants/Types';
+import {
+    allItemsPreviewState,
+    suggestItemsPreviewState,
+} from 'recoil/products';
+import { useRecoilValue } from 'recoil';
 
 export default function CardsCarousel({ type, count }) {
     const navigate = useNavigate();
-    let items = [];
+    // let items = [];
+
+    const [cards, setCards] = useState([]);
+
+    const allItems = useRecoilValue(allItemsPreviewState(count));
+    const suggestItems = useRecoilValue(suggestItemsPreviewState(count));
+
+    // useEffect(() => {
+    //     setCards(items?.content);
+    //     console.log(type, items);
+    // }, [items]);
 
     const title = Types[type];
 
-    for (let i = 1; i <= 8; i++) {
-        items.push({
-            id: i,
-            name: '상품 이름' + i,
-            bidPrice: '10,000',
-            price: '20,000',
-            deadline: '~3/30 18:00',
-        });
-    }
+    useEffect(() => {
+        if (type === 'suggest') {
+            setCards(suggestItems);
+        } else {
+            setCards(allItems);
+        }
+    }, [allItems, suggestItems]);
+
+    // for (let i = 1; i <= 8; i++) {
+    //     items.push({
+    //         id: i,
+    //         name: '상품 이름' + i,
+    //         bidPrice: '10,000',
+    //         price: '20,000',
+    //         deadline: '~3/30 18:00',
+    //     });
+    // }
 
     function chunk(data = [], size = 1) {
+        console.log('data', data);
         const results = [];
         while (data.length) {
             results.push(data.splice(0, size));
@@ -104,7 +128,8 @@ export default function CardsCarousel({ type, count }) {
                 preventMovementUntilSwipeScrollTolerance={true}
                 swipeScrollTolerance={50}
             >
-                {chunk(items, count)?.map((item) => (
+                {/* {chunk(allItems, count)?.map((item) => ( */}
+                {cards?.map((item) => (
                     // <Box
                     //     sx={{
                     //         display: 'flex',
@@ -128,7 +153,9 @@ export default function CardsCarousel({ type, count }) {
                                     justifyContent: 'center',
                                 }}
                             >
-                                <ItemCard item={i} />
+                                <Suspense fallback={<div>Loading...</div>}>
+                                    <ItemCard item={i} />
+                                </Suspense>
                             </Grid>
                         ))}
                     </Grid>

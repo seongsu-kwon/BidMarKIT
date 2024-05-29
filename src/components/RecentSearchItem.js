@@ -7,11 +7,13 @@ import { useRecoilState } from 'recoil';
 import { searchState } from 'recoil/search';
 
 export default function RecentSearchItem(props) {
-    const { keyword, onSearch } = props;
+    const { key, keyword, onSearch, handleRemoveKeyword } = props;
     const navigate = useNavigate();
     const [focused, setFocused] = useRecoilState(searchState);
+
     return (
         <Box
+            key={key}
             sx={{
                 display: 'flex',
                 justifyContent: 'space-between',
@@ -25,7 +27,7 @@ export default function RecentSearchItem(props) {
             onMouseDown={(e) => {
                 e.preventDefault();
             }}
-            onClick={() => {
+            onClick={(e) => {
                 setFocused(false);
                 // navigate(`/search?keyword=${keyword}`);
                 onSearch(keyword);
@@ -41,7 +43,14 @@ export default function RecentSearchItem(props) {
                 <Typography variant="body1">{keyword}</Typography>
             </Box>
 
-            <IconButton sx={{ p: '10px' }}>
+            <IconButton
+                sx={{ p: '10px' }}
+                onClick={(e) => {
+                    console.log('remove keyword', keyword);
+                    handleRemoveKeyword(keyword);
+                    e.stopPropagation();
+                }}
+            >
                 <ClearIcon />
             </IconButton>
         </Box>

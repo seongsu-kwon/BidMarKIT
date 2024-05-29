@@ -3,7 +3,8 @@ import React from 'react';
 import CategoryItem from './CategoryItem';
 import CategoryList from 'constants/Category';
 
-export default function Category() {
+export default function Category(props) {
+    const { setSearchCategory } = props;
     return (
         <Grid container spacing={1} sx={{ mt: 1 }}>
             {CategoryList.map((item, index) => (
@@ -18,7 +19,10 @@ export default function Category() {
                         justifyContent: 'center',
                     }}
                 >
-                    <CategoryItem item={item} />
+                    <CategoryItem
+                        item={item}
+                        setSearchCategory={setSearchCategory}
+                    />
                 </Grid>
             ))}
         </Grid>

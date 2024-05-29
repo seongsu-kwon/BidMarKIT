@@ -6,12 +6,13 @@ import { searchState } from 'recoil/search';
 import { useNavigate } from 'react-router-dom';
 
 export default function SuggestionItem(props) {
-    const { keyword, onSearch } = props;
+    const { key, keyword, onSearch } = props;
     const navigate = useNavigate();
     const [focused, setFocused] = useRecoilState(searchState);
 
     return (
         <Box
+            key={key}
             sx={{
                 display: 'flex',
                 alignItems: 'center',

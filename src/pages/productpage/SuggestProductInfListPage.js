@@ -16,7 +16,7 @@ export default function SuggestProductInfListPage() {
 
     const { data, fetchNextPage, hasNextPage, isLoading, isError } =
         useInfiniteQuery(
-            ['products', 'page'],
+            ['suggestproducts', 'page'],
             ({ pageParam = 0 }) =>
                 getSuggestProducts({ pageNum: pageParam, size }),
             {

@@ -16,13 +16,16 @@ import React, { useState } from 'react';
 import { usePutTradeCheck } from 'react-query/chat';
 
 export default function ChatTitle(props) {
-    const { thumbnail, name, price, roomId } = props;
-
-    const sellerId = 'testid23';
-    const bidderId = 'testid16';
-
-    const sellerCheck = 2;
-    const bidderCheck = 0;
+    const {
+        thumbnail,
+        name,
+        price,
+        roomId,
+        bidderId,
+        sellerId,
+        bidderCheck,
+        sellerCheck,
+    } = props;
 
     const [open, setOpen] = useState(false);
     const handleClickOpen = () => {

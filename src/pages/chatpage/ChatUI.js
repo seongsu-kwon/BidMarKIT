@@ -399,7 +399,12 @@ const ChatUI = () => {
                 thumbnail={chatRoom?.thumbnail}
                 name={chatRoom?.productName}
                 price={chatRoom?.price}
+                chatRoom={chatRoom}
                 roomId={id}
+                bidderId={chatRoom?.bidderId}
+                sellerId={chatRoom?.sellerId}
+                bidderCheck={chatRoom?.bidderCheck}
+                sellerCheck={chatRoom?.sellerCheck}
             />
 
             <MainContainer>

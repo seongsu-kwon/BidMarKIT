@@ -24,37 +24,7 @@ import { useGetChatRoom } from 'react-query/chat';
 
 const AVATAR_IMAGE =
     'https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg';
-const defaultMessage = [
-    {
-        model: {
-            message: 'How are you?',
-            direction: 'incoming',
-            sentTime: 'just now',
-        },
-        avatar: {
-            src: AVATAR_IMAGE,
-            name: 'bloodstrawberry',
-        },
-    },
-    {
-        model: {
-            message: "I'm fine, thank you, and you?",
-            direction: 'outgoing',
-            sentTime: 'just now',
-        },
-    },
-    {
-        model: {
-            message: "I'm fine, too. thank you, and you?",
-            direction: 'incoming',
-            sentTime: 'just now',
-        },
-        avatar: {
-            src: AVATAR_IMAGE,
-            name: 'bloodstrawberry',
-        },
-    },
-];
+
 function stringToColor(string) {
     let hash = 0;
     let i;
@@ -266,33 +236,37 @@ const ChatUI = () => {
         });
     };
 
-    let curDate = '';
+    const [curDate, setCurDate] = useState('');
 
     const recvMessage = (message) => {
         let newMessage;
 
+        console.log('message', message);
+
         let logs = [];
 
         if (curDate === '') {
-            curDate = dayjs(`${message.created_at}Z`).format('YYYY-MM-DD');
+            let date = dayjs().format('YYYY-MM-DD');
             logs.push({
                 model: {
                     message: '',
                     direction: 'date',
-                    sentTime: curDate,
+                    sentTime: date,
                 },
             });
             console.log('curDate', curDate);
-        } else if (curDate !== dayjs(message.created_at).format('YYYY-MM-DD')) {
-            curDate = dayjs(message.created_at).format('YYYY-MM-DD');
+            setCurDate(date);
+        } else if (curDate !== dayjs().format('YYYY-MM-DD')) {
+            let date = dayjs().format('YYYY-MM-DD');
             logs.push({
                 model: {
                     message: '',
                     direction: 'date',
-                    sentTime: curDate,
+                    sentTime: date,
                 },
             });
             console.log('curDate', curDate);
+            setCurDate(date);
         }
 
         message.senderId === sender
@@ -300,14 +274,14 @@ const ChatUI = () => {
                   model: {
                       message: message.content,
                       direction: 'outgoing',
-                      sentTime: dayjs(message.created_at).format('HH:mm'),
+                      sentTime: dayjs().format('HH:mm'),
                   },
               })
             : (newMessage = {
                   model: {
                       message: message.content,
                       direction: 'incoming',
-                      sentTime: dayjs(message.created_at).format('HH:mm'),
+                      sentTime: dayjs().format('HH:mm'),
                   },
                   avatar: {
                       src: AVATAR_IMAGE,
@@ -318,44 +292,46 @@ const ChatUI = () => {
         logs.push(newMessage);
 
         setMessages((prev) => [...prev, ...logs]);
-    };
 
+        console.log('messages', messages);
+    };
     const [initiated, setInitiated] = useState(false);
 
     useEffect(() => {
         if (chatRoom && !initiated) {
             let logs = [];
+            let date = '';
 
             chatRoom?.log.reverse().forEach((message) => {
                 let newMessage;
 
-                if (curDate === '') {
-                    curDate = dayjs(`${message.created_at}Z`).format(
-                        'YYYY-MM-DD'
-                    );
+                console.log('message', message);
+
+                if (date === '') {
+                    date = dayjs(`${message.created_at}Z`).format('YYYY-MM-DD');
                     logs.push({
                         model: {
                             message: '',
                             direction: 'date',
-                            sentTime: curDate,
+                            sentTime: date,
                         },
                     });
                     console.log('curDate', curDate);
+                    setCurDate(date);
                 } else if (
-                    curDate !==
+                    date !==
                     dayjs(`${message.created_at}Z`).format('YYYY-MM-DD')
                 ) {
-                    curDate = dayjs(`${message.created_at}Z`).format(
-                        'YYYY-MM-DD'
-                    );
+                    date = dayjs(`${message.created_at}Z`).format('YYYY-MM-DD');
                     logs.push({
                         model: {
                             message: '',
                             direction: 'date',
-                            sentTime: curDate,
+                            sentTime: date,
                         },
                     });
                     console.log('curDate', curDate);
+                    setCurDate(date);
                 }
 
                 message.senderId === sender
@@ -402,28 +378,6 @@ const ChatUI = () => {
 
     const [messages, setMessages] = useState([]);
 
-    // const handleSend = (input) => {
-    //     let newMessage = {
-    //         model: {
-    //             message: input,
-    //             direction: 'outgoing',
-    //         },
-    //     };
-
-    //     let newIncomingMessage = {
-    //         model: {
-    //             message: `You said: ${input}`,
-    //             direction: 'incoming',
-    //         },
-    //         avatar: {
-    //             src: AVATAR_IMAGE,
-    //             name: 'bloodstrawberry',
-    //         },
-    //     };
-
-    //     setMessages([...messages, newMessage, newIncomingMessage]);
-    // };
-
     return (
         <Container
             sx={{
@@ -445,6 +399,7 @@ const ChatUI = () => {
                 thumbnail={chatRoom?.thumbnail}
                 name={chatRoom?.productName}
                 price={chatRoom?.price}
+                roomId={id}
             />
 
             <MainContainer>

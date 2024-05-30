@@ -78,7 +78,7 @@ export default function RegisterPage() {
                 size="large"
                 disabled={!id || !password || !name || !nickname}
             >
-                로그인
+                회원가입
             </Button>
         </Box>
     );

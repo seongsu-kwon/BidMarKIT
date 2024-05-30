@@ -16,7 +16,7 @@ export default function ChatroomItem(props) {
         <Card sx={{ display: 'flex', m: 1 }} onClick={onClick}>
             <CardMedia
                 component="img"
-                sx={{ width: 100, height: 100, flex: 1 }}
+                sx={{ width: 100, height: 100, objectFit: 'cover' }}
                 image={thumbnail}
             />
             <Box
@@ -82,9 +82,11 @@ export default function ChatroomItem(props) {
                             width: '80%',
                             whiteSpace: 'nowrap',
                             overflow: 'hidden',
+                            color: 'gray',
                         }}
                     >
-                        {lastMessage}
+                        {/* {lastMessage} */}
+                        마지막으로 보낸 메시지 입니다.
                     </Typography>
                 </Box>
                 <Box
@@ -96,7 +98,7 @@ export default function ChatroomItem(props) {
                     }}
                 >
                     <Typography variant="caption" fontWeight="bold">
-                        {dayjs(date).format('YYYY-MM-DD HH:mm')}
+                        {dayjs(date).add(18, 'hour').format('YYYY-MM-DD HH:mm')}
                     </Typography>
                 </Box>
             </Box>

@@ -173,7 +173,9 @@ const LocalChatUI = () => {
         });
     };
 
-    let curDate = '';
+    // let curDate = '';
+
+    const [curDate, setCurDate] = useState('');
 
     const recvMessage = (message) => {
         let newMessage;
@@ -183,25 +185,27 @@ const LocalChatUI = () => {
         let logs = [];
 
         if (curDate === '') {
-            curDate = dayjs(`${message.created_at}Z`).format('YYYY-MM-DD');
+            let date = dayjs().format('YYYY-MM-DD');
             logs.push({
                 model: {
                     message: '',
                     direction: 'date',
-                    sentTime: curDate,
+                    sentTime: date,
                 },
             });
             console.log('curDate', curDate);
-        } else if (curDate !== dayjs(message.created_at).format('YYYY-MM-DD')) {
-            curDate = dayjs(message.created_at).format('YYYY-MM-DD');
+            setCurDate(date);
+        } else if (curDate !== dayjs().format('YYYY-MM-DD')) {
+            let date = dayjs().format('YYYY-MM-DD');
             logs.push({
                 model: {
                     message: '',
                     direction: 'date',
-                    sentTime: curDate,
+                    sentTime: date,
                 },
             });
             console.log('curDate', curDate);
+            setCurDate(date);
         }
 
         message.senderId === sender
@@ -209,14 +213,14 @@ const LocalChatUI = () => {
                   model: {
                       message: message.content,
                       direction: 'outgoing',
-                      sentTime: dayjs(message.created_at).format('HH:mm'),
+                      sentTime: dayjs().format('HH:mm'),
                   },
               })
             : (newMessage = {
                   model: {
                       message: message.content,
                       direction: 'incoming',
-                      sentTime: dayjs(message.created_at).format('HH:mm'),
+                      sentTime: dayjs().format('HH:mm'),
                   },
                   avatar: {
                       src: AVATAR_IMAGE,
@@ -236,39 +240,38 @@ const LocalChatUI = () => {
     useEffect(() => {
         if (chatRoom && !initiated) {
             let logs = [];
+            let date = '';
 
             chatRoom?.log.reverse().forEach((message) => {
                 let newMessage;
 
                 console.log('message', message);
 
-                if (curDate === '') {
-                    curDate = dayjs(`${message.created_at}Z`).format(
-                        'YYYY-MM-DD'
-                    );
+                if (date === '') {
+                    date = dayjs(`${message.created_at}Z`).format('YYYY-MM-DD');
                     logs.push({
                         model: {
                             message: '',
                             direction: 'date',
-                            sentTime: curDate,
+                            sentTime: date,
                         },
                     });
                     console.log('curDate', curDate);
+                    setCurDate(date);
                 } else if (
-                    curDate !==
+                    date !==
                     dayjs(`${message.created_at}Z`).format('YYYY-MM-DD')
                 ) {
-                    curDate = dayjs(`${message.created_at}Z`).format(
-                        'YYYY-MM-DD'
-                    );
+                    date = dayjs(`${message.created_at}Z`).format('YYYY-MM-DD');
                     logs.push({
                         model: {
                             message: '',
                             direction: 'date',
-                            sentTime: curDate,
+                            sentTime: date,
                         },
                     });
                     console.log('curDate', curDate);
+                    setCurDate(date);
                 }
 
                 message.senderId === sender

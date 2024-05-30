@@ -27,6 +27,7 @@ import LocalChatUI from 'pages/chatpage/LocalChatUI';
 import SearchResultPage from 'pages/searchpage/SearchResultPage';
 import ListPage from 'pages/productpage/ListPage';
 import SuggestProductInfListPage from 'pages/productpage/SuggestProductInfListPage';
+import RegisterPage from 'pages/authpage/RegisterPage';
 
 function App() {
     const handleRequestPermission = () => {
@@ -73,6 +74,7 @@ function App() {
                 </Route>
                 {/* <Route path="login" element={<OAuthLoginPage />} /> */}
                 <Route path="login" element={<LoginPage />} />
+                {/* <Route path="register" element={<RegisterPage />} /> */}
                 <Route
                     path="oauth/redirected/kakao"
                     element={<KakaoRedirectPage />}

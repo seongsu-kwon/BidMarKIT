@@ -85,8 +85,8 @@ export default function ChatroomItem(props) {
                             color: 'gray',
                         }}
                     >
-                        {/* {lastMessage} */}
-                        마지막으로 보낸 메시지 입니다.
+                        {lastMessage}
+                        {/* 마지막으로 보낸 메시지 입니다. */}
                     </Typography>
                 </Box>
                 <Box
@@ -98,7 +98,7 @@ export default function ChatroomItem(props) {
                     }}
                 >
                     <Typography variant="caption" fontWeight="bold">
-                        {dayjs(date).add(18, 'hour').format('YYYY-MM-DD HH:mm')}
+                        {dayjs(date).format('YYYY-MM-DD HH:mm')}
                     </Typography>
                 </Box>
             </Box>

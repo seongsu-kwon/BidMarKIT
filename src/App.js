@@ -29,6 +29,7 @@ import ListPage from 'pages/productpage/ListPage';
 import SuggestProductInfListPage from 'pages/productpage/SuggestProductInfListPage';
 import RegisterPage from 'pages/authpage/RegisterPage';
 import ImminentProductInfListPage from 'pages/productpage/ImminentProductInfListPage';
+import ProductDetailLocalPage from 'pages/productpage/ProductDetailLocalPage';
 
 function App() {
     const handleRequestPermission = () => {
@@ -48,22 +49,19 @@ function App() {
                 <Route path="main" element={<MainPage />} />
                 {/* <Route path="main" element={<Navigate to="/list/all" />} /> */}
                 {/* <Route path="list/:type" element={<ProductInfListPage />} /> */}
-                {/* <Route
-                    path="list/suggest"
-                    element={<SuggestProductInfListPage />}
-                />
-                <Route
-                    path="list/imminent"
-                    element={<ImminentProductInfListPage />}
-                /> */}
+
                 <Route path="list/:type" element={<ListPage />} />
 
                 {/* <Route path="infinite/:type" element={<ProductInfListPage />} /> */}
+                <Route path="detaillocal/:id">
+                    <Route path="" element={<ProductDetailLocalPage />} />
+                </Route>
                 <Route path="detail/:id">
                     <Route path="" element={<ProductDetailPage />} />
                     <Route path="bid" element={<BidPage />} />
                     <Route path="purchase" element={<PurchasePage />} />
                 </Route>
+
                 <Route path="upload" element={<ProductUploadPage />} />
                 <Route path="search" element={<SearchPage />} />
 

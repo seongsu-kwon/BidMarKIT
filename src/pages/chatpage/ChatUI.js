@@ -170,6 +170,10 @@ const ChatUI = () => {
 
     let isConnected = false;
 
+    const [curDate, setCurDate] = useState('');
+
+    let currentDate = '';
+
     const connect = () => {
         if (!isConnected) {
             console.log(
@@ -237,12 +241,12 @@ const ChatUI = () => {
         });
     };
 
-    const [curDate, setCurDate] = useState('');
-
     const recvMessage = (message) => {
         let newMessage;
 
         console.log('message', message);
+
+        console.log('웹 소켓 현재 날짜', curDate);
 
         let logs = [];
 
@@ -255,7 +259,10 @@ const ChatUI = () => {
                     sentTime: date,
                 },
             });
+
             console.log('curDate', curDate);
+            currentDate = date;
+            console.log('currentData', currentDate);
             setCurDate(date);
         } else if (curDate !== dayjs().format('YYYY-MM-DD')) {
             let date = dayjs().format('YYYY-MM-DD');
@@ -267,6 +274,8 @@ const ChatUI = () => {
                 },
             });
             console.log('curDate', curDate);
+            currentDate = date;
+            console.log('currentData', currentDate);
             setCurDate(date);
         }
 
@@ -303,7 +312,18 @@ const ChatUI = () => {
             let logs = [];
             let date = '';
 
-            chatRoom?.log.reverse().forEach((message) => {
+            if (chatRoom?.log.length === 0) {
+                setCurDate(dayjs().format('YYYY-MM-DD'));
+                logs.push({
+                    model: {
+                        message: '',
+                        direction: 'date',
+                        sentTime: dayjs().format('YYYY-MM-DD'),
+                    },
+                });
+            }
+
+            chatRoom?.log.forEach((message) => {
                 let newMessage;
 
                 console.log('message', message);

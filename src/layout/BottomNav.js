@@ -53,6 +53,8 @@ export default function BottomNav() {
                     position: 'fixed',
                     top: 'auto',
                     bottom: 0,
+                    zIndex: 999,
+                    borderTop: '1px solid gray',
                 }}
             >
                 <BottomNavigation

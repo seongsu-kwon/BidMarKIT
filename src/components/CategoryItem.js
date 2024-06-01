@@ -10,6 +10,12 @@ export default function CategoryItem({ item, setSearchCategory }) {
                 flexDirection: 'column',
                 justifyContent: 'center',
                 alignItems: 'center',
+                borderRadius: '5px',
+                cursor: 'pointer',
+                '&:hover': {
+                    backgroundColor: '#f0f0f0',
+                },
+                padding: 1,
             }}
             onClick={() => {
                 setSearchCategory(item.code);
@@ -30,11 +36,17 @@ export default function CategoryItem({ item, setSearchCategory }) {
                 }}
             >
                 <Typography
-                    variant="caption"
-                    sx={{ fontWeight: 'bold' }}
+                    variant="body2"
+                    sx={{ fontWeight: 'bold', whiteSpace: 'pre-line' }}
                     align="center"
                 >
-                    {item.name}
+                    {item.name === '노트북/PC'
+                        ? '노트북/\nPC'
+                        : item.name == '도서/음반'
+                        ? '도서 /\n음반'
+                        : item.name == '가구/인테리어'
+                        ? '가구/\n인테리어'
+                        : item.name}
                 </Typography>
             </Box>
         </Box>

@@ -1,4 +1,10 @@
-import { Box, IconButton, InputBase, Paper } from '@mui/material';
+import {
+    Box,
+    IconButton,
+    InputBase,
+    Paper,
+    useMediaQuery,
+} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { useSuggestSearch } from 'react-query/search';
 import { useNavigate } from 'react-router-dom';
@@ -39,6 +45,8 @@ function SearchList(props) {
 }
 
 export default function SearchBar({ setSearchKeyword }) {
+    const isSm = useMediaQuery((theme) => theme.breakpoints.down('sm'));
+
     const navigate = useNavigate();
     // const keywords = ['키워드1', '키워드2', '키워드3', '키워드4', '키워드5'];
     const [search, setSearch] = useState('');
@@ -114,7 +122,12 @@ export default function SearchBar({ setSearchKeyword }) {
     // }, [search]);
 
     return (
-        <Box sx={{ position: 'fixed', width: '90vw' }}>
+        <Box
+            sx={{
+                position: 'fixed',
+                width: isSm ? '90%' : '50%',
+            }}
+        >
             <Paper
                 sx={{
                     display: 'flex',

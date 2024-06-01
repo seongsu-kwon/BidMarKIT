@@ -108,9 +108,9 @@ export default function ChatTitle(props) {
                         }}
                     >
                         {(sellerId == localStorage.getItem('memberId') &&
-                            sellerCheck == 0) ||
+                            (sellerCheck == 0 || sellerCheck == null)) ||
                         (bidderId == localStorage.getItem('memberId') &&
-                            bidderCheck == 0) ? (
+                            (bidderCheck == 0 || bidderCheck == null)) ? (
                             <Button
                                 variant="contained"
                                 color="primary"

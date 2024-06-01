@@ -116,7 +116,7 @@ export default function ChatroomListPage() {
                             roomId={chatroom.id}
                             thumbnail={chatroom.thumbnail}
                             name={chatroom.productName}
-                            //   lastMessage={chatroom.lastMessage}
+                            lastMessage={chatroom.lastMessage}
                             date={chatroom.updatedAt}
                             user={chatroom.sellerId}
                             onClick={() => navigate(`/chat/${chatroom.id}`)}

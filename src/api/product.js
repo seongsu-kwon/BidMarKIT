@@ -4,7 +4,19 @@ import instance from './instance';
 export const getProducts = async (data) => {
     const { pageNum, size } = data;
     const response = await axiosInstance
-        .get(`/products?pageNum=${pageNum}&size=${size}`)
+        .get(`/search/products?state=0&pageNum=${pageNum}&size=${size}`)
+        .then((res) => res)
+        .catch((err) => {
+            console.error(err);
+        });
+
+    return response;
+};
+
+export const getImminentProducts = async (data) => {
+    const { pageNum, size } = data;
+    const response = await axiosInstance
+        .get(`/search/products?state=0&sort=1&pageNum=${pageNum}&size=${size}`)
         .then((res) => res)
         .catch((err) => {
             console.error(err);

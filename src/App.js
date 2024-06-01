@@ -6,7 +6,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import MainPage from 'pages/mainpage/MainPage';
 import SearchPage from 'pages/searchpage/SearchPage';
 import ChatPage from 'pages/chatpage/ChatPage';
-import NotiPage from 'pages/notipage/NotiPage';
+import NotiPage from 'pages/mypage/NotiPage';
 import MyPage from 'pages/mypage/MyPage';
 import MobilePage from 'layout/MobilePage';
 import ProductListPage from 'pages/productpage/ProductLIstPage';
@@ -28,6 +28,7 @@ import SearchResultPage from 'pages/searchpage/SearchResultPage';
 import ListPage from 'pages/productpage/ListPage';
 import SuggestProductInfListPage from 'pages/productpage/SuggestProductInfListPage';
 import RegisterPage from 'pages/authpage/RegisterPage';
+import ImminentProductInfListPage from 'pages/productpage/ImminentProductInfListPage';
 
 function App() {
     const handleRequestPermission = () => {
@@ -47,13 +48,17 @@ function App() {
                 <Route path="main" element={<MainPage />} />
                 {/* <Route path="main" element={<Navigate to="/list/all" />} /> */}
                 {/* <Route path="list/:type" element={<ProductInfListPage />} /> */}
-                <Route
+                {/* <Route
                     path="list/suggest"
                     element={<SuggestProductInfListPage />}
                 />
+                <Route
+                    path="list/imminent"
+                    element={<ImminentProductInfListPage />}
+                /> */}
                 <Route path="list/:type" element={<ListPage />} />
 
-                <Route path="infinite/:type" element={<ProductInfListPage />} />
+                {/* <Route path="infinite/:type" element={<ProductInfListPage />} /> */}
                 <Route path="detail/:id">
                     <Route path="" element={<ProductDetailPage />} />
                     <Route path="bid" element={<BidPage />} />
@@ -63,10 +68,11 @@ function App() {
                 <Route path="search" element={<SearchPage />} />
 
                 <Route path="chat" element={<ChatroomListPage />} />
-                <Route path="noti" element={<NotiPage />} />
+
                 <Route path="mypage">
                     <Route path="" element={<MyPage />} />
-                    <Route path="likes" element={<LikesListPage />} />
+                    <Route path="noti" element={<NotiPage />} />
+                    {/* <Route path="likes" element={<LikesListPage />} /> */}
                     <Route path="history">
                         <Route path="purchase" element={<PurchaseListPage />} />
                         <Route path="sale" element={<SaleListPage />} />

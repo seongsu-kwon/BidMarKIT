@@ -60,7 +60,7 @@ export default function MyPage() {
                 <List>
                     <ListItemButton
                         onClick={() => {
-                            navigate('likes');
+                            navigate('noti');
                         }}
                     >
                         <ListItemIcon>

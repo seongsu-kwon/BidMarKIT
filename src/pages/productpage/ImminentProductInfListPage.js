@@ -4,10 +4,10 @@ import { Box, Grid, Pagination } from '@mui/material';
 import ItemCard from 'components/ItemCard';
 import Types from 'constants/Types';
 import { useInfiniteQuery } from 'react-query';
-import { getSuggestProducts } from 'api/product';
+import { getImminentProducts } from 'api/product';
 import InfiniteScroll from 'react-infinite-scroller';
 
-export default function SuggestProductInfListPage() {
+export default function ImminentProductInfListPage() {
     const { type } = useParams();
 
     const title = Types[type];
@@ -16,9 +16,9 @@ export default function SuggestProductInfListPage() {
 
     const { data, fetchNextPage, hasNextPage, isLoading, isError } =
         useInfiniteQuery(
-            ['suggestproducts', 'page'],
+            ['imminentproducts', 'page'],
             ({ pageParam = 0 }) =>
-                getSuggestProducts({ pageNum: pageParam, size }),
+                getImminentProducts({ pageNum: pageParam, size }),
             {
                 getNextPageParam: (lastPage, pages) => {
                     return lastPage?.data?.pageable?.pageNumber !==

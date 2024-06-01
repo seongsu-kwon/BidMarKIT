@@ -72,7 +72,7 @@ export default function BottomNav() {
                         onClick={() => navigate('/search')}
                     />
                     <BottomNavigationAction
-                        label="알림"
+                        label="등록"
                         // icon={<NotificationsIcon />}
                         icon={<AddCircleOutlineIcon />}
                         onClick={

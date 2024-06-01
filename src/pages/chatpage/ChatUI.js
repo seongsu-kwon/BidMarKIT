@@ -21,6 +21,7 @@ import * as SockJS from 'sockjs-client';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import { useGetChatRoom } from 'react-query/chat';
+import TopAppBar from 'layout/TopAppBar';
 
 const AVATAR_IMAGE =
     'https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg';
@@ -395,6 +396,7 @@ const ChatUI = () => {
                     Chat {id}
                 </Typography>
             </Box> */}
+            <TopAppBar />
             <ChatTitle
                 thumbnail={chatRoom?.thumbnail}
                 name={chatRoom?.productName}
@@ -406,7 +408,6 @@ const ChatUI = () => {
                 bidderCheck={chatRoom?.bidderCheck}
                 sellerCheck={chatRoom?.sellerCheck}
             />
-
             <MainContainer>
                 <ChatContainer>
                     <MessageList>

@@ -33,33 +33,39 @@ export default function PurchaseListPage() {
             }
         );
 
+    console.log('data', data);
+
     return (
         <div>
-            <h1>{title}</h1>
-            <InfiniteScroll
-                hasMore={hasNextPage}
-                loadMore={() => fetchNextPage()}
-            >
-                <Grid container spacing={2}>
-                    {data?.pages?.map((page) => {
-                        return page?.data?.content.map((item, index) => (
-                            <Grid
-                                item
-                                key={index}
-                                xs={6}
-                                sm={4}
-                                md={3}
-                                sx={{
-                                    display: 'flex',
-                                    justifyContent: 'center',
-                                }}
-                            >
-                                <PurchaseCard item={item} />
-                            </Grid>
-                        ));
-                    })}
-                </Grid>
-            </InfiniteScroll>
+            <h1>구매 내역</h1>
+            {data?.pages[0].data.content.length === 0 ? (
+                <h2>구매 내역이 없습니다.</h2>
+            ) : (
+                <InfiniteScroll
+                    hasMore={hasNextPage}
+                    loadMore={() => fetchNextPage()}
+                >
+                    <Grid container spacing={2}>
+                        {data?.pages?.map((page) => {
+                            return page?.data?.content.map((item, index) => (
+                                <Grid
+                                    item
+                                    key={index}
+                                    xs={6}
+                                    sm={4}
+                                    md={3}
+                                    sx={{
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                    }}
+                                >
+                                    <PurchaseCard item={item} />
+                                </Grid>
+                            ));
+                        })}
+                    </Grid>
+                </InfiniteScroll>
+            )}
         </div>
     );
 }

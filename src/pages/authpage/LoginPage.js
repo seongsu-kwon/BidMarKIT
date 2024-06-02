@@ -35,6 +35,13 @@ export default function LoginPage() {
     localStorage.setItem("memberId", id);
   };
 
+  const onClickFcm = () => {
+    postFCMToken({
+      memberId: id,
+      FCMToken: localStorage.getItem("fcmToken"),
+    });
+  };
+
   return (
     <Box
       sx={{

@@ -13,6 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 import dayjs from "dayjs";
+import { usePostFCMToken } from "react-query/auth";
 
 export default function ChatTest() {
   const [chatList, setChatList] = useState([]);
@@ -360,9 +361,12 @@ export default function ChatTest() {
 
   const date2 = dayjs(date).add(18, "hour").format("YYYY-MM-DD HH:mm");
 
+  const { mutate: postFCMToken } = usePostFCMToken();
+
   const onClickFcm = () => {
     const id = localStorage.getItem("memberId");
     const token = localStorage.getItem("fcmToken");
+
     postFCMToken({
       memberId: id,
       FCMToken: token,

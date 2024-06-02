@@ -1,6 +1,6 @@
 import { Box, Button, TextField } from "@mui/material";
 import React, { useState } from "react";
-import { useLogin } from "react-query/auth";
+import { useLogin, usePostFCMToken } from "react-query/auth";
 import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
@@ -20,10 +20,18 @@ export default function LoginPage() {
 
   const { mutate: login } = useLogin();
 
+  const { mutate: postFCMToken } = usePostFCMToken();
+
   const onClickLogin = () => {
+    // postFCMToken({
+    //   memberId: id,
+    //   FCMToken: localStorage.getItem("fcmToken"),
+    // });
+
     formData.append("username", id);
     formData.append("password", password);
     login(formData);
+
     localStorage.setItem("memberId", id);
   };
 

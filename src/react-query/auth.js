@@ -1,4 +1,4 @@
-import { login, register } from "api/auth";
+import { login, postFCMToken, register } from "api/auth";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { authState } from "recoil/auth";
@@ -36,6 +36,17 @@ export const useRegister = () => {
     onSuccess: (data) => {
       console.log(data);
       navigate("/login");
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+};
+
+export const usePostFCMToken = () => {
+  return useMutation((data) => postFCMToken(data), {
+    onSuccess: (data) => {
+      console.log(data);
     },
     onError: (error) => {
       console.log(error);

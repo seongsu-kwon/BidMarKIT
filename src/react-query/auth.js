@@ -3,6 +3,7 @@ import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { authState } from "recoil/auth";
 import { useRecoilState } from "recoil";
+import axios from "axios";
 
 export const useLogin = () => {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ export const useLogin = () => {
         nickname: data.data.nickname,
       });
       // navigate("/main");
+
       window.location.href = "/main";
     },
     onError: (error) => {
@@ -46,6 +48,7 @@ export const useRegister = () => {
 export const usePostFCMToken = () => {
   return useMutation((data) => postFCMToken(data), {
     onSuccess: (data) => {
+      localStorage.setItem("success", true);
       console.log(data);
     },
     onError: (error) => {

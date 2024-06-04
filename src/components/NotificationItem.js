@@ -1,6 +1,7 @@
 import React from 'react';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { Box, Paper, Typography } from '@mui/material';
+import dayjs from 'dayjs';
 
 export default function NotificationItem(props) {
     const { content, date } = props;
@@ -28,16 +29,14 @@ export default function NotificationItem(props) {
                         color="primary"
                         fontSize="large"
                     />
-                    <Typography variant="body1">
-                        "상품"이 낙찰되었습니다.
-                    </Typography>
+                    <Typography variant="body1">{content}</Typography>
                 </Box>
 
                 <Typography
                     variant="caption"
                     sx={{ p: '10px', whiteSpace: 'nowrap' }}
                 >
-                    2024.04.01 18:10
+                    {dayjs(date).format('YYYY-MM-DD HH:mm')}
                 </Typography>
             </Box>
         </Paper>

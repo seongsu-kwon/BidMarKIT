@@ -33,7 +33,7 @@ export default function ProductUploadPage() {
 
     const [productName, setProductName] = useState('');
     const [content, setContent] = useState('');
-    const [category, setCategory] = useState('');
+    const [category, setCategory] = useState(0);
     const [initPrice, setInitPrice] = useState('0');
     const [price, setPrice] = useState('0');
     const [deadline, setDeadline] = useState();
@@ -90,6 +90,13 @@ export default function ProductUploadPage() {
 
         for (let i = 0; i < e.target.files?.length; i++) {
             const file = e.target.files[i];
+
+            //용량 1MB로 제한
+            if (file.size > 1024 * 1024) {
+                alert('1MB 이하의 파일만 업로드 가능합니다.');
+                return;
+            }
+
             // 이미지 파일 3개로 제한
             if (newImages.length < 3) {
                 // 이벤트객체의 파일을 newImages에 담기
@@ -114,7 +121,7 @@ export default function ProductUploadPage() {
     const handleUpload = () => {
         formData.append('productName', productName);
         formData.append('content', content);
-        formData.append('category', category);
+        formData.append('category', Number(category));
         formData.append(
             'initPrice',
             Number(initPrice.replaceAll(/[^0-9]/g, ''))
@@ -146,6 +153,7 @@ export default function ProductUploadPage() {
 
         console.log('product upload formData', formData.get('productName'));
         console.log('product upload formData', formData.get('content'));
+        console.log('product upload formData', formData.get('category'));
         console.log('product upload formData', formData.get('initPrice'));
         console.log('product upload formData', formData.get('price'));
         console.log('product upload formData', formData.get('deadline'));
@@ -155,7 +163,8 @@ export default function ProductUploadPage() {
             .post('/products', formData)
             .then((res) => {
                 console.log(res.data);
-                navigate(`/detail/${res.data.data.productId}`);
+                console.log(res.data.productId);
+                navigate(`/detail/${res.data.productId}`);
             })
             .catch((err) => {
                 console.log(err);
@@ -394,6 +403,14 @@ export default function ProductUploadPage() {
                     color="secondary"
                     size="large"
                     onClick={handleUpload}
+                    disabled={
+                        imgList.length === 0 ||
+                        productName === '' ||
+                        content === '' ||
+                        initPrice === '0' ||
+                        price === '0' ||
+                        deadline === 0
+                    }
                 >
                     등록하기
                 </Button>

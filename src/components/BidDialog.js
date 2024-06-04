@@ -12,8 +12,11 @@ import React, { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import { useBidProduct, useAutoBidProduct } from 'react-query/product';
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
+import { useNavigate } from 'react-router-dom';
 
 export default function BidDialog(props) {
+    const navigate = useNavigate();
+
     const { product, productId, remain } = props;
 
     //입찰단위가 계산
@@ -93,7 +96,11 @@ export default function BidDialog(props) {
                 <Button
                     variant="contained"
                     color="primary"
-                    onClick={() => handleClickOpen()}
+                    onClick={
+                        localStorage.getItem('accessToken')
+                            ? handleClickOpen
+                            : () => navigate('/login')
+                    }
                     size="large"
                     disabled={product?.state !== 0}
                 >

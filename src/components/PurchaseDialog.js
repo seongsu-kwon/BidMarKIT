@@ -9,8 +9,11 @@ import {
 } from '@mui/material';
 import React, { useState } from 'react';
 import { usePurchaseProduct } from 'react-query/product';
+import { useNavigate } from 'react-router-dom';
 
 export default function PurchaseDialog(props) {
+    const navigate = useNavigate();
+
     const { product, productId, remain } = props;
     const [open, setOpen] = useState(false);
     const handleClickOpen = () => {
@@ -31,7 +34,11 @@ export default function PurchaseDialog(props) {
                 <Button
                     variant="contained"
                     color="secondary"
-                    onClick={handleClickOpen}
+                    onClick={
+                        localStorage.getItem('accessToken')
+                            ? handleClickOpen
+                            : () => navigate('/login')
+                    }
                     size="large"
                     disabled={product?.state !== 0}
                 >

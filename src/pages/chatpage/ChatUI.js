@@ -101,7 +101,7 @@ const getMessageGroupComponent = (data) => {
         }
     });
     grouplist.push(group);
-    console.log('grouplist', grouplist);
+    // console.log('grouplist', grouplist);
 
     return grouplist.map((group, index) => {
         return group[0]?.model.direction === 'date' ? (
@@ -187,8 +187,8 @@ const ChatUI = () => {
                     client.current.subscribe(subUrl, (body) => {
                         // const json_body = JSON.parse(body.body);/
                         // console.log("WPDLTMS", json_body);
-                        console.log('SUBSUB');
-                        console.log('body', body);
+                        // console.log('SUBSUB');
+                        // console.log('body', body);
                         recvMessage(JSON.parse(body.body));
                     });
 
@@ -244,13 +244,13 @@ const ChatUI = () => {
     const recvMessage = (message) => {
         let newMessage;
 
-        console.log('message', message);
+        // console.log('message', message);
 
-        console.log('웹 소켓 현재 날짜', curDate);
+        // console.log('웹 소켓 현재 날짜', curDate);
 
         let logs = [];
 
-        if (curDate === '') {
+        if (currentDate === '') {
             let date = dayjs().format('YYYY-MM-DD');
             logs.push({
                 model: {
@@ -260,11 +260,11 @@ const ChatUI = () => {
                 },
             });
 
-            console.log('curDate', curDate);
+            // console.log('curDate', curDate);
             currentDate = date;
-            console.log('currentData', currentDate);
+            // console.log('currentData', currentDate);
             setCurDate(date);
-        } else if (curDate !== dayjs().format('YYYY-MM-DD')) {
+        } else if (currentDate !== dayjs().format('YYYY-MM-DD')) {
             let date = dayjs().format('YYYY-MM-DD');
             logs.push({
                 model: {
@@ -273,9 +273,9 @@ const ChatUI = () => {
                     sentTime: date,
                 },
             });
-            console.log('curDate', curDate);
+            // console.log('curDate', curDate);
             currentDate = date;
-            console.log('currentData', currentDate);
+            // console.log('currentData', currentDate);
             setCurDate(date);
         }
 
@@ -303,7 +303,7 @@ const ChatUI = () => {
 
         setMessages((prev) => [...prev, ...logs]);
 
-        console.log('messages', messages);
+        // console.log('messages', messages);
     };
     const [initiated, setInitiated] = useState(false);
 
@@ -326,7 +326,7 @@ const ChatUI = () => {
             chatRoom?.log.forEach((message) => {
                 let newMessage;
 
-                console.log('message', message);
+                // console.log('message', message);
 
                 if (date === '') {
                     date = dayjs(`${message.created_at}Z`).format('YYYY-MM-DD');
@@ -337,7 +337,7 @@ const ChatUI = () => {
                             sentTime: date,
                         },
                     });
-                    console.log('curDate', curDate);
+                    // console.log('curDate', curDate);
                     setCurDate(date);
                 } else if (
                     date !==
@@ -351,7 +351,7 @@ const ChatUI = () => {
                             sentTime: date,
                         },
                     });
-                    console.log('curDate', curDate);
+                    // console.log('curDate', curDate);
                     setCurDate(date);
                 }
 

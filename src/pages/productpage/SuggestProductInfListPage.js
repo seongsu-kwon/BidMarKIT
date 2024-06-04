@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Box, Grid, Pagination } from '@mui/material';
 import ItemCard from 'components/ItemCard';
@@ -12,7 +12,7 @@ export default function SuggestProductInfListPage() {
 
     const title = Types[type];
 
-    const [size, setSize] = useState(12);
+    const size = 12;
 
     const { data, fetchNextPage, hasNextPage, isLoading, isError } =
         useInfiniteQuery(

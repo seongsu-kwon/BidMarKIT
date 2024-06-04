@@ -5,6 +5,7 @@ export const usePostQuestion = () => {
   return useMutation((data) => postQuestion(data), {
     onSuccess: (data) => {
       console.log(data);
+      window.location.reload();
     },
     onError: (error) => {
       console.log(error);
@@ -16,6 +17,7 @@ export const usePostAnswer = () => {
   return useMutation((data) => postAnswer(data), {
     onSuccess: (data) => {
       console.log(data);
+      window.location.reload();
     },
     onError: (error) => {
       console.log(error);

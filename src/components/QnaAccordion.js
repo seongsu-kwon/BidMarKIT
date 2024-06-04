@@ -36,17 +36,18 @@ export default function QnaAccordion(props) {
     } else {
       setExp(false);
     }
-  }, [expanded, questionId, ansContent, isSeller]);
+  }, [expanded, questionId, ansContent, isSeller, exp]);
 
   const handleAnswer = async () => {
     try {
       await Promise.all([
         postAnswer({ questionId: Number(questionId), content: answer }),
       ]);
-      // window.location.reload();
     } catch (e) {
       console.error(e);
     }
+    setExp(false);
+    // window.location.reload();
   };
 
   return (

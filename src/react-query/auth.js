@@ -1,5 +1,5 @@
-import { login, postFCMToken, register } from 'api/auth';
-import { useMutation } from 'react-query';
+import { getCancelToken, login, postFCMToken, register } from 'api/auth';
+import { useMutation, useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { authState } from 'recoil/auth';
 import { useRecoilState } from 'recoil';
@@ -23,7 +23,8 @@ export const useLogin = () => {
             });
             // navigate("/main");
 
-            navigate(-1);
+            // navigate(-1);
+            navigate('/main');
             // window.location.href = "/main";
         },
         onError: (error) => {
@@ -56,4 +57,14 @@ export const usePostFCMToken = () => {
             console.log(error);
         },
     });
+};
+
+export const useGetCancelToken = () => {
+    const { data, isLoading, isError } = useQuery(['cancelToken'], () =>
+        getCancelToken()
+    );
+
+    console.log('data', data);
+
+    return { cancelToken: data?.data, isLoading, isError };
 };

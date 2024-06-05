@@ -66,7 +66,10 @@ export default function BottomNav() {
                     <BottomNavigationAction
                         label="홈"
                         icon={<HomeIcon />}
-                        onClick={() => navigate('/main')}
+                        onClick={() => {
+                            navigate('/main');
+                            window.location.reload();
+                        }}
                     />
                     <BottomNavigationAction
                         label="검색"
@@ -97,7 +100,10 @@ export default function BottomNav() {
                         icon={<PersonIcon />}
                         onClick={
                             localStorage.getItem('accessToken')
-                                ? () => navigate('/mypage')
+                                ? () => {
+                                      navigate('/mypage');
+                                      window.location.reload();
+                                  }
                                 : () => navigate('/login')
                         }
                     />

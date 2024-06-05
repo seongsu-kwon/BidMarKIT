@@ -217,7 +217,7 @@ export default function ChatTitle(props) {
                         fullWidth
                         sx={{ mt: 1, mb: 1 }}
                         onClick={() => {
-                            tradeCheck(0);
+                            tradeCheck(2);
                             handleClose();
                         }}
                     >

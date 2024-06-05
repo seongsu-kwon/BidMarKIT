@@ -22,6 +22,7 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import { useGetChatRoom } from 'react-query/chat';
 import TopAppBar from 'layout/TopAppBar';
+import { getChatRoom } from 'api/chat';
 
 const AVATAR_IMAGE =
     'https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg';
@@ -121,6 +122,16 @@ const ChatUI = () => {
     const { id } = useParams();
 
     const { chatRoom } = useGetChatRoom(id);
+
+    // const [chatRoom, setChatRoom] = useState();
+
+    // //최초 랜더링 시 getChatRoom 호출
+    // useEffect(() => {
+    //     getChatRoom(id).then((res) => {
+    //         console.log('res', res);
+    //         setChatRoom(res.data.data);
+    //     });
+    // });
 
     const client = useRef({});
 
